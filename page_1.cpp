@@ -29,37 +29,70 @@ page_1::page_1(QWidget *parent) :
    ui->icon_cliente->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
    //  Set icons
-  double pix_w_a = (width*40)/1920;
-  double pix_h_a = (height*40)/1080;
+  double pix_w_a = (width*43)/1920;
+  double pix_h_a = (height*43)/1080;
 
    QPixmap pix_search(":/images/images/lupa-fondo.png");
    QIcon ButtonIcon(pix_search.scaled( static_cast<int>(pix_w_a),static_cast<int>(pix_h_a), Qt::KeepAspectRatio, Qt::SmoothTransformation));
    ui->icon_search->setIcon(ButtonIcon);
    ui->icon_search->setIconSize(QSize(static_cast<int>(pix_w_a),static_cast<int>(pix_h_a)));
 
-   QPixmap pix_pluss(":/images/images/mas-fondo.png");
+   QPixmap pix_pluss(":/images/images/lapiz-fondo.png");
    QIcon ButtonIcon_2(pix_pluss.scaled( static_cast<int>(pix_w_a),static_cast<int>(pix_h_a), Qt::KeepAspectRatio, Qt::SmoothTransformation));
    ui->icon_pluss->setIcon(ButtonIcon_2);
    ui->icon_pluss->setIconSize(QSize(static_cast<int>(pix_w_a),static_cast<int>(pix_h_a)));
 
-    //Set pen icons
-   double pix_w_c = (width*33)/1920;
-   double pix_h_c = (height*33)/1080;
-
-   QPixmap pen_pix(":/images/images/lapiz-fondo.png");
-   QIcon pen_button(pen_pix.scaled( static_cast<int>(pix_w_c),static_cast<int>(pix_h_c), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
-   ui->icon_pen_1->setIcon(pen_button);
-   ui->icon_pen_1->setIconSize(QSize(static_cast<int>(pix_w_c),static_cast<int>(pix_h_c)));
-   ui->icon_pen_2->setIcon(pen_button);
-   ui->icon_pen_2->setIconSize(QSize(static_cast<int>(pix_w_c),static_cast<int>(pix_h_c)));
-   ui->icon_pen_3->setIcon(pen_button);
-   ui->icon_pen_3->setIconSize(QSize(static_cast<int>(pix_w_c),static_cast<int>(pix_h_c)));
-   ui->icon_pen_4->setIcon(pen_button);
-   ui->icon_pen_4->setIconSize(QSize(static_cast<int>(pix_w_c),static_cast<int>(pix_h_c)));
 }
 
 page_1::~page_1()
 {
     delete ui;
+}
+
+void page_1::on_pushButton_7_clicked()
+{
+    nights = new Nights(this);
+    nights->show();
+}
+
+//This section is for "VÍA"
+void page_1::on_mail_butt_clicked()
+{
+
+}
+
+void page_1::on_visita_butt_clicked()
+{
+
+}
+
+void page_1::on_telefono_butt_clicked()
+{
+
+}
+
+void page_1::on_wpp_butt_clicked()
+{
+
+}
+
+//This section is for "MOTIVO"
+void page_1::on_tarifario_butt_clicked()
+{
+
+}
+
+void page_1::on_cotizacion_butt_clicked()
+{
+
+}
+
+void page_1::on_reserva_butt_clicked()
+{
+
+}
+
+void page_1::on_otros_butt_clicked()
+{
+
 }

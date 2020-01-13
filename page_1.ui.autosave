@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>page_2</class>
- <widget class="QWidget" name="page_2">
+ <class>page_1</class>
+ <widget class="QWidget" name="page_1">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>607</height>
+    <width>942</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color:rgba(0,0,0,0)t;</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_6">
+  <layout class="QVBoxLayout" name="verticalLayout_7">
    <property name="spacing">
     <number>10</number>
    </property>
@@ -292,7 +292,7 @@ color: #294D39;</string>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_22">
+    <layout class="QHBoxLayout" name="horizontalLayout_17">
      <property name="spacing">
       <number>10</number>
      </property>
@@ -354,14 +354,14 @@ color: #294D39;</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="mail_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
 font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:8em;
-max-width:8em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
@@ -371,14 +371,14 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="visita_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
 font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:8em;
-max-width:8em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
@@ -388,14 +388,14 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="telefono_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
 font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:8em;
-max-width:8em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
@@ -405,14 +405,14 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="wpp_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
 font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:8em;
-max-width:8em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
@@ -454,7 +454,7 @@ max-height:2.5em;</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
           <item>
            <widget class="QLabel" name="label_8">
             <property name="styleSheet">
@@ -482,7 +482,7 @@ color: #294D39;</string>
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
            <spacer name="horizontalSpacer_5">
             <property name="orientation">
@@ -499,87 +499,70 @@ color: #294D39;</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="tarifario_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
               <property name="text">
-               <string>SEGUIMIENTO</string>
+               <string>TARIFARIO</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="cotizacion_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
               <property name="text">
-               <string>FIDELIZACIÓN</string>
+               <string>COTIZACIÓN</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="reserva_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
               <property name="text">
-               <string>PROSPECCIÓN</string>
+               <string>RESERVA</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="otros_butt">
               <property name="styleSheet">
                <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
+min-width:8.5em;
+max-width:8.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
               <property name="text">
-               <string>BAJO MOVIMIENTO</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_8">
-              <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
-              </property>
-              <property name="text">
-               <string>1er CONTACTO</string>
+               <string>OTROS</string>
               </property>
              </widget>
             </item>
@@ -604,7 +587,7 @@ max-height:2.5em;</string>
       </widget>
      </item>
      <item>
-      <widget class="QFrame" name="frame_5">
+      <widget class="QFrame" name="frame_4">
        <property name="styleSheet">
         <string notr="true">background-color:white;</string>
        </property>
@@ -614,173 +597,11 @@ max-height:2.5em;</string>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
           <item>
-           <widget class="QLabel" name="label_10">
-            <property name="styleSheet">
-             <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
-color: #294D39;</string>
-            </property>
-            <property name="text">
-             <string>RESULTADO</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_10">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_18">
-          <item>
-           <spacer name="horizontalSpacer_11">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_10">
-            <item>
-             <widget class="QPushButton" name="pushButton_16">
-              <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
-              </property>
-              <property name="text">
-               <string>TARIFARIO</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_17">
-              <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
-              </property>
-              <property name="text">
-               <string>COTIZACIÓN</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_18">
-              <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
-              </property>
-              <property name="text">
-               <string>NUEVA COTIZACIÓN</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_19">
-              <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
-              </property>
-              <property name="text">
-               <string>RESERVA</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_20">
-              <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:9.5em;
-max-width:9.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
-              </property>
-              <property name="text">
-               <string>NO LE INTERESA</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_14">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_6">
-       <property name="styleSheet">
-        <string notr="true">background-color:white;</string>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_9">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_24">
-          <item>
-           <widget class="QLabel" name="label_18">
+           <widget class="QLabel" name="label_9">
             <property name="styleSheet">
              <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;</string>
@@ -791,7 +612,7 @@ color: #294D39;</string>
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_13">
+           <spacer name="horizontalSpacer_7">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -806,7 +627,7 @@ color: #294D39;</string>
          </layout>
         </item>
         <item>
-         <widget class="QTextEdit" name="textEdit_4">
+         <widget class="QTextEdit" name="textEdit">
           <property name="styleSheet">
            <string notr="true">border:1px  solid #79634E;
 color: #294D39;</string>
@@ -819,38 +640,22 @@ color: #294D39;</string>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_23">
+    <layout class="QHBoxLayout" name="horizontalLayout_16">
      <item>
-      <spacer name="horizontalSpacer_12">
+      <spacer name="horizontalSpacer_8">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>40</width>
+         <width>348</width>
          <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_15">
-       <property name="styleSheet">
-        <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:#79634E;
-min-width:10em;
-max-width:10em;
-min-height:3em;
-max-height:3em;</string>
-       </property>
-       <property name="text">
-        <string>INFORMACIÓN ADICIONAL</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_14">
+      <widget class="QPushButton" name="pushButton_9">
        <property name="styleSheet">
         <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;

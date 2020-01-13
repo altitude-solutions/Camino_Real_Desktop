@@ -55,16 +55,14 @@ min-width:3em;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLineEdit" name="lineEdit">
          <property name="styleSheet">
-          <string notr="true">background-color:white;
-min-height:2.5em;
-max-height:2.5em;
+          <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+background-color:white;
+min-height:1.8em;
+max-height:1.8em;
 padding:5px;
 color: #294D39;</string>
-         </property>
-         <property name="text">
-          <string/>
          </property>
         </widget>
        </item>
@@ -141,24 +139,16 @@ color:white;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="password">
+           <widget class="QLineEdit" name="contacto">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
 min-width:60em;
 border:1px  solid #79634E;
 color: #294D39;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="icon_pen_1">
-            <property name="styleSheet">
-             <string notr="true">background-color:transparent;
-max-width:3em;</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -193,24 +183,16 @@ color:white;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="password_2">
+           <widget class="QLineEdit" name="cargo">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
 min-width:60em;
 border:1px  solid #79634E;
 color: #294D39;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="icon_pen_2">
-            <property name="styleSheet">
-             <string notr="true">background-color:transparent;
-max-width:3em;</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -245,24 +227,16 @@ color:white;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="password_3">
+           <widget class="QLineEdit" name="telefono">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
 min-width:60em;
 border:1px  solid #79634E;
 color: #294D39;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="icon_pen_3">
-            <property name="styleSheet">
-             <string notr="true">background-color:transparent;
-max-width:3em;</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -297,24 +271,16 @@ color:white;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="password_4">
+           <widget class="QLineEdit" name="mail">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
 min-width:60em;
 border:1px  solid #79634E;
 color: #294D39;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="icon_pen_4">
-            <property name="styleSheet">
-             <string notr="true">background-color:transparent;
-max-width:3em;</string>
-            </property>
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -545,7 +511,7 @@ min-height:2.5em;
 max-height:2.5em;</string>
               </property>
               <property name="text">
-               <string>TARIFA</string>
+               <string>TARIFARIO</string>
               </property>
              </widget>
             </item>

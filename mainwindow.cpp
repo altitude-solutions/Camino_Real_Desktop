@@ -72,7 +72,7 @@ void MainWindow::on_pushButton_clicked() {
 
         QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
                 "color:white;"
-                "background-color:#999999;"
+                "background-color:rgba(153,153,153,50%);"
                 "min-width:7em;"
                 "max-width:7em;"
                 "min-height:2.5em;"
@@ -105,7 +105,7 @@ void MainWindow::on_pushButton_2_clicked() {
 
     QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
             "color:white;"
-            "background-color:#999999;"
+            "background-color:rgba(153,153,153,50%);"
             "min-width:7em;"
             "max-width:7em;"
             "min-height:2.5em;"

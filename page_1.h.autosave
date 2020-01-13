@@ -19,6 +19,10 @@ public:
 private slots:
     void on_pushButton_7_clicked();
 
+    void on_mail_butt_clicked();
+    
+    void on_visita_butt_clicked();
+    
 private:
     Ui::page_1 *ui;
 

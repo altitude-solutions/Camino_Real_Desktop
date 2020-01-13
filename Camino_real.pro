@@ -16,21 +16,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    extrainfo.cpp \
     main.cpp \
     login.cpp \
     mainwindow.cpp \
+    nights.cpp \
     page_1.cpp \
     page_2.cpp
 
 HEADERS += \
+    extrainfo.h \
     login.h \
     mainwindow.h \
+    nights.h \
     page_1.h \
     page_2.h
 
 FORMS += \
+    extrainfo.ui \
     login.ui \
     mainwindow.ui \
+    nights.ui \
     page_1.ui \
     page_2.ui
 
