@@ -23,5 +23,13 @@
         <file>images/lupa-oscura.png</file>
         <file>images/mas-oscuro.png</file>
         <file>images/ojo-oscuro.png</file>
+        <file>images/cliente-fondo.png</file>
+        <file>images/cliente-fondo-oscuro.png</file>
+        <file>images/lapiz-fondo.png</file>
+        <file>images/lapiz-fondo-oscuro.png</file>
+        <file>images/lupa-fondo.png</file>
+        <file>images/lupa-fondo-oscuro.png</file>
+        <file>images/mas-fondo.png</file>
+        <file>images/mas-fondo-oscuro.png</file>
     </qresource>
 </RCC>

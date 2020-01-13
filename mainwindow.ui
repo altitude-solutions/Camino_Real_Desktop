@@ -153,8 +153,7 @@ background-color:transparent;</string>
         <item>
          <widget class="QPushButton" name="pushButton">
           <property name="styleSheet">
-           <string notr="true">border-style:outset;
-font: 14pt &quot;MS Shell Dlg 2&quot;;
+           <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
 min-width:7em;
@@ -186,8 +185,7 @@ max-height:2.5em;</string>
         <item>
          <widget class="QPushButton" name="pushButton_2">
           <property name="styleSheet">
-           <string notr="true">border-style:outset;
-font: 14pt &quot;MS Shell Dlg 2&quot;;
+           <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
 min-width:7em;

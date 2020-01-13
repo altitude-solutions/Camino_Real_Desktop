@@ -172,7 +172,8 @@ max-width:7em;</string>
             <string notr="true">min-height:2em;
 max-height:2em;
 min-width:15em;
-max-width:15em;</string>
+max-width:15em;
+color: #294D39;</string>
            </property>
           </widget>
          </item>
@@ -204,7 +205,8 @@ max-width:7em;</string>
             <string notr="true">min-height:2em;
 max-height:2em;
 min-width:15em;
-max-width:15em;</string>
+max-width:15em;
+color: #294D39;</string>
            </property>
           </widget>
          </item>
@@ -229,7 +231,6 @@ max-width:15em;</string>
           <widget class="QPushButton" name="pushButton">
            <property name="styleSheet">
             <string notr="true">background-color:#79634E;
-border-style:outset;
 color:white;
 min-height:2.5em;
 max-height:2.5em;

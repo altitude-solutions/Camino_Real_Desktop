@@ -24,8 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
    this->setWindowState(Qt::WindowMaximized);
 
     l_a = new QVBoxLayout(this);
-    l_b = new QVBoxLayout(this);
-
     p1 = new page_1(this);
     l_a-> addWidget(p1);
     l_a ->setMargin (0);
@@ -72,8 +70,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked() {
 
-        QString pushed = "border-style:outset;"
-                "font: 14pt \"MS Shell Dlg 2\";"
+        QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
                 "color:white;"
                 "background-color:#999999;"
                 "min-width:7em;"
@@ -81,8 +78,7 @@ void MainWindow::on_pushButton_clicked() {
                 "min-height:2.5em;"
                 "max-height:2.5em;";
 
-        QString released = "border-style:outset;"
-                        "font: 14pt \"MS Shell Dlg 2\";"
+        QString released = "font: 14pt \"MS Shell Dlg 2\";"
                         "color:white;"
                         "background-color:#79634E;"
                         "min-width:7em;"
@@ -99,12 +95,15 @@ void MainWindow::on_pushButton_clicked() {
             l_a->addWidget (p1);
             actual_widget = "page_1";
         }
+        else{
+            ui->pushButton->setStyleSheet(released);
+            ui->pushButton_2->setStyleSheet(pushed);
+        }
 }
 
 void MainWindow::on_pushButton_2_clicked() {
 
-    QString pushed = "border-style:outset;"
-            "font: 14pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
             "color:white;"
             "background-color:#999999;"
             "min-width:7em;"
@@ -112,8 +111,7 @@ void MainWindow::on_pushButton_2_clicked() {
             "min-height:2.5em;"
             "max-height:2.5em;";
 
-    QString released = "border-style:outset;"
-                    "font: 14pt \"MS Shell Dlg 2\";"
+    QString released = "font: 14pt \"MS Shell Dlg 2\";"
                     "color:white;"
                     "background-color:#79634E;"
                     "min-width:7em;"
@@ -130,4 +128,13 @@ void MainWindow::on_pushButton_2_clicked() {
         l_a->addWidget (p2);
         actual_widget = "page_2";
     }
+    else{
+        ui->pushButton->setStyleSheet(pushed);
+        ui->pushButton_2->setStyleSheet(released);
+    }
+}
+
+void MainWindow::on_icon_back_clicked()
+{
+    emit logOut();
 }

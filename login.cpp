@@ -35,6 +35,9 @@ Login::Login(QWidget *parent)
   ui->main_icon->setPixmap(main_pix.scaled( static_cast<int>(pix_w_a),static_cast<int>(pix_w_a), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->main_icon->setFixedSize(static_cast<int>(pix_w_a), static_cast<int>(pix_h_a));
 
+  //Connects
+  connect(&main_window, &MainWindow::logOut,this,&Login::closeSession);
+
 }
 
 Login::~Login()
@@ -46,4 +49,10 @@ void Login::on_pushButton_clicked()
 {
     main_window.show();
     this->hide();
+}
+
+void Login::closeSession()
+{
+    main_window.close();
+    this->show();
 }

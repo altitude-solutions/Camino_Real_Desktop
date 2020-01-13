@@ -18,17 +18,21 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void logOut();
+
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_icon_back_clicked();
 
 private:
     Ui::MainWindow *ui;
     page_1 *p1;
     page_2 *p2;
     QVBoxLayout *l_a;
-    QVBoxLayout *l_b;
 
     //Variable for the actual widget
     QString actual_widget;
