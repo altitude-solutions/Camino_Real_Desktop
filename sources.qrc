@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/atras.png</file>
+        <file>images/camino_real.png</file>
+        <file>images/cliente.png</file>
+        <file>images/flecha_scroll.png</file>
+        <file>images/icono.ico</file>
+        <file>images/icono.png</file>
+        <file>images/lapiz.png</file>
+        <file>images/lupa.png</file>
+        <file>images/mas.png</file>
+        <file>images/ojo.png</file>
+        <file>images/output-onlinepngtools.png</file>
+        <file>images/background.jpg</file>
+        <file>images/camin_real_image.jpg</file>
+        <file>images/dark_background.jpg</file>
+        <file>images/background.png</file>
+        <file>images/atras-oscuro.png</file>
+        <file>images/camino-real-oscuro.png</file>
+        <file>images/cliente-oscuro.png</file>
+        <file>images/flecha-scroll-oscura.png</file>
+        <file>images/lapiz-oscuro.png</file>
+        <file>images/lupa-oscura.png</file>
+        <file>images/mas-oscuro.png</file>
+        <file>images/ojo-oscuro.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>page_1</class>
+ <widget class="QWidget" name="page_1">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>953</width>
+    <height>409</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgba(0,0,0,0)t;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>12</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="icon_cliente">
+         <property name="styleSheet">
+          <string notr="true">background-color:#79634E;
+min-height:2.5em;
+max-height:2.5em;
+min-width:3em;
+max-width:3em;
+padding:5px;</string>
+         </property>
+         <property name="text">
+          <string>ICON</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="styleSheet">
+          <string notr="true">background-color:#79634E;
+min-width:4em;
+max-width:4em;
+min-height:2.5em;
+max-height:2.5em;
+padding:5px;
+color:white;</string>
+         </property>
+         <property name="text">
+          <string>CLIENTE</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;
+min-height:2.5em;
+max-height:2.5em;
+padding:5px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="icon_search">
+       <property name="styleSheet">
+        <string notr="true">background-color:#79634E;
+max-width:3em;
+padding:5px;
+min-width:3em;
+min-height:2em;
+max-width:2em;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="icon_pluss">
+       <property name="styleSheet">
+        <string notr="true">background-color:#79634E;
+max-width:3em;
+padding:5px;
+min-width:3em;
+min-height:2em;
+max-width:2em;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>335</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
