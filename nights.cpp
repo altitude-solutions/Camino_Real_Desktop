@@ -31,12 +31,27 @@ Nights::~Nights()
 void Nights::on_pushButton_9_clicked()
 {
     QString nights_number = ui-> nights -> text();
-    if(nights_number!=""){
-        emit send_nights(nights_number);
-        ui -> label_5 -> setText("");
-        this->close();
+
+    bool validator = false;
+    double validation =  nights_number.toDouble(&validator);
+
+    if(validation > 0){
+        if(nights_number!=""){
+            emit send_nights(nights_number);
+            ui -> nights -> setText("");
+            this->close();
+        }
+        else{
+             QMessageBox::critical (this, "Error", "Ingresar el número de noches porfavor");
+             ui -> nights -> setText("");
+        }
     }
     else{
-         QMessageBox::critical (this, "Error", "Ingresar el número de noches porfavor");
+        QMessageBox::critical (this, "Error", "Ingresar un número válido porfavor");
+        ui -> nights -> setText("");
     }
+}
+
+void Nights::receive_page(QString page){
+    this ->actual_page = page;
 }

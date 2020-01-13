@@ -55,7 +55,7 @@ min-width:3em;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="cliente">
          <property name="styleSheet">
           <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 background-color:white;
@@ -354,12 +354,11 @@ color: #294D39;</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="email_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
@@ -371,12 +370,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="visita_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
@@ -388,12 +386,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="telefono_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
@@ -405,12 +402,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="wpp_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
@@ -499,12 +495,11 @@ color: #294D39;</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="seguimiento_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -516,12 +511,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="fidelizacion_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -533,12 +527,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="prospeccion_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -550,12 +543,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="bajomov_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -567,12 +559,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="primer_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -661,12 +652,11 @@ color: #294D39;</string>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
-             <widget class="QPushButton" name="pushButton_16">
+             <widget class="QPushButton" name="tarifario_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -678,12 +668,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_17">
+             <widget class="QPushButton" name="cotizacion_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -695,12 +684,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_18">
+             <widget class="QPushButton" name="nuevacot_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -712,12 +700,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_19">
+             <widget class="QPushButton" name="reserva_butt">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -729,12 +716,11 @@ max-height:2.5em;</string>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_20">
+             <widget class="QPushButton" name="no_interesa">
               <property name="styleSheet">
-               <string notr="true">border-style:outset;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:#79634E;
+background-color:rgba(121,99,78,50%);
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -806,10 +792,11 @@ color: #294D39;</string>
          </layout>
         </item>
         <item>
-         <widget class="QTextEdit" name="textEdit_4">
+         <widget class="QTextEdit" name="comentarios">
           <property name="styleSheet">
            <string notr="true">border:1px  solid #79634E;
-color: #294D39;</string>
+color: #294D39;
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
           </property>
          </widget>
         </item>

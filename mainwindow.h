@@ -20,13 +20,13 @@ public:
 
 signals:
     void logOut();
+    void send_info(QString, QString, QString, QString);
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_icon_back_clicked();
+    void receive_info(QString, QString, QString, QString);
 
 private:
     Ui::MainWindow *ui;
@@ -36,6 +36,12 @@ private:
 
     //Variable for the actual widget
     QString actual_widget;
+
+    //Info Variables
+    QString userName;
+    QString realName;
+    QString token;
+    QString url;
 };
 
 #endif // MAINWINDOW_H

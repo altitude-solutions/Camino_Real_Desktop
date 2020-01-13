@@ -277,5 +277,38 @@ max-width:9em;</string>
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>user</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>343</x>
+     <y>107</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>214</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>password</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>153</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>421</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

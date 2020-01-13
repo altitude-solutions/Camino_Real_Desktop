@@ -23,13 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
    //set widget size maximized
    this->setWindowState(Qt::WindowMaximized);
 
-    l_a = new QVBoxLayout(this);
-    p1 = new page_1(this);
-    l_a-> addWidget(p1);
-    l_a ->setMargin (0);
 
-    ui->widget->setLayout (l_a);
-    actual_widget = "page_1";
+
 
     //Set frames
     ui->frame->setFixedHeight(static_cast<int>(height*0.1));
@@ -92,6 +87,8 @@ void MainWindow::on_pushButton_clicked() {
            ui->pushButton->setStyleSheet(released);
            ui->pushButton_2->setStyleSheet(pushed);
             p1 = new page_1(this);
+            connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p1, SLOT(receiver(QString, QString, QString, QString)));
+            emit send_info(this->userName, this->realName, this->token, this->url);
             l_a->addWidget (p1);
             actual_widget = "page_1";
         }
@@ -125,6 +122,9 @@ void MainWindow::on_pushButton_2_clicked() {
         ui->pushButton->setStyleSheet(pushed);
         ui->pushButton_2->setStyleSheet(released);
         p2 = new page_2(this);
+        connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p2, SLOT(receiver(QString, QString, QString, QString)));
+        emit send_info(this->userName, this->realName, this->token, this->url);
+
         l_a->addWidget (p2);
         actual_widget = "page_2";
     }
@@ -137,4 +137,32 @@ void MainWindow::on_pushButton_2_clicked() {
 void MainWindow::on_icon_back_clicked()
 {
     emit logOut();
+    delete l_a;
+    if (actual_widget == "page_1"){
+        delete p1;
+    }
+    else{
+        delete p2;
+    }
+}
+
+void MainWindow::receive_info(QString userName, QString realName, QString token, QString url){
+
+    this -> userName = userName;
+    this -> realName = realName;
+    this -> token = token;
+    this -> url = url;
+
+    l_a = new QVBoxLayout(this);
+    p1 = new page_1(this);
+
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p1, SLOT(receiver(QString, QString, QString, QString)));
+    emit send_info(this->userName, this->realName, this->token, this->url);
+
+    l_a-> addWidget(p1);
+    l_a ->setMargin (0);
+
+    ui->widget->setLayout (l_a);
+    actual_widget = "page_1";
+
 }

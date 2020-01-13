@@ -16,13 +16,18 @@ public:
     Login(QWidget *parent = nullptr);
     ~Login();
 
+signals:
+    void retreive_data(QString, QString, QString, QString);
+
 private slots:
     void on_pushButton_clicked();
     void closeSession();
+    void read_url();
 
 private:
     Ui::Login *ui;
 
     MainWindow main_window;
+    QString url;
 };
 #endif // LOGIN_H
