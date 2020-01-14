@@ -80,7 +80,7 @@ void Login::on_pushButton_clicked()
                         //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
                     }
                     else {
-                        information_box("x","Eroor en base de datos","Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                        information_box("x","Error en base de datos","Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                         //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                     }
                 }
@@ -138,7 +138,7 @@ void Login::read_url(){
     }
 
     if (line == ""){
-        this -> url = "192.168.0.9:3000";
+        this -> url = "157.245.241.97:3000";
 
         if (file.open(QIODevice::ReadWrite)) {
             QTextStream stream( &file );

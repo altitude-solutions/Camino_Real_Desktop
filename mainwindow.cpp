@@ -23,8 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
    //set widget size maximized
    this->setWindowState(Qt::WindowMaximized);
 
+   //Set icon
+   QIcon icon(":/images/images/icono.ico");
+   this -> setWindowIcon(icon);
 
-
+   //set Window title
+   this->setWindowTitle("Clientes corporativos");
 
     //Set frames
     ui->frame->setFixedHeight(static_cast<int>(height*0.1));

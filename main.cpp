@@ -3,10 +3,25 @@
 #include <QSplashScreen>
 #include <QTimer>
 #include <QScreen>
+#include <QLockFile>
+#include  <QDir>
+#include <QMessageBox>
+#include <QDesktopWidget>
+#include <QIcon>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QLockFile lockFile(QDir::tempPath()+"/locker.lock");
+
+    if(!lockFile.tryLock(100)){
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("El programa ya se encuentra en ejecución");
+        msgBox.exec();
+        return 1;
+    }
 
     QPixmap pixmap(":/images/images/camin_real_image.jpg");
 
@@ -22,6 +37,10 @@ int main(int argc, char *argv[])
     QTimer::singleShot(1000, &splash, &QWidget::close);
 
     Login w;
+
+    QIcon icon(":/images/images/icono.ico");
+    w.setWindowIcon(icon);
+
     w.show();
     return a.exec();
 }
