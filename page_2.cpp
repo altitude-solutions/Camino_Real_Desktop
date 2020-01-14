@@ -343,7 +343,8 @@ void page_2::read_client_info()
 
         if (reply->error ()) {
             QJsonDocument errorJson = QJsonDocument::fromJson (resBin);
-            QMessageBox::critical (this, "Error", QString::fromStdString (errorJson.toJson ().toStdString ()));
+            information_box("x","Error",QString::fromStdString (errorJson.toJson ().toStdString ()));
+            //QMessageBox::critical (this, "Error", QString::fromStdString (errorJson.toJson ().toStdString ()));
             return;
         }
 
@@ -439,13 +440,17 @@ void page_2::on_pushButton_14_clicked()
             if (reply->error ()) {
                 QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
                 if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                    QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
                 } else {
-                    QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                 }
             }
             else{
-                QMessageBox::information(this, "Base de Datos", "Guardado con éxito");
+                restart();
+                information_box("x", "Base de Datos","Guardado con éxito");
+                //QMessageBox::information(this, "Base de Datos", "Guardado con éxito");
             }
             reply->deleteLater ();
         });
@@ -460,6 +465,72 @@ void page_2::on_pushButton_14_clicked()
 
     }
     else{
-        QMessageBox::critical (this, "Datos incompletos", "Seleccionar VÍA, MOTIVO y RESULTADO");
+        information_box("x","Datos incompletos ","Seleccionar VÍA, MOTIVO y RESULTADO");
+        //QMessageBox::critical (this, "Datos incompletos", "Seleccionar VÍA, MOTIVO y RESULTADO");
     }
+}
+
+void page_2::restart(){
+    via = "";
+    motivo = "";
+    resultado = "";
+
+    ui -> cliente -> setText("");
+    ui -> contacto -> setText("");
+    ui -> mail -> setText("");
+    ui -> telefono -> setText("");
+    ui -> cargo -> setText("");
+
+    QString released_a = "font: 12pt \"MS Shell Dlg 2\";"
+                                    "color:white;"
+                                    "background-color:rgba(121,99,78,50%);"
+                                    "min-width:8em;"
+                                    "max-width:8em;"
+                                    "min-height:2.5em;"
+                                    "max-height:2.5em;";
+
+    ui -> email_butt -> setStyleSheet(released_a);
+    ui -> visita_butt -> setStyleSheet(released_a);
+    ui -> telefono_butt -> setStyleSheet(released_a);
+    ui -> wpp_butt -> setStyleSheet(released_a);
+
+    QString released_b = "font: 10pt \"MS Shell Dlg 2\";"
+                                    "color:white;"
+                                    "background-color:rgba(121,99,78,50%);"
+                                    "min-width:9.5em;"
+                                    "max-width:9.5em;"
+                                    "min-height:2.5em;"
+                                    "max-height:2.5em;";
+
+    ui -> seguimiento_butt -> setStyleSheet(released_b);
+    ui -> fidelizacion_butt -> setStyleSheet(released_b);
+    ui -> prospeccion_butt -> setStyleSheet(released_b);
+    ui -> bajomov_butt -> setStyleSheet(released_b);
+    ui -> primer_butt -> setStyleSheet(released_b);
+
+    ui -> tarifario_butt -> setStyleSheet(released_b);
+    ui -> cotizacion_butt -> setStyleSheet(released_b);
+    ui -> nuevacot_butt -> setStyleSheet(released_b);
+    ui -> reserva_butt -> setStyleSheet(released_b);
+    ui -> no_interesa -> setStyleSheet(released_b);
+}
+
+void page_2::information_box(QString icon, QString header, QString text){
+
+    box_info = new Information_box(this);
+    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
+
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+    int width = screens[0]->geometry().width();
+    int height = screens[0]->geometry().height();
+
+     //set widget size dynamic, aspect ratio 16:9
+     double w = (width)/2;
+     double h = (height)/1.8;
+
+    emit send_info_box(icon, header, text, w, h);
+    box_info->show();
+
 }

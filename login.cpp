@@ -10,6 +10,7 @@
 #include <QNetworkReply>
 #include <QMessageBox>
 #include <QDir>
+#include <QFile>
 
 Login::Login(QWidget *parent)
     : QWidget(parent)
@@ -70,14 +71,17 @@ void Login::on_pushButton_clicked()
 
                 //error catch
                 if(reply -> error() == QNetworkReply::UnknownNetworkError){
-                    QMessageBox::critical (this, "Error", "No hay conexión");
+                    information_box("x","Error","No hay conexión a red");
+                    //QMessageBox::critical (this, "Error", "No hay conexión");
                 }
                 else{
                     if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                        QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                        information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                        //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
                     }
                     else {
-                        QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                        information_box("x","Eroor en base de datos","Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                        //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                     }
                 }
                 ui -> pushButton -> setEnabled (true);
@@ -122,7 +126,7 @@ void Login::read_url(){
 
     QString path = QDir::homePath();
 
-    QFile file(path+"/Camino Real/url.txt");
+    QFile file(path+"/Camino_Real/url.txt");
 
     QString line;
 
@@ -147,4 +151,25 @@ void Login::read_url(){
     }
 
     file.close();
+}
+
+
+void Login::information_box(QString icon, QString header, QString text){
+
+    box_info = new Information_box(this);
+    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
+
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+    int width = screens[0]->geometry().width();
+    int height = screens[0]->geometry().height();
+
+     //set widget size dynamic, aspect ratio 16:9
+     double w = (width)/3;
+     double h = (height)/3;
+
+    emit send_info_box(icon, header, text, w, h);
+    box_info->show();
+
 }

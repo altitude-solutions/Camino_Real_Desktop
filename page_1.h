@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "nights.h"
+#include "information_box.h"
 
 namespace Ui {
 class page_1;
@@ -18,6 +19,7 @@ public:
 
 signals:
     void send_page(QString);
+    void send_info_box(QString, QString,QString, double, double);
 
 private slots:
     void on_mail_butt_clicked();
@@ -37,17 +39,22 @@ private slots:
 
     //Read info from the database
     void read_client_info();
-
     void on_cliente_editingFinished();
-
     void on_icon_search_clicked();
-
     void on_pushButton_9_clicked();
+
+    //Restart
+    void restart();
+
+    //Information Box
+    void information_box(QString, QString, QString);
 
 private:
     Ui::page_1 *ui;
 
     Nights *nights;
+    Information_box *box_info;
+
     QString via;
     QString motivo;
 

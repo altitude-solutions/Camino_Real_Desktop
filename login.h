@@ -12,6 +12,9 @@ class Login : public QWidget
 {
     Q_OBJECT
 
+signals:
+    void send_info_box(QString, QString,QString, double, double);
+
 public:
     Login(QWidget *parent = nullptr);
     ~Login();
@@ -24,8 +27,12 @@ private slots:
     void closeSession();
     void read_url();
 
+    //Information Box
+    void information_box(QString, QString, QString);
+
 private:
     Ui::Login *ui;
+    Information_box *box_info;
 
     MainWindow main_window;
     QString url;

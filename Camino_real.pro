@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     extrainfo.cpp \
+    information_box.cpp \
     main.cpp \
     login.cpp \
     mainwindow.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     extrainfo.h \
+    information_box.h \
     login.h \
     mainwindow.h \
     nights.h \
@@ -34,6 +36,7 @@ HEADERS += \
 
 FORMS += \
     extrainfo.ui \
+    information_box.ui \
     login.ui \
     mainwindow.ui \
     nights.ui \

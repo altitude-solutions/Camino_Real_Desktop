@@ -227,7 +227,8 @@ void page_1::read_client_info()
 
         if (reply->error ()) {
             QJsonDocument errorJson = QJsonDocument::fromJson (resBin);
-            QMessageBox::critical (this, "Error", QString::fromStdString (errorJson.toJson ().toStdString ()));
+            information_box("x","Error",QString::fromStdString (errorJson.toJson ().toStdString ()));
+            //QMessageBox::critical (this, "Error", QString::fromStdString (errorJson.toJson ().toStdString ()));
             return;
         }
 
@@ -321,13 +322,17 @@ void page_1::on_pushButton_9_clicked()
             if (reply->error ()) {
                 QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
                 if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                    QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
                 } else {
-                    QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                 }
             }
             else{
-                QMessageBox::information(this, "Base de Datos", "Guardado con éxito");
+                restart();
+                information_box("x", "Base de Datos", "Guardado con éxito");
+                //QMessageBox::information(this, "Base de Datos", "Guardado con éxito");
             }
             reply->deleteLater ();
         });
@@ -342,6 +347,56 @@ void page_1::on_pushButton_9_clicked()
 
     }
     else{
-        QMessageBox::critical (this, "Datos incompletos", "Seleccionar VÍA y MOTIVO");
+        information_box("x", "Datos incompletos", "Seleccionar VÍA y MOTIVO");
+        //QMessageBox::critical (this, "Datos incompletos", "Seleccionar VÍA y MOTIVO");
     }
+}
+
+void page_1::restart(){
+    via = "";
+    motivo = "";
+
+    ui -> cliente -> setText("");
+    ui -> contacto -> setText("");
+    ui -> mail -> setText("");
+    ui -> telefono -> setText("");
+    ui -> cargo -> setText("");
+
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
+                                    "color:white;"
+                                    "background-color:rgba(121,99,78,50%);"
+                                    "min-width:8.5em;"
+                                    "max-width:8.5em;"
+                                    "min-height:2.5em;"
+                                    "max-height:2.5em;";
+
+    ui -> tarifario_butt -> setStyleSheet(released);
+    ui -> cotizacion_butt -> setStyleSheet(released);
+    ui -> reserva_butt -> setStyleSheet(released);
+    ui -> otros_butt -> setStyleSheet(released);
+
+    ui -> mail_butt -> setStyleSheet(released);
+    ui -> visita_butt -> setStyleSheet(released);
+    ui -> telefono_butt -> setStyleSheet(released);
+    ui -> wpp_butt -> setStyleSheet(released);
+}
+
+void page_1::information_box(QString icon, QString header, QString text){
+
+    box_info = new Information_box(this);
+    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
+
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+    int width = screens[0]->geometry().width();
+    int height = screens[0]->geometry().height();
+
+     //set widget size dynamic, aspect ratio 16:9
+     double w = (width)/2;
+     double h = (height)/1.8;
+
+    emit send_info_box(icon, header, text, w, h);
+    box_info->show();
+
 }
