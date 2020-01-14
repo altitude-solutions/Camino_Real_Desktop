@@ -1,0 +1,31 @@
+#ifndef INOUT_H
+#define INOUT_H
+
+#include <QWidget>
+
+namespace Ui {
+class InOut;
+}
+
+class InOut : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit InOut(QWidget *parent = nullptr);
+    ~InOut();
+
+private slots:
+    void on_pushButton_clicked();
+    
+    void on_pushButton_2_clicked();
+    
+private:
+    Ui::InOut *ui;
+    
+    page_1 *p1;
+    page_2 *p2;
+    
+};
+
+#endif // INOUT_H

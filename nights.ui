@@ -151,6 +151,9 @@ max-width:20em;
 min-height:2em;
 max-height:2em;</string>
                </property>
+               <property name="cursorPosition">
+                <number>0</number>
+               </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
                </property>
@@ -253,6 +256,10 @@ max-height:2.5em;</string>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>nights</tabstop>
+  <tabstop>pushButton_9</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

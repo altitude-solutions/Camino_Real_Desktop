@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
    ui->frame_2->setAutoFillBackground(true);
    ui->frame_2->setPalette(palette);
 
-   //   //Set icons
+   // Set icons
   double pix_w_a = (width*100)/1920;
   double pix_h_a = (height*100)/1080;
 
@@ -138,24 +138,14 @@ void MainWindow::on_pushButton_2_clicked() {
     }
 }
 
-void MainWindow::on_icon_back_clicked()
-{
-    emit logOut();
-    delete l_a;
-    if (actual_widget == "page_1"){
-        delete p1;
-    }
-    else{
-        delete p2;
-    }
-}
-
 void MainWindow::receive_info(QString userName, QString realName, QString token, QString url){
 
     this -> userName = userName;
     this -> realName = realName;
     this -> token = token;
     this -> url = url;
+
+    emit send_next();
 
     l_a = new QVBoxLayout(this);
     p1 = new page_1(this);
@@ -169,4 +159,35 @@ void MainWindow::receive_info(QString userName, QString realName, QString token,
     ui->widget->setLayout (l_a);
     actual_widget = "page_1";
 
+}
+
+void MainWindow::on_icon_back_clicked()
+{
+    ham = new Ham_options(this);
+    connect(ham, SIGNAL(getOut()),this,SLOT(close_session()));
+    connect(ham, SIGNAL(send_notebook()), this, SLOT(show_notebook()));
+    connect(ham, SIGNAL(send_inout()),this, SLOT(show_inout()));
+    ham -> show();
+}
+
+void MainWindow::close_session(){
+        emit logOut();
+//        delete l_a;
+//        if (actual_widget == "page_1"){
+//            delete p1;
+//        }
+//        else{
+//            delete p2;
+//        }
+}
+
+void MainWindow::show_notebook(){
+
+    notebook = new Notebook(this);
+    notebook->show();
+
+}
+
+void MainWindow::show_inout(){
+    notebook->close();
 }

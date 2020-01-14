@@ -17,29 +17,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     extrainfo.cpp \
+    ham_options.cpp \
     information_box.cpp \
+    inout.cpp \
     main.cpp \
     login.cpp \
     mainwindow.cpp \
     nights.cpp \
+    notebook.cpp \
     page_1.cpp \
     page_2.cpp
 
 HEADERS += \
     extrainfo.h \
+    ham_options.h \
     information_box.h \
+    inout.h \
     login.h \
     mainwindow.h \
     nights.h \
+    notebook.h \
     page_1.h \
     page_2.h
 
 FORMS += \
     extrainfo.ui \
+    ham_options.ui \
     information_box.ui \
+    inout.ui \
     login.ui \
     mainwindow.ui \
     nights.ui \
+    notebook.ui \
     page_1.ui \
     page_2.ui
 

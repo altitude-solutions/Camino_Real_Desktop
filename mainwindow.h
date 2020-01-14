@@ -5,6 +5,8 @@
 #include "page_1.h"
 #include "page_2.h"
 #include <QVBoxLayout>
+#include "ham_options.h"
+#include "notebook.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,11 +29,18 @@ private slots:
     void on_pushButton_2_clicked();
     void on_icon_back_clicked();
     void receive_info(QString, QString, QString, QString);
+    void close_session();
+    void show_notebook();
+    void show_inout();
 
 private:
     Ui::MainWindow *ui;
+
     page_1 *p1;
     page_2 *p2;
+    Notebook *notebook;
+
+    Ham_options *ham;
     QVBoxLayout *l_a;
 
     //Variable for the actual widget
