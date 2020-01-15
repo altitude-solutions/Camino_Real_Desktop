@@ -31,5 +31,7 @@
         <file>images/lupa-fondo-oscuro.png</file>
         <file>images/mas-fondo.png</file>
         <file>images/mas-fondo-oscuro.png</file>
+        <file>images/hamburguesa.png</file>
+        <file>images/hamburguesa-fondo.png</file>
     </qresource>
 </RCC>

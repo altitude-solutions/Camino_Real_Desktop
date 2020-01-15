@@ -72,17 +72,14 @@ void Login::on_pushButton_clicked()
                 //error catch
                 if(reply -> error() == QNetworkReply::UnknownNetworkError){
                     information_box("x","Error","No hay conexión a red");
-                    //QMessageBox::critical (this, "Error", "No hay conexión");
                 }
                 else{
                     if (errorJson.object ().value ("err").toObject ().contains ("message")) {
                         information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                        //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                    }
+                     }
                     else {
                         information_box("x","Error en base de datos","Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
-                        //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
-                    }
+                     }
                 }
                 ui -> pushButton -> setEnabled (true);
             }
@@ -91,6 +88,7 @@ void Login::on_pushButton_clicked()
 
                 ui -> pushButton->setEnabled (true);
                 emit retreive_data (response.object().value("user").toObject().value("userName").toString(), QString::fromLatin1 ( response.object().value("user").toObject().value("realName").toString().toLatin1() ), response.object().value("token").toString(),this->url);
+
                 main_window.show ();
                 this->hide ();
             }
@@ -118,6 +116,8 @@ void Login::on_pushButton_clicked()
 
 void Login::closeSession()
 {
+    ui -> user -> setText("");
+    ui -> password -> setText("");
     main_window.close();
     this->show();
 }

@@ -62,3 +62,9 @@ void Ham_options::on_pushButton_10_clicked()
     emit send_notebook();
     this -> close();
 }
+
+void Ham_options::on_clients_clicked()
+{
+    emit send_clients();
+    this->close();
+}

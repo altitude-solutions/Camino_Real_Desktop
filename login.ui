@@ -208,6 +208,9 @@ min-width:15em;
 max-width:15em;
 color: #294D39;</string>
            </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
           </widget>
          </item>
         </layout>

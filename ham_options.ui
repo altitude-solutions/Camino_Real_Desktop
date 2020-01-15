@@ -40,71 +40,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Preferred</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="main_icon">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_10">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>860</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="icon_back">
-        <property name="styleSheet">
-         <string notr="true">border-style:outset;
-background-color:transparent;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_11">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Preferred</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
+     <layout class="QHBoxLayout" name="horizontalLayout_4"/>
     </widget>
    </item>
    <item>
@@ -130,7 +66,7 @@ background-color:transparent;</string>
         <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
-          <height>2</height>
+          <height>4</height>
          </size>
         </property>
        </spacer>
@@ -203,7 +139,7 @@ QPushButton:hover#pushButton_9 {
 </string>
                </property>
                <property name="text">
-                <string>View _ 1</string>
+                <string>In/Out</string>
                </property>
               </widget>
              </item>
@@ -271,7 +207,7 @@ QPushButton:hover#pushButton_10 {
 }</string>
                </property>
                <property name="text">
-                <string>View _ 2</string>
+                <string>Pendientes</string>
                </property>
               </widget>
              </item>
@@ -287,6 +223,72 @@ QPushButton:hover#pushButton_10 {
                 <size>
                  <width>88</width>
                  <height>17</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="Line" name="line_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <spacer name="horizontalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clients">
+               <property name="styleSheet">
+                <string notr="true">QPushButton#clients {
+    font: 14pt &quot;MS Shell Dlg 2&quot;;
+	color:#294D39;		
+	background-color:transparent;
+	min-width:6em;	
+	max-width:6em;
+	min-height:1.5em;
+	max-height:1.5em; 
+}
+
+QPushButton:hover#clients {
+    font: 14pt &quot;MS Shell Dlg 2&quot;;
+	color:#294D39;		
+	background-color:rgba(50,50,50,50%);
+	min-width:6em;	
+	max-width:6em;
+	min-height:1.5em;
+	max-height:1.5em; 
+}
+</string>
+               </property>
+               <property name="text">
+                <string>Clientes</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_10">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
                 </size>
                </property>
               </spacer>
@@ -391,7 +393,7 @@ QPushButton:hover#close_seesion {
         <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
-          <height>125</height>
+          <height>138</height>
          </size>
         </property>
        </spacer>
@@ -405,7 +407,6 @@ QPushButton:hover#close_seesion {
   <tabstop>pushButton_9</tabstop>
   <tabstop>pushButton_10</tabstop>
   <tabstop>close_seesion</tabstop>
-  <tabstop>icon_back</tabstop>
  </tabstops>
  <resources/>
  <connections/>

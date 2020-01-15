@@ -44,5 +44,3 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
-
-

@@ -263,6 +263,7 @@ void page_1::read_client_info()
         client_completer -> setCaseSensitivity(Qt::CaseInsensitive);
         client_completer -> setCompletionMode(QCompleter::PopupCompletion);
         client_completer -> setFilterMode(Qt::MatchContains);
+
         ui -> cliente -> setCompleter(client_completer);
         reply->deleteLater ();
 
@@ -399,4 +400,9 @@ void page_1::information_box(QString icon, QString header, QString text){
     emit send_info_box(icon, header, text, w, h);
     box_info->show();
 
+}
+
+void page_1::on_icon_pluss_clicked()
+{
+    emit send_clients();
 }

@@ -16,37 +16,46 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    clients.cpp \
     extrainfo.cpp \
     ham_options.cpp \
     information_box.cpp \
     inout.cpp \
-    main.cpp \
     login.cpp \
+    main.cpp \
     mainwindow.cpp \
+    modify.cpp \
+    new.cpp \
     nights.cpp \
     notebook.cpp \
     page_1.cpp \
     page_2.cpp
 
 HEADERS += \
+    clients.h \
     extrainfo.h \
     ham_options.h \
     information_box.h \
     inout.h \
     login.h \
     mainwindow.h \
+    modify.h \
+    new.h \
     nights.h \
     notebook.h \
     page_1.h \
     page_2.h
 
 FORMS += \
+    clients.ui \
     extrainfo.ui \
     ham_options.ui \
     information_box.ui \
     inout.ui \
     login.ui \
     mainwindow.ui \
+    modify.ui \
+    new.ui \
     nights.ui \
     notebook.ui \
     page_1.ui \

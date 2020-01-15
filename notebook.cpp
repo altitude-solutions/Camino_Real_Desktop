@@ -20,20 +20,6 @@ Notebook::Notebook(QWidget *parent) :
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
 
     this->setFixedSize(size);
-    this->move(0,static_cast<int>(height*0.1));
-
-    //Set frames
-    ui->frame_2->setFixedHeight(static_cast<int>(height*0.9));
-
-   double pix_w = width;
-   double pix_h = (height*0.9);
-
-   QPixmap pixmap(":/images/images/dark_background.jpg");
-   QPalette palette;
-
-   palette.setBrush(QPalette::Background, pixmap.scaled(static_cast<int>(pix_w),static_cast<int>(pix_h)));
-   ui->frame_2->setAutoFillBackground(true);
-   ui->frame_2->setPalette(palette);
 
 }
 

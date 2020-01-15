@@ -7,6 +7,8 @@
 #include <QVBoxLayout>
 #include "ham_options.h"
 #include "notebook.h"
+#include "inout.h"
+#include "clients.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,20 +27,22 @@ signals:
     void send_info(QString, QString, QString, QString);
 
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
     void on_icon_back_clicked();
     void receive_info(QString, QString, QString, QString);
     void close_session();
     void show_notebook();
     void show_inout();
+    void show_clients();
 
 private:
     Ui::MainWindow *ui;
 
+    //pages
     page_1 *p1;
     page_2 *p2;
     Notebook *notebook;
+    InOut *inOut;
+    Clients *clients;
 
     Ham_options *ham;
     QVBoxLayout *l_a;

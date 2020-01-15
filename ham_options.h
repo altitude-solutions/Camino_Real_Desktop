@@ -21,12 +21,15 @@ signals:
     void getOut();
     void send_notebook();
     void send_inout();
+    void send_clients();
 
 private slots:
     void on_pushButton_9_clicked();
     void on_close_seesion_clicked();
 
     void on_pushButton_10_clicked();
+
+    void on_clients_clicked();
 
 private:
     Ui::Ham_options *ui;

@@ -534,3 +534,8 @@ void page_2::information_box(QString icon, QString header, QString text){
     box_info->show();
 
 }
+
+void page_2::on_icon_pluss_clicked()
+{
+    emit send_clients();
+}

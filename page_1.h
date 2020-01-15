@@ -20,6 +20,7 @@ public:
 signals:
     void send_page(QString);
     void send_info_box(QString, QString,QString, double, double);
+    void send_clients();
 
 private slots:
     void on_mail_butt_clicked();
@@ -48,6 +49,8 @@ private slots:
 
     //Information Box
     void information_box(QString, QString, QString);
+
+    void on_icon_pluss_clicked();
 
 private:
     Ui::page_1 *ui;
