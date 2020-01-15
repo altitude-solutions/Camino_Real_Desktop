@@ -77,3 +77,9 @@ void Nights::information_box(QString icon, QString header, QString text){
     box_info->show();
 
 }
+
+void Nights::on_pushButton_clicked()
+{
+    emit send_nights("");
+    this->close();
+}

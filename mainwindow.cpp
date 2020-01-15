@@ -180,8 +180,8 @@ void MainWindow::show_clients(){
     }
 
     clients = new Clients(this);
-//    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),inOut, SLOT(receive_info(QString, QString, QString, QString)));
-//    emit send_info(this->userName, this->realName, this->token, this->url);
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),clients, SLOT(receive_info(QString, QString, QString, QString)));
+    emit send_info(this->userName, this->realName, this->token, this->url);
 
     l_a->addWidget (clients);
     actual_widget = "clients";

@@ -27,6 +27,8 @@ private slots:
     //Information Box
     void information_box(QString, QString, QString);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::Nights *ui;
      Information_box *box_info;

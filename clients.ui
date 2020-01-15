@@ -141,7 +141,7 @@ color: #294D39;</string>
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="new_butt">
                 <property name="styleSheet">
                  <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
@@ -152,12 +152,12 @@ min-height:2.5em;
 max-height:2.5em;</string>
                 </property>
                 <property name="text">
-                 <string>Nuevo</string>
+                 <string>NUEVO</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_9">
+               <widget class="QPushButton" name="modify_butt">
                 <property name="styleSheet">
                  <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
@@ -173,7 +173,7 @@ max-height:2.5em;</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_10">
+               <widget class="QPushButton" name="delete_butt">
                 <property name="styleSheet">
                  <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
@@ -222,22 +222,18 @@ max-height:2.5em;</string>
                <widget class="QTableWidget" name="table_clients">
                 <property name="styleSheet">
                  <string notr="true">QTableWidget{
-background-color: white;
 border-top: 2.5px solid white;
 border-bottom: 2.5px solid white;
 border-right: 2.5px solid white;
 border-left: 2.5px solid white;
-font: 10pt &quot;MS Shell Dlg 2&quot;;
-background-color:white;
-}
-
-QTableWidget:item{
-	border-syle:outset;
-	border-right:1px solid #79364E;
-	background-color:white;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color: #294D39;
 }
 
 </string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="horizontalScrollBarPolicy">
                  <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -246,19 +242,28 @@ QTableWidget:item{
                  <bool>true</bool>
                 </property>
                 <property name="editTriggers">
-                 <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+                 <set>QAbstractItemView::NoEditTriggers</set>
                 </property>
                 <property name="tabKeyNavigation">
                  <bool>false</bool>
+                </property>
+                <property name="showDropIndicator" stdset="0">
+                 <bool>false</bool>
+                </property>
+                <property name="alternatingRowColors">
+                 <bool>false</bool>
+                </property>
+                <property name="selectionBehavior">
+                 <enum>QAbstractItemView::SelectItems</enum>
                 </property>
                 <property name="showGrid">
                  <bool>false</bool>
                 </property>
                 <property name="rowCount">
-                 <number>20</number>
+                 <number>0</number>
                 </property>
                 <property name="columnCount">
-                 <number>6</number>
+                 <number>0</number>
                 </property>
                 <attribute name="horizontalHeaderVisible">
                  <bool>false</bool>
@@ -266,32 +271,6 @@ QTableWidget:item{
                 <attribute name="verticalHeaderVisible">
                  <bool>false</bool>
                 </attribute>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <row/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
                </widget>
               </item>
              </layout>

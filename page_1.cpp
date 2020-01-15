@@ -233,23 +233,30 @@ void page_1::read_client_info()
         }
 
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
-
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
+            foreach (QJsonValue regional, entidad.toObject().value("regionals").toArray()) {
+                foreach( QJsonValue contacto, regional.toObject().value("contacts").toArray()){
 
-            foreach( QJsonValue contacto, entidad.toObject().value("contacts").toArray()){
+                    QHash<QString, QString> current;
+                    current.insert ("contact", contacto.toObject ().value ("name").toString ());
+                    current.insert ("job", contacto.toObject ().value ("job").toString());
+                    current.insert ("phone", contacto.toObject ().value ("phoneNumbers").toArray().at(0).toString());
+                    current.insert ("email", contacto.toObject ().value ("emailAddresses").toArray().at(0).toString());
+                    current.insert ("id_contacto", contacto.toObject ().value ("_id").toString());
 
-                QHash<QString, QString> current;
-                current.insert ("contact", contacto.toObject ().value ("name").toString ());
-                current.insert ("job", contacto.toObject ().value ("job").toString());
-                current.insert ("phone", contacto.toObject ().value ("phoneNumbers").toArray().at(0).toString());
-                current.insert ("email", contacto.toObject ().value ("emailAddresses").toArray().at(0).toString());
-                current.insert ("id_contacto", contacto.toObject ().value ("_id").toString());
-                current.insert("id_cliente",entidad.toObject ().value("_id").toString());
+                    current.insert("regional",regional.toObject ().value("city").toString());
+                    current.insert("id_regional",regional.toObject ().value("_id").toString());
+                    current.insert("category",regional.toObject ().value("category").toString());
 
-                db_clients.insert(entidad.toObject ().value("name").toString(), current);
+                    current.insert("agent_id",regional.toObject ().value("salesAgent").toObject().value("_id").toString());
+                    current.insert("user_name",regional.toObject ().value("salesAgent").toObject().value("userName").toString());
+                    current.insert("real_name",regional.toObject ().value("salesAgent").toObject().value("realName").toString());
+
+                    current.insert("id_cliente",entidad.toObject ().value("_id").toString());
+                    db_clients.insert(entidad.toObject ().value("name").toString()+"/"+regional.toObject ().value("city").toString(), current);
+                }
              }
           }
-
         //Extracting labels for routes
         QHashIterator<QString, QHash<QString, QString>>client_iter(db_clients);
         QStringList client_list;
@@ -305,15 +312,23 @@ void page_1::on_pushButton_9_clicked()
     QJsonDocument document;
     QStringList saved;
     QJsonObject main_object;
+    QString time = QDateTime::currentDateTime().toString("dd/MM/yyyy - hh:mm:ss");
 
     if (via!=""&&motivo!="" ){
         main_object.insert("client", db_clients[hash_id]["id_cliente"]);
+        main_object.insert("regional", db_clients[hash_id]["id_regional"]);
         main_object.insert("contact", db_clients[hash_id]["id_contacto"]);
         main_object.insert("via", via);
-        main_object.insert("reason", motivo);
-        main_object.insert("comments", comments);
-        main_object.insert("nights", this -> n_nights.toInt());
+        main_object.insert("reason", motivo);        
+        main_object.insert("date", QDateTime::fromString(time,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
 
+        if (comments!=""){
+            main_object.insert("comments", comments);
+        }
+
+        if (this -> n_nights != ""){
+            main_object.insert("nights", this -> n_nights.toInt());
+        }
         document.setObject(main_object);
 
         //Send information
@@ -333,6 +348,7 @@ void page_1::on_pushButton_9_clicked()
             else{
                 restart();
                 information_box("x", "Base de Datos", "Guardado con éxito");
+
                 //QMessageBox::information(this, "Base de Datos", "Guardado con éxito");
             }
             reply->deleteLater ();
@@ -362,6 +378,9 @@ void page_1::restart(){
     ui -> mail -> setText("");
     ui -> telefono -> setText("");
     ui -> cargo -> setText("");
+    ui -> comentarios -> setPlainText("");
+
+    this -> n_nights  = "";
 
     QString released = "font: 12pt \"MS Shell Dlg 2\";"
                                     "color:white;"
