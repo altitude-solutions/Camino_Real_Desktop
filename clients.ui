@@ -230,7 +230,15 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 }
 
-</string>
+QHeaderView::section {
+    background-color: #F2F2F2;
+	border: 1px solid white;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	color: #294D39;
+	border-style:outset;
+	padding:0;
+    height: 2em;
+}</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
@@ -257,7 +265,10 @@ color: #294D39;
                  <enum>QAbstractItemView::SelectItems</enum>
                 </property>
                 <property name="showGrid">
-                 <bool>false</bool>
+                 <bool>true</bool>
+                </property>
+                <property name="gridStyle">
+                 <enum>Qt::SolidLine</enum>
                 </property>
                 <property name="rowCount">
                  <number>0</number>
@@ -266,7 +277,7 @@ color: #294D39;
                  <number>0</number>
                 </property>
                 <attribute name="horizontalHeaderVisible">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </attribute>
                 <attribute name="verticalHeaderVisible">
                  <bool>false</bool>

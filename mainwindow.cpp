@@ -132,8 +132,8 @@ void MainWindow::show_notebook(){
 
     notebook = new Notebook(this);
 
-//connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p1, SLOT(receiver(QString, QString, QString, QString)));
-//emit send_info(this->userName, this->realName, this->token, this->url);
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),notebook, SLOT(receive_info(QString, QString, QString, QString)));
+    emit send_info(this->userName, this->realName, this->token, this->url);
 
     l_a->addWidget (notebook);
     actual_widget = "notebook";

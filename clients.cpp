@@ -43,6 +43,18 @@ Clients::Clients(QWidget *parent) :
     ui->table_clients ->setColumnWidth(7,static_cast<int>(width/8));  // Asesor de ventas
     ui->table_clients ->setColumnWidth(8,0);
 
+    //Setting the table headers
+    QStringList headers = {"",
+                           "Cliente",
+                           "Regional",
+                           "Contacto",
+                           "Teléfono",
+                           "E-mail",
+                           "Cargo",
+                           "Asesor"};
+
+    ui -> table_clients -> setHorizontalHeaderLabels(headers);
+
 }
 
 Clients::~Clients()
@@ -167,6 +179,8 @@ void Clients::update_table(QHash<QString, QHash<QString, QString>> update){
 void Clients::on_table_clients_cellClicked(int row, int column)
 {
     qDebug()<<column;
+    contact["client"] = ui -> table_clients -> item(row,1)->text();
+    contact["regional"] = ui -> table_clients -> item(row,2)->text();
     contact["contact"] = ui -> table_clients -> item(row,3)->text();
     contact["phone"] = ui -> table_clients -> item(row,4)->text();
     contact["email"] = ui -> table_clients -> item(row,5)->text();

@@ -33,6 +33,8 @@ Modify::Modify(QWidget *parent) :
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/2));
 
     ui -> frame_2 -> setFixedHeight(static_cast<int>(height*0.05));
+    ui -> frame_6 -> setFixedHeight(static_cast<int>(height*0.05));
+
 }
 
 Modify::~Modify()
@@ -50,6 +52,8 @@ void Modify::receive_contact(QHash<QString,QString> send_up, QString token, QStr
     this -> data = send_up;
     this -> url = url;
 
+    ui -> cliente -> setText(data["client"]);
+    ui -> regional -> setText(data["regional"]);
     ui -> nombre -> setText(data["contact"]);
     ui -> telefono -> setText(data["phone"]);
     ui -> mail -> setText(data["email"]);
