@@ -26,7 +26,30 @@ private slots:
     void information_box(QString, QString, QString);
     void update_your_table(QHash<QString,QHash<QString, QString>>);
     void update_gral_table(QHash<QString,QHash<QString, QString>>);
-    void read_info();
+
+    void read_gral_info(QString, QString, QString);
+    void read_your_info(QString, QString);
+
+    void all_your_info();
+    void all_gral_info();
+
+    void restart();
+
+    void on_cliente_editingFinished();
+    void on_regional_editingFinished();
+    void on_cliente_2_editingFinished();
+    void on_regional_2_editingFinished();
+    void on_asesor_2_editingFinished();
+    void on_delete_butt_clicked();
+
+    void on_your_table_cellClicked(int row, int column);
+
+    void paint_your_table(int);
+    void paint_gral_table(int);
+
+    void on_general_table_cellClicked(int row, int column);
+
+    void on_delete_butt_2_clicked();
 
 private:
     Ui::Notebook *ui;
@@ -39,8 +62,22 @@ private:
     QString token;
     QString url;
 
-    QHash<QString,QHash<QString,QString>>db_your_tasks;
-    QHash<QString,QHash<QString,QString>>db_gral_tasks;
+    //Filters
+    QString your_client_filter;
+    QString your_regional_filter;
+
+    QString gral_client_filter;
+    QString gral_regional_filter;
+    QString gral_assistant_filter;
+
+    QHash<QString,QHash<QString,QString>>your_filtered_tasks;
+    QHash<QString,QHash<QString,QString>>gral_filtered_tasks;
+
+    QHash<QString,QHash<QString,QString>>all_gral_tasks;
+    QHash<QString,QHash<QString,QString>>all_your_tasks;
+
+    QHash<QString, QString>your_reg;
+    QHash<QString, QString>gral_reg;
 
 };
 

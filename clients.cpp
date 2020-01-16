@@ -214,7 +214,6 @@ void Clients::paint_table(int row){
             ui->table_clients->item(i,6)->setBackground(QColor("#FFFFFF"));
             ui->table_clients->item(i,7)->setBackground(QColor("#FFFFFF"));
         }
-
     }
 }
 

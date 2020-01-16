@@ -179,7 +179,7 @@ min-height:5em;
 max-height:5em;</string>
              </property>
              <property name="placeholderText">
-              <string>O prospecto</string>
+              <string>O presupuesto</string>
              </property>
             </widget>
            </item>
