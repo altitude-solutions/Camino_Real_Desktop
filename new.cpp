@@ -1,6 +1,13 @@
 #include "new.h"
 #include "ui_new.h"
 #include <QScreen>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QColor>
+#include <QJsonDocument>
+#include <QMessageBox>
 
 New::New(QWidget *parent) :
     QWidget(parent),
@@ -37,4 +44,201 @@ void New::on_pushButton_clicked()
 {
 
     this -> close();
+}
+
+void New::receive_info(QString token, QString url){
+    this -> token = token;
+    this -> url = url;
+}
+
+void New::on_tarifario_butt_clicked()
+{
+    //Contacto info
+    QString name = ui -> nombre -> text();
+    QString phone = ui -> telefono -> text();
+    QString mail = ui -> mail -> text();
+    QString job = ui -> cargo -> text();
+
+    QJsonDocument document;
+    QStringList saved;
+    QJsonObject contacto;
+    QJsonObject cliente;
+    QJsonObject regional;
+    QJsonObject main_object;
+    QJsonArray phones;
+    QJsonArray mails;
+
+    QString client = ui -> cliente -> text();
+    QString regions = ui -> sucursal -> text();
+
+    if(phone!=""){
+        phones.append(phone);
+    }
+    if(mail!=""){
+        mails.append(mail);
+    }
+    contacto.insert("emailAddresses",mails);
+    contacto.insert("phoneNumbers",phones);
+    contacto.insert("name",name );
+    contacto.insert("job", job);
+
+    regional.insert("city",regions);
+
+    cliente.insert("name",client);
+
+    main_object.insert("contact",contacto);
+    main_object.insert("regional",regional);
+    main_object.insert("client",cliente);
+
+    document.setObject(main_object);
+
+//    //Send information
+//    QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+//    connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+//        QByteArray binReply = reply->readAll ();
+//        if (reply->error ()) {
+//            QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+//            if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+//                //information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+//                QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+//            } else {
+//                //information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+//                QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+//            }
+//        }
+//        else{
+//            QJsonDocument contact_json = QJsonDocument::fromJson (binReply);
+//            QString contacto_id = contact_json.object ().value ("contact").toObject ().value("_id").toString();
+//            send_id_contact(contacto_id);
+//        }
+//        reply->deleteLater ();
+//    });
+
+//    QNetworkRequest request;
+//    request.setUrl (QUrl ("http://"+this -> url + "/contacts"));
+//    request.setRawHeader ("token", this -> token.toUtf8 ());
+//    request.setRawHeader ("Content-Type", "application/json");
+
+//    nam->post (request, document.toJson ());
+
+        //Send information
+        QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+        connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+            QByteArray binReply = reply->readAll ();
+            if (reply->error ()) {
+                QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                    //information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                } else {
+                    //information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                }
+            }
+            else{
+                emit send_update();
+                this -> close();
+            }
+            reply->deleteLater ();
+        });
+
+        QNetworkRequest request;
+        request.setUrl (QUrl ("http://"+this -> url + "/app_clients"));
+        request.setRawHeader ("token", this -> token.toUtf8 ());
+        request.setRawHeader ("Content-Type", "application/json");
+
+        nam->post (request, document.toJson ());
+}
+
+void New::send_id_contact(QString id_contact){
+
+    //Client info
+    QString client = ui -> cliente -> text();
+    QString regions = ui -> sucursal -> text();
+
+    QJsonDocument document;
+    QStringList saved;
+    QJsonObject main_object;
+    QJsonArray contactos;
+
+    contactos.append(id_contact);
+
+    main_object.insert("emailAddresses",contactos);
+    main_object.insert("city",regions);
+
+    document.setObject(main_object);
+
+    //Send information
+    QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+    connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+        QByteArray binReply = reply->readAll ();
+        if (reply->error ()) {
+            QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+            if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                //information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+            } else {
+                //information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+            }
+        }
+        else{
+            QJsonDocument contact_json = QJsonDocument::fromJson (binReply);
+            QString regional_id = contact_json.object ().value ("regional_client").toObject ().value("_id").toString();
+            send_regional_id(regional_id);
+        }
+        reply->deleteLater ();
+    });
+
+    QNetworkRequest request;
+    request.setUrl (QUrl ("http://"+this -> url + "/regional_clients"));
+    request.setRawHeader ("token", this -> token.toUtf8 ());
+    request.setRawHeader ("Content-Type", "application/json");
+
+    nam->post (request, document.toJson ());
+}
+
+void New::send_regional_id(QString regional_id){
+    //Client info
+    QString client = ui -> cliente -> text();
+
+    QJsonDocument document;
+    QStringList saved;
+    QJsonObject main_object;
+    QJsonArray regionales;
+
+    regionales.append(regional_id);
+
+    main_object.insert("regionals",regionales);
+    main_object.insert("name",client);
+
+    document.setObject(main_object);
+
+    //Send information
+    QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+    connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+        QByteArray binReply = reply->readAll ();
+        if (reply->error ()) {
+            QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+            if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                //information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+            } else {
+                //information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+            }
+        }
+        else{
+            emit send_update();
+            this -> close();
+        }
+        reply->deleteLater ();
+    });
+
+    QNetworkRequest request;
+    request.setUrl (QUrl ("http://"+this -> url + "/clients"));
+    request.setRawHeader ("token", this -> token.toUtf8 ());
+    request.setRawHeader ("Content-Type", "application/json");
+
+    nam->post (request, document.toJson ());
 }

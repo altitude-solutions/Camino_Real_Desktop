@@ -234,6 +234,9 @@ void Clients::on_modify_butt_clicked()
 void Clients::on_new_butt_clicked()
 {
     new_client = new New(this);
+    connect(this, SIGNAL(send_info(QString, QString)),new_client,SLOT(receive_info(QString, QString)));
+    connect(new_client,SIGNAL(send_update()),this,SLOT(update_client()));
+    emit send_info(this->token, this -> url);
     new_client->show();
 }
 

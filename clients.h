@@ -22,6 +22,7 @@ public:
 signals:
     void send_info_box(QString, QString,QString, double, double);
     void send_contact(QHash<QString,QString>, QString, QString);
+    void send_info(QString, QString);
 
 private slots:
     void on_modify_butt_clicked();

@@ -138,8 +138,8 @@ void Login::read_url(){
     }
 
     if (line == ""){
-        //this -> url = "157.245.241.97:3000";
-        this -> url = "192.168.0.9:3000";
+        this -> url = "157.245.241.97:3000";
+        //this -> url = "192.168.0.9:3000";
 
         if (file.open(QIODevice::ReadWrite)) {
             QTextStream stream( &file );
