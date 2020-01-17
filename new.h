@@ -22,8 +22,6 @@ private slots:
     void on_pushButton_clicked();
     void receive_info(QString,QString);
     void on_tarifario_butt_clicked();
-    void send_id_contact(QString);
-    void send_regional_id(QString);
 
 private:
     Ui::New *ui;

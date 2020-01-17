@@ -358,11 +358,12 @@ color: #294D39;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>E-MAIL</string>
@@ -374,11 +375,12 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>VISITA PERSONAL</string>
@@ -390,11 +392,12 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>TELÉFONO</string>
@@ -406,11 +409,12 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>WHATSAPP</string>
@@ -499,11 +503,12 @@ color: #294D39;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>TARIFARIO</string>
@@ -515,11 +520,12 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>COTIZACIÓN</string>
@@ -531,11 +537,12 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>RESERVA</string>
@@ -547,11 +554,12 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);;
+background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+</string>
               </property>
               <property name="text">
                <string>OTROS</string>

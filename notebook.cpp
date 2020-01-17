@@ -9,6 +9,7 @@
 #include <QJsonDocument>
 #include <QDateTime>
 #include <QCompleter>
+#include <QMessageBox>
 
 Notebook::Notebook(QWidget *parent) :
     QWidget(parent),
@@ -36,11 +37,11 @@ Notebook::Notebook(QWidget *parent) :
 
     //Set the table Size
     ui -> your_table -> setColumnCount(6);
-    ui->your_table ->setColumnWidth(0,static_cast<int>(width/14)); //Fecha
-    ui->your_table ->setColumnWidth(1,static_cast<int>(width/14));  //Cliente
-    ui->your_table ->setColumnWidth(2,static_cast<int>(width/14));  //Regional
-    ui->your_table ->setColumnWidth(3,static_cast<int>(width/8));  //Task
-    ui->your_table ->setColumnWidth(4,static_cast<int>(width/13));  //Comentarios
+    ui->your_table ->setColumnWidth(0,static_cast<int>(width/11)); //Fecha
+    ui->your_table ->setColumnWidth(1,static_cast<int>(width/13));  //Cliente
+    ui->your_table ->setColumnWidth(2,static_cast<int>(width/18));  //Regional
+    ui->your_table ->setColumnWidth(3,static_cast<int>(width/18));  //Task
+    ui->your_table ->setColumnWidth(4,static_cast<int>(width/2.5));  //Comentarios
     ui->your_table ->setColumnWidth(5,0);
 
     //Setting the table headers
@@ -52,15 +53,14 @@ Notebook::Notebook(QWidget *parent) :
 
     ui -> your_table -> setHorizontalHeaderLabels(headers);
 
-
     //Set the table Size
     ui -> general_table -> setColumnCount(7);
-    ui->general_table ->setColumnWidth(0,static_cast<int>(width/14)); //Fecha
-    ui->general_table ->setColumnWidth(1,static_cast<int>(width/14));  //Cliente
-    ui->general_table ->setColumnWidth(2,static_cast<int>(width/14));  //Regional
-    ui->general_table ->setColumnWidth(3,static_cast<int>(width/8));  //Task
-    ui->general_table ->setColumnWidth(4,static_cast<int>(width/13));  //Comentarios
-    ui->general_table ->setColumnWidth(5,static_cast<int>(width/11));  //Asesor
+    ui->general_table ->setColumnWidth(0,static_cast<int>(width/11)); //Fecha
+    ui->general_table ->setColumnWidth(1,static_cast<int>(width/12));  //Cliente
+    ui->general_table ->setColumnWidth(2,static_cast<int>(width/18));  //Regional
+    ui->general_table ->setColumnWidth(3,static_cast<int>(width/18));  //Task
+    ui->general_table ->setColumnWidth(4,static_cast<int>(width/3.2));  //Comentarios
+    ui->general_table ->setColumnWidth(5,static_cast<int>(width/12));  //Asesor
     ui->general_table ->setColumnWidth(6,0);
 
     //Setting the table headers
@@ -141,7 +141,7 @@ void Notebook::read_your_info(QString a, QString b){
 
             QHash<QString, QString> current;
             current.insert ("id_register", registro.toObject ().value ("_id").toString ());
-            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString());
+            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString("dd/MM/yyyy - hh:mm"));
             current.insert ("task", registro.toObject ().value ("todo").toString());
             current.insert("comments",registro.toObject ().value ("comment").toString());
 
@@ -169,7 +169,7 @@ void Notebook::read_your_info(QString a, QString b){
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/tasks?completed=0"+a+b));
+    request.setUrl (QUrl ("http://"+this->url+"/tasks?deleted=0&completed=0"+a+b));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -196,7 +196,7 @@ void Notebook::read_gral_info(QString a, QString b, QString c){
 
             QHash<QString, QString> current;
             current.insert ("id_register", registro.toObject ().value ("_id").toString ());
-            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString());
+            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString("dd/MM/yyyy - hh:mm"));
             current.insert ("task", registro.toObject ().value ("todo").toString());
             current.insert("comments",registro.toObject ().value ("comment").toString());
 
@@ -224,7 +224,7 @@ void Notebook::read_gral_info(QString a, QString b, QString c){
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/tasks?completed=0"+a+b+c));
+    request.setUrl (QUrl ("http://"+this->url+"/tasks?deleted=0&completed=0"+a+b+c));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -254,7 +254,16 @@ void Notebook::update_your_table(QHash<QString, QHash<QString, QString>>update){
         ui->your_table->setItem(row_control, 3, new QTableWidgetItem(update[current]["task"]));
         ui->your_table->setItem(row_control, 4, new QTableWidgetItem(update[current]["comments"]));
         ui->your_table->setItem(row_control, 5, new QTableWidgetItem(current));
+
+        ui->your_table->item(row_control, 0 ) -> setTextAlignment(Qt::AlignCenter);
+        ui->your_table->item(row_control, 1 ) -> setTextAlignment(Qt::AlignCenter);
+        ui->your_table->item(row_control, 2) -> setTextAlignment(Qt::AlignCenter);
+        ui->your_table->item(row_control, 4) -> setTextAlignment(Qt::AlignCenter);
+        ui->your_table->item(row_control, 3) -> setTextAlignment(Qt::AlignCenter);
+        ui->your_table->item(row_control, 5 ) -> setTextAlignment(Qt::AlignCenter);
     }
+
+    ui -> your_table -> setSortingEnabled(true);
 }
 
 void Notebook::on_your_table_cellClicked(int row, int column)
@@ -274,12 +283,12 @@ void Notebook::on_your_table_cellClicked(int row, int column)
 void Notebook::paint_your_table(int row){
     for (int i=0; i<your_filtered_tasks.size(); i++){
         if (i==row){
-            ui->your_table->item(row,0)->setBackground(QColor("#F2F2F2"));
-            ui->your_table->item(row,1)->setBackground(QColor("#F2F2F2"));
-            ui->your_table->item(row,2)->setBackground(QColor("#F2F2F2"));
-            ui->your_table->item(row,3)->setBackground(QColor("#F2F2F2"));
-            ui->your_table->item(row,4)->setBackground(QColor("#F2F2F2"));
-            ui->your_table->item(row,5)->setBackground(QColor("#F2F2F2"));
+            ui->your_table->item(row,0)->setBackground(QColor("#B6B6B6"));
+            ui->your_table->item(row,1)->setBackground(QColor("#B6B6B6"));
+            ui->your_table->item(row,2)->setBackground(QColor("#B6B6B6"));
+            ui->your_table->item(row,3)->setBackground(QColor("#B6B6B6"));
+            ui->your_table->item(row,4)->setBackground(QColor("#B6B6B6"));
+            ui->your_table->item(row,5)->setBackground(QColor("#B6B6B6"));
         }
         else {
             ui->your_table->item(i,0)->setBackground(QColor("#FFFFFF"));
@@ -316,7 +325,17 @@ void Notebook::update_gral_table(QHash<QString, QHash<QString, QString>> update)
         ui->general_table->setItem(row_control, 4, new QTableWidgetItem(update[current]["comments"]));
         ui->general_table->setItem(row_control, 5, new QTableWidgetItem(update[current]["agent"]));
         ui->general_table->setItem(row_control, 6, new QTableWidgetItem(current));
+
+        ui->general_table->item(row_control, 0 ) -> setTextAlignment(Qt::AlignCenter);
+        ui->general_table->item(row_control, 1 ) -> setTextAlignment(Qt::AlignCenter);
+        ui->general_table->item(row_control, 2) -> setTextAlignment(Qt::AlignCenter);
+        ui->general_table->item(row_control, 3) -> setTextAlignment(Qt::AlignCenter);
+        ui->general_table->item(row_control, 4) -> setTextAlignment(Qt::AlignCenter);
+        ui->general_table->item(row_control, 5 ) -> setTextAlignment(Qt::AlignCenter);
+        ui->general_table->item(row_control, 6 ) -> setTextAlignment(Qt::AlignCenter);
+
     }
+    ui -> general_table -> setSortingEnabled(true);
 }
 
 void Notebook::on_general_table_cellClicked(int row, int column)
@@ -338,12 +357,12 @@ void Notebook::paint_gral_table(int row){
 
     for (int i=0; i<gral_filtered_tasks.size(); i++){
         if (i==row){
-            ui->general_table->item(row,0)->setBackground(QColor("#F2F2F2"));
-            ui->general_table->item(row,1)->setBackground(QColor("#F2F2F2"));
-            ui->general_table->item(row,2)->setBackground(QColor("#F2F2F2"));
-            ui->general_table->item(row,3)->setBackground(QColor("#F2F2F2"));
-            ui->general_table->item(row,4)->setBackground(QColor("#F2F2F2"));
-            ui->general_table->item(row,5)->setBackground(QColor("#F2F2F2"));
+            ui->general_table->item(row,0)->setBackground(QColor("#B6B6B6"));
+            ui->general_table->item(row,1)->setBackground(QColor("#B6B6B6"));
+            ui->general_table->item(row,2)->setBackground(QColor("#B6B6B6"));
+            ui->general_table->item(row,3)->setBackground(QColor("#B6B6B6"));
+            ui->general_table->item(row,4)->setBackground(QColor("#B6B6B6"));
+            ui->general_table->item(row,5)->setBackground(QColor("#B6B6B6"));
         }
         else {
             ui->general_table->item(i,0)->setBackground(QColor("#FFFFFF"));
@@ -443,7 +462,7 @@ void Notebook::all_your_info()
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/tasks?completed=0"));
+    request.setUrl (QUrl ("http://"+this->url+"/tasks?deleted=0&completed=0"));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -532,7 +551,7 @@ void Notebook::all_gral_info()
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/tasks?completed=0"));
+    request.setUrl (QUrl ("http://"+this->url+"/tasks?deleted=0&completed=0"));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -698,82 +717,88 @@ void Notebook::on_asesor_2_editingFinished()
 
 void Notebook::on_delete_butt_clicked()
 {
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Terminar task", "Seguro desea dar por terminado este task?",QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes){
+        if(your_reg["task"]!=""){
+            //create a Json
+            QJsonDocument document;
+            QJsonObject main_object;
+            QString tiempo = QDateTime::currentDateTime().toString("dd/MM/yyyy")+" - "+QDateTime::currentDateTime().toString("hh:mm:ss");
 
-    if(your_reg["task"]!=""){
-        //create a Json
-        QJsonDocument document;
-        QJsonObject main_object;
-        QString tiempo = QDateTime::currentDateTime().toString("dd/MM/yyyy")+" - "+QDateTime::currentDateTime().toString("hh:mm:ss");
+            main_object.insert("completed",true);
+            main_object.insert("doneDate",QDateTime::fromString(tiempo,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
 
-        main_object.insert("completed",true);
-        main_object.insert("doneDate",QDateTime::fromString(tiempo,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
+            document.setObject(main_object);
 
-        document.setObject(main_object);
-
-        //Send information
-        QNetworkAccessManager* nam = new QNetworkAccessManager (this);
-        connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
-            QByteArray binReply = reply->readAll ();
-            if (reply->error ()) {
-                QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
-                if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                    information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                } else {
-                    information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+            //Send information
+            QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+            connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+                QByteArray binReply = reply->readAll ();
+                if (reply->error ()) {
+                    QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                    if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                        information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    } else {
+                        information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    }
                 }
-            }
-            else{
-                restart();
-            }
-            reply->deleteLater ();
-        });
+                else{
+                    restart();
+                }
+                reply->deleteLater ();
+            });
 
-        QNetworkRequest request;
-        request.setUrl (QUrl ("http://"+this -> url + "/tasks/"+your_reg["id_register"]));
-        request.setRawHeader ("token", this -> token.toUtf8 ());
-        request.setRawHeader ("Content-Type", "application/json");
+            QNetworkRequest request;
+            request.setUrl (QUrl ("http://"+this -> url + "/tasks/"+your_reg["id_register"]));
+            request.setRawHeader ("token", this -> token.toUtf8 ());
+            request.setRawHeader ("Content-Type", "application/json");
 
-        nam->put (request, document.toJson ());
+            nam->put (request, document.toJson ());
+        }
     }
 }
 
 void Notebook::on_delete_butt_2_clicked()
 {
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Terminar task", "Seguro desea dar por terminado este task?",QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes){
+        if(gral_reg["task"]!=""){
+            //create a Json
+            QJsonDocument document;
+            QJsonObject main_object;
+            QString tiempo = QDateTime::currentDateTime().toString("dd/MM/yyyy")+" - "+QDateTime::currentDateTime().toString("hh:mm:ss");
 
-    if(gral_reg["task"]!=""){
-        //create a Json
-        QJsonDocument document;
-        QJsonObject main_object;
-        QString tiempo = QDateTime::currentDateTime().toString("dd/MM/yyyy")+" - "+QDateTime::currentDateTime().toString("hh:mm:ss");
+            main_object.insert("completed",true);
+            main_object.insert("doneDate",QDateTime::fromString(tiempo,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
 
-        main_object.insert("completed",true);
-        main_object.insert("doneDate",QDateTime::fromString(tiempo,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
+            document.setObject(main_object);
 
-        document.setObject(main_object);
-
-        //Send information
-        QNetworkAccessManager* nam = new QNetworkAccessManager (this);
-        connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
-            QByteArray binReply = reply->readAll ();
-            if (reply->error ()) {
-                QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
-                if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                    information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                } else {
-                    information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+            //Send information
+            QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+            connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+                QByteArray binReply = reply->readAll ();
+                if (reply->error ()) {
+                    QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                    if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                        information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    } else {
+                        information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    }
                 }
-            }
-            else{
-                restart();
-            }
-            reply->deleteLater ();
-        });
+                else{
+                    restart();
+                }
+                reply->deleteLater ();
+            });
 
-        QNetworkRequest request;
-        request.setUrl (QUrl ("http://"+this -> url + "/tasks/"+gral_reg["id_register"]));
-        request.setRawHeader ("token", this -> token.toUtf8 ());
-        request.setRawHeader ("Content-Type", "application/json");
+            QNetworkRequest request;
+            request.setUrl (QUrl ("http://"+this -> url + "/tasks/"+gral_reg["id_register"]));
+            request.setRawHeader ("token", this -> token.toUtf8 ());
+            request.setRawHeader ("Content-Type", "application/json");
 
-        nam->put (request, document.toJson ());
+            nam->put (request, document.toJson ());
+        }
     }
 }

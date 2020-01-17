@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>963</width>
-    <height>453</height>
+    <width>1133</width>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -204,6 +204,22 @@ max-height:2.5em;</string>
                    </property>
                   </widget>
                  </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton">
+                   <property name="styleSheet">
+                    <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+background-color:rgba(255,255,255,30%);
+min-width:8.5em;
+max-width:8.5em;
+min-height:2.5em;
+max-height:2.5em;</string>
+                   </property>
+                   <property name="text">
+                    <string>ELIMINAR</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
@@ -259,6 +275,9 @@ QHeaderView::section {
                    <property name="frameShape">
                     <enum>QFrame::StyledPanel</enum>
                    </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Sunken</enum>
+                   </property>
                    <property name="horizontalScrollBarPolicy">
                     <enum>Qt::ScrollBarAlwaysOff</enum>
                    </property>
@@ -280,8 +299,14 @@ QHeaderView::section {
                    <property name="selectionBehavior">
                     <enum>QAbstractItemView::SelectItems</enum>
                    </property>
+                   <property name="textElideMode">
+                    <enum>Qt::ElideRight</enum>
+                   </property>
                    <property name="showGrid">
                     <bool>true</bool>
+                   </property>
+                   <property name="sortingEnabled">
+                    <bool>false</bool>
                    </property>
                    <property name="rowCount">
                     <number>0</number>
@@ -428,6 +453,22 @@ max-height:2.5em;</string>
                    </property>
                    <property name="text">
                     <string>TERMINAR</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_2">
+                   <property name="styleSheet">
+                    <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+background-color:rgba(255,255,255,30%);
+min-width:8.5em;
+max-width:8.5em;
+min-height:2.5em;
+max-height:2.5em;</string>
+                   </property>
+                   <property name="text">
+                    <string>ELIMINAR</string>
                    </property>
                   </widget>
                  </item>

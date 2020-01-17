@@ -512,7 +512,7 @@ void page_2::restart(){
 
     QString released_a = "font: 12pt \"MS Shell Dlg 2\";"
                                     "color:white;"
-                                    "background-color:rgba(121,99,78,50%);"
+                                    "background-color:rgba(121,99,78,100%);"
                                     "min-width:8em;"
                                     "max-width:8em;"
                                     "min-height:2.5em;"
@@ -525,7 +525,7 @@ void page_2::restart(){
 
     QString released_b = "font: 10pt \"MS Shell Dlg 2\";"
                                     "color:white;"
-                                    "background-color:rgba(121,99,78,50%);"
+                                    "background-color:rgba(121,99,78,100%);"
                                     "min-width:9.5em;"
                                     "max-width:9.5em;"
                                     "min-height:2.5em;"

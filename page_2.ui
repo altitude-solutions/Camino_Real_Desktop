@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>950</width>
-    <height>607</height>
+    <height>614</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -358,11 +358,13 @@ color: #294D39;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+
+</string>
               </property>
               <property name="text">
                <string>E-MAIL</string>
@@ -374,11 +376,13 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+
+</string>
               </property>
               <property name="text">
                <string>VISITA PERSONAL</string>
@@ -390,11 +394,13 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+
+</string>
               </property>
               <property name="text">
                <string>TELÉFONO</string>
@@ -406,11 +412,13 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:8em;
 max-width:8em;
 min-height:2.5em;
-max-height:2.5em;</string>
+max-height:2.5em;
+
+</string>
               </property>
               <property name="text">
                <string>WHATSAPP</string>
@@ -499,7 +507,7 @@ color: #294D39;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -515,7 +523,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -531,7 +539,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -547,7 +555,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -563,7 +571,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -656,7 +664,7 @@ color: #294D39;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -672,7 +680,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -688,7 +696,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -704,7 +712,7 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
@@ -720,14 +728,14 @@ max-height:2.5em;</string>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-background-color:rgba(121,99,78,50%);
+background-color:#79634E;
 min-width:9.5em;
 max-width:9.5em;
 min-height:2.5em;
 max-height:2.5em;</string>
               </property>
               <property name="text">
-               <string>NO LE INTERESA</string>
+               <string>OTROS</string>
               </property>
              </widget>
             </item>

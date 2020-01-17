@@ -32,20 +32,18 @@ Clients::Clients(QWidget *parent) :
 
 
     //Set the table Size
-    ui -> table_clients -> setColumnCount(9);
-    ui->table_clients ->setColumnWidth(0,70);
-    ui->table_clients ->setColumnWidth(1,static_cast<int>(width/14));  //Cliente
-    ui->table_clients ->setColumnWidth(2,static_cast<int>(width/14));  //Regional
-    ui->table_clients ->setColumnWidth(3,static_cast<int>(width/8));  //Nombre del contacto
-    ui->table_clients ->setColumnWidth(4,static_cast<int>(width/13));  //Teléfono del contacto
-    ui->table_clients ->setColumnWidth(5,static_cast<int>(width/11));  //E-mail del contacto
-    ui->table_clients ->setColumnWidth(6,static_cast<int>(width/12));  //Cargo del contacto
-    ui->table_clients ->setColumnWidth(7,static_cast<int>(width/8));  // Asesor de ventas
-    ui->table_clients ->setColumnWidth(8,0);
+    ui -> table_clients -> setColumnCount(8);
+    ui->table_clients ->setColumnWidth(0,static_cast<int>(width/12));  //Cliente
+    ui->table_clients ->setColumnWidth(1,static_cast<int>(width/14));  //Regional
+    ui->table_clients ->setColumnWidth(2,static_cast<int>(width/8));  //Nombre del contacto
+    ui->table_clients ->setColumnWidth(3,static_cast<int>(width/13));  //Teléfono del contacto
+    ui->table_clients ->setColumnWidth(4,static_cast<int>(width/9));  //E-mail del contacto
+    ui->table_clients ->setColumnWidth(5,static_cast<int>(width/12));  //Cargo del contacto
+    ui->table_clients ->setColumnWidth(6,static_cast<int>(width/8));  // Asesor de ventas
+    ui->table_clients ->setColumnWidth(7,0);
 
     //Setting the table headers
-    QStringList headers = {"",
-                           "Cliente",
+    QStringList headers = {"Cliente",
                            "Regional",
                            "Contacto",
                            "Teléfono",
@@ -163,30 +161,30 @@ void Clients::update_table(QHash<QString, QHash<QString, QString>> update){
         row_control= ui->table_clients->rowCount()-1;
 
         //Writing the current row
-        ui->table_clients->setItem(row_control, 0, new QTableWidgetItem(QString::number(row_control)));
-        ui->table_clients->setItem(row_control, 1, new QTableWidgetItem(update[current]["client"]));
-        ui->table_clients->setItem(row_control, 2, new QTableWidgetItem(update[current]["regional"]));
-        ui->table_clients->setItem(row_control, 3, new QTableWidgetItem(update[current]["contact"]));
-        ui->table_clients->setItem(row_control, 4, new QTableWidgetItem(update[current]["phone"]));
-        ui->table_clients->setItem(row_control, 5, new QTableWidgetItem(update[current]["email"]));
-        ui->table_clients->setItem(row_control, 6, new QTableWidgetItem(update[current]["job"]));
-        ui->table_clients->setItem(row_control, 7, new QTableWidgetItem(update[current]["real_name"]));
-        ui->table_clients->setItem(row_control, 8, new QTableWidgetItem(current));
+        ui->table_clients->setItem(row_control, 0, new QTableWidgetItem(update[current]["client"]));
+        ui->table_clients->setItem(row_control, 1, new QTableWidgetItem(update[current]["regional"]));
+        ui->table_clients->setItem(row_control, 2, new QTableWidgetItem(update[current]["contact"]));
+        ui->table_clients->setItem(row_control, 3, new QTableWidgetItem(update[current]["phone"]));
+        ui->table_clients->setItem(row_control, 4, new QTableWidgetItem(update[current]["email"]));
+        ui->table_clients->setItem(row_control, 5, new QTableWidgetItem(update[current]["job"]));
+        ui->table_clients->setItem(row_control, 6, new QTableWidgetItem(update[current]["real_name"]));
+        ui->table_clients->setItem(row_control, 7, new QTableWidgetItem(current));
 
     }
+   ui -> table_clients -> setSortingEnabled(true);
 }
 
 void Clients::on_table_clients_cellClicked(int row, int column)
 {
     qDebug()<<column;
-    contact["client"] = ui -> table_clients -> item(row,1)->text();
-    contact["regional"] = ui -> table_clients -> item(row,2)->text();
-    contact["contact"] = ui -> table_clients -> item(row,3)->text();
-    contact["phone"] = ui -> table_clients -> item(row,4)->text();
-    contact["email"] = ui -> table_clients -> item(row,5)->text();
-    contact["job"] = ui -> table_clients -> item(row,6)->text();
-    contact["real_name"] = ui -> table_clients -> item(row,7)->text();
-    contact["id_contacto"] = ui -> table_clients -> item(row,8)->text();
+    contact["client"] = ui -> table_clients -> item(row,0)->text();
+    contact["regional"] = ui -> table_clients -> item(row,1)->text();
+    contact["contact"] = ui -> table_clients -> item(row,2)->text();
+    contact["phone"] = ui -> table_clients -> item(row,3)->text();
+    contact["email"] = ui -> table_clients -> item(row,4)->text();
+    contact["job"] = ui -> table_clients -> item(row,5)->text();
+    contact["real_name"] = ui -> table_clients -> item(row,6)->text();
+    contact["id_contacto"] = ui -> table_clients -> item(row,7)->text();
 
     paint_table(row);
 }

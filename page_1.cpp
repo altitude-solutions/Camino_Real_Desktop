@@ -382,23 +382,23 @@ void page_1::restart(){
 
     this -> n_nights  = "";
 
-    QString released = "font: 12pt \"MS Shell Dlg 2\";"
-                                    "color:white;"
-                                    "background-color:rgba(121,99,78,50%);"
-                                    "min-width:8.5em;"
-                                    "max-width:8.5em;"
-                                    "min-height:2.5em;"
-                                    "max-height:2.5em;";
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+                                       "color:white;"
+                                       "background-color:#79634E;"
+                                       "min-width:8.5em;"
+                                       "max-width:8.5em;"
+                                       "min-height:2.5em;"
+                                       "max-height:2.5em;";
 
-    ui -> tarifario_butt -> setStyleSheet(released);
-    ui -> cotizacion_butt -> setStyleSheet(released);
-    ui -> reserva_butt -> setStyleSheet(released);
-    ui -> otros_butt -> setStyleSheet(released);
+    ui -> tarifario_butt -> setStyleSheet(pushed);
+    ui -> cotizacion_butt -> setStyleSheet(pushed);
+    ui -> reserva_butt -> setStyleSheet(pushed);
+    ui -> otros_butt -> setStyleSheet(pushed);
 
-    ui -> mail_butt -> setStyleSheet(released);
-    ui -> visita_butt -> setStyleSheet(released);
-    ui -> telefono_butt -> setStyleSheet(released);
-    ui -> wpp_butt -> setStyleSheet(released);
+    ui -> mail_butt -> setStyleSheet(pushed);
+    ui -> visita_butt -> setStyleSheet(pushed);
+    ui -> telefono_butt -> setStyleSheet(pushed);
+    ui -> wpp_butt -> setStyleSheet(pushed);
 }
 
 void page_1::information_box(QString icon, QString header, QString text){
