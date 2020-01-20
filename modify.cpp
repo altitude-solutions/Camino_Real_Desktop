@@ -68,17 +68,26 @@ void Modify::on_tarifario_butt_clicked()
     QJsonObject main_object;
     QJsonArray phone;
     QJsonArray mails;
+
+    QString name = ui->nombre->text();
+    QString job = ui->cargo->text();
+
     if(ui->telefono->text()!=""){
         phone.append(ui->telefono->text());
     }
     if(ui->mail->text()!=""){
         mails.append(ui->mail->text());
     }
-
-    main_object.insert("name",ui->nombre->text());
+    if (ui->nombre->text()==""){
+        name = "-";
+    }
+    if (job == ""){
+        job="-";
+    }
+    main_object.insert("name",name);
     main_object.insert("phoneNumbers",phone);
     main_object.insert("emailAddresses", mails);
-    main_object.insert("job", ui->cargo->text());
+    main_object.insert("job", job);
 
     document.setObject(main_object);
 

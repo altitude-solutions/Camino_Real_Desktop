@@ -79,7 +79,14 @@ void New::on_tarifario_butt_clicked()
     }
     contacto.insert("emailAddresses",mails);
     contacto.insert("phoneNumbers",phones);
-    contacto.insert("name",name );
+    if (name==""){
+        name = "-";
+    }
+    if(job==""){
+        job = "-";
+    }
+
+    contacto.insert("name",name);
     contacto.insert("job", job);
 
     regional.insert("city",regions);

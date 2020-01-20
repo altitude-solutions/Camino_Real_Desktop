@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QLockFile lockFile(QDir::tempPath()+"/locker.lock");
+    QLockFile lockFile(QDir::tempPath()+"/locker_lock.lock");
 
     if(!lockFile.tryLock(100)){
         QMessageBox msgBox;

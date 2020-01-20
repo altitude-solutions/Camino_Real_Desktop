@@ -408,22 +408,22 @@ void page_2::read_client_info()
 void page_2::on_cliente_editingFinished()
 {
     QString local = ui -> cliente -> text();
-    QStringList client_info = local.split("//");
+    if(local!=""){
 
-    QString client = client_info[0];
-    QString region = client_info[1];
+        QStringList client_info = local.split("//");
 
-     QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
-     QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
-     QHashIterator<QString, QString>iter_region(regionales);
-     QString client_id = "";
-     QString regional_id = "";
-     QString auxiliar = "";
+        QString client = client_info[0];
+        QString region = client_info[1];
 
-     ui -> contacto_drop -> clear();
-     contact_data.clear();
+         QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
+         QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
+         QHashIterator<QString, QString>iter_region(regionales);
+         QString client_id = "";
+         QString regional_id = "";
+         QString auxiliar = "";
 
-    if(client!=""){
+         ui -> contacto_drop -> clear();
+         contact_data.clear();
 
         while (iter_client.hasNext()) {
             auto client_key = iter_client.next().key();

@@ -81,6 +81,13 @@ void page_1::on_wpp_butt_clicked()
     paint_via(via);
 }
 
+
+void page_1::on_pushButton_clicked()
+{
+    via = "Pagina web";
+    paint_via(via);
+}
+
 void page_1::paint_via(QString painter){
 
     QString released = "font: 10pt \"MS Shell Dlg 2\";"
@@ -104,24 +111,35 @@ void page_1::paint_via(QString painter){
         ui -> visita_butt -> setStyleSheet(released);
         ui -> telefono_butt -> setStyleSheet(released);
         ui -> wpp_butt -> setStyleSheet(released);
+        ui -> pushButton -> setStyleSheet(released);
     }
     else if(painter == "Visita"){
         ui -> mail_butt -> setStyleSheet(released);
         ui -> visita_butt -> setStyleSheet(pushed);
         ui -> telefono_butt -> setStyleSheet(released);
         ui -> wpp_butt -> setStyleSheet(released);
+        ui -> pushButton -> setStyleSheet(released);
     }
     else if(painter == "Telefono"){
         ui -> mail_butt -> setStyleSheet(released);
         ui -> visita_butt -> setStyleSheet(released);
         ui -> telefono_butt -> setStyleSheet(pushed);
         ui -> wpp_butt -> setStyleSheet(released);
+        ui -> pushButton -> setStyleSheet(released);
     }
     else if (painter == "Whatsapp"){
         ui -> mail_butt -> setStyleSheet(released);
         ui -> visita_butt -> setStyleSheet(released);
         ui -> telefono_butt -> setStyleSheet(released);
         ui -> wpp_butt -> setStyleSheet(pushed);
+        ui -> pushButton -> setStyleSheet(released);
+    }
+    else if (painter == "Pagina web"){
+        ui -> mail_butt -> setStyleSheet(released);
+        ui -> visita_butt -> setStyleSheet(released);
+        ui -> telefono_butt -> setStyleSheet(released);
+        ui -> wpp_butt -> setStyleSheet(released);
+        ui -> pushButton -> setStyleSheet(pushed);
     }
 }
 
@@ -157,20 +175,27 @@ void page_1::on_otros_butt_clicked()
     paint_motivo(motivo);
 }
 
+
+void page_1::on_reclamo_clicked()
+{
+    motivo = "Reclamo";
+    paint_motivo(motivo);
+}
+
 void page_1::paint_motivo(QString painter){
     QString released = "font: 10pt \"MS Shell Dlg 2\";"
                                     "color:white;"
                                     "background-color:rgba(121,99,78,50%);"
-                                    "min-width:8em;"
-                                    "max-width:8em;"
+                                    "min-width:8.5em;"
+                                    "max-width:8.5em;"
                                     "min-height:2em;"
                                     "max-height:2em;";
 
     QString pushed = "font: 10pt \"MS Shell Dlg 2\";"
                                        "color:white;"
                                        "background-color:#79634E;"
-                                       "min-width:8em;"
-                                       "max-width:8em;"
+                                       "min-width:8.5em;"
+                                       "max-width:8.5em;"
                                        "min-height:2em;"
                                        "max-height:2em;";
 
@@ -179,24 +204,35 @@ void page_1::paint_motivo(QString painter){
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(released);
+        ui -> reclamo -> setStyleSheet(released);
     }
     else if(painter == "Cotizacion"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(pushed);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(released);
+        ui -> reclamo -> setStyleSheet(released);
     }
     else if(painter == "Reserva"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(pushed);
         ui -> otros_butt -> setStyleSheet(released);
+        ui -> reclamo -> setStyleSheet(released);
     }
     else if (painter == "Otros"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(pushed);
+        ui -> reclamo -> setStyleSheet(released);
+    }
+    else if (painter == "Reclamo"){
+        ui -> tarifario_butt -> setStyleSheet(released);
+        ui -> cotizacion_butt -> setStyleSheet(released);
+        ui -> reserva_butt -> setStyleSheet(released);
+        ui -> otros_butt -> setStyleSheet(released);
+        ui -> reclamo -> setStyleSheet(pushed);
     }
 }
 
@@ -301,25 +337,25 @@ void page_1::read_client_info()
 
 void page_1::on_cliente_editingFinished()
 {
-   QString local = ui -> cliente -> text();
-   QStringList client_info = local.split("//");
+    QString local = ui -> cliente -> text();
+   if(local!=""){
 
-   QString client = client_info[0];
-   QString region = client_info[1];
+       QStringList client_info = local.split("//");
 
-    QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
-    QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
-    QHashIterator<QString, QString>iter_region(regionales);
-    QString client_id = "";
-    QString regional_id = "";
-    QString auxiliar = "";
+       QString client = client_info[0];
+       QString region = client_info[1];
 
-    ui -> contacto_drop -> clear();
-    contact_data.clear();
+        QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
+        QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
+        QHashIterator<QString, QString>iter_region(regionales);
+        QString client_id = "";
+        QString regional_id = "";
+        QString auxiliar = "";
 
-   if(client!=""){
+        ui -> contacto_drop -> clear();
+        contact_data.clear();
 
-       while (iter_client.hasNext()) {
+        while (iter_client.hasNext()) {
            auto client_key = iter_client.next().key();
            if(client == clientes[client_key]["name"]){
                 client_id =   client_key;
@@ -478,7 +514,7 @@ void page_1::restart(){
 
     this -> n_nights  = "";
 
-    QString pushed = "font: 10pt \"MS Shell Dlg 2\";"
+    QString pushed_a = "font: 10pt \"MS Shell Dlg 2\";"
                                        "color:white;"
                                        "background-color:#79634E;"
                                        "min-width:8em;"
@@ -486,15 +522,25 @@ void page_1::restart(){
                                        "min-height:2em;"
                                        "max-height:2em;";
 
-    ui -> tarifario_butt -> setStyleSheet(pushed);
-    ui -> cotizacion_butt -> setStyleSheet(pushed);
-    ui -> reserva_butt -> setStyleSheet(pushed);
-    ui -> otros_butt -> setStyleSheet(pushed);
+    QString pushed_b = "font: 10pt \"MS Shell Dlg 2\";"
+                                       "color:white;"
+                                       "background-color:#79634E;"
+                                       "min-width:8.5em;"
+                                       "max-width:8.5em;"
+                                       "min-height:2em;"
+                                       "max-height:2em;";
 
-    ui -> mail_butt -> setStyleSheet(pushed);
-    ui -> visita_butt -> setStyleSheet(pushed);
-    ui -> telefono_butt -> setStyleSheet(pushed);
-    ui -> wpp_butt -> setStyleSheet(pushed);
+    ui -> tarifario_butt -> setStyleSheet(pushed_a);
+    ui -> cotizacion_butt -> setStyleSheet(pushed_a);
+    ui -> reserva_butt -> setStyleSheet(pushed_a);
+    ui -> otros_butt -> setStyleSheet(pushed_a);
+    ui -> pushButton -> setStyleSheet(pushed_b);
+
+    ui -> mail_butt -> setStyleSheet(pushed_b);
+    ui -> visita_butt -> setStyleSheet(pushed_b);
+    ui -> telefono_butt -> setStyleSheet(pushed_b);
+    ui -> wpp_butt -> setStyleSheet(pushed_b);
+    ui -> reclamo -> setStyleSheet(pushed_a);
 }
 
 void page_1::information_box(QString icon, QString header, QString text){
@@ -521,5 +567,6 @@ void page_1::on_icon_pluss_clicked()
 {
     emit send_clients();
 }
+
 
 

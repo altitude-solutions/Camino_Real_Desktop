@@ -54,6 +54,10 @@ private slots:
 
     void on_contacto_drop_currentTextChanged(const QString &arg1);
 
+    void on_pushButton_clicked();
+
+    void on_reclamo_clicked();
+
 private:
     Ui::page_1 *ui;
 

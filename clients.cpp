@@ -193,14 +193,14 @@ void Clients::paint_table(int row){
 
     for (int i=0; i<db_clients.size(); i++){
         if (i==row){
-            ui->table_clients->item(row,0)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,1)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,2)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,3)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,4)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,5)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,6)->setBackground(QColor("#F2F2F2"));
-            ui->table_clients->item(row,7)->setBackground(QColor("#F2F2F2"));
+            ui->table_clients->item(row,0)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,1)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,2)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,3)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,4)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,5)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,6)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,7)->setBackground(QColor("#B6B6B6"));
         }
         else {
             ui->table_clients->item(i,0)->setBackground(QColor("#FFFFFF"));

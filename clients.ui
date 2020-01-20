@@ -238,7 +238,13 @@ QHeaderView::section {
 	border-style:outset;
 	padding:0;
     height: 2em;
-}</string>
+}
+
+
+QTableWidget::item{ 
+	selection-background-color: #B6B6B6;
+}
+</string>
                 </property>
                 <property name="horizontalScrollBarPolicy">
                  <enum>Qt::ScrollBarAlwaysOff</enum>
