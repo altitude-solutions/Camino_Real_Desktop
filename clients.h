@@ -37,6 +37,8 @@ private slots:
 
     void update_client();
 
+    void on_delete_butt_clicked();
+
 private:
     Ui::Clients *ui;
 

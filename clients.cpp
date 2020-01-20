@@ -85,6 +85,7 @@ void Clients::read_client_info()
             return;
         }
 
+        db_clients.clear();
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
             foreach (QJsonValue regional, entidad.toObject().value("regionals").toArray()) {
@@ -241,4 +242,40 @@ void Clients::on_new_butt_clicked()
 void Clients::update_client(){
     information_box("x","Base de datos", "Actualizado con éxito");
     read_client_info();
+}
+
+void Clients::on_delete_butt_clicked()
+{
+    if(contact["id_contacto"]!=""){
+        //Send information
+        QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+        connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+            QByteArray binReply = reply->readAll ();
+           qDebug()<<binReply;
+            if (reply->error ()) {
+                QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                    information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                } else {
+                    information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                }
+            }
+            update_client();
+            reply->deleteLater ();
+        });
+
+        QNetworkRequest request;
+        qDebug()<< "http://"+this -> url + "/clients/"+contact["id_contacto"];
+        request.setUrl (QUrl ("http://"+this -> url + "/contacts/"+contact["id_contacto"]));
+        request.setRawHeader ("token", this -> token.toUtf8 ());
+        request.setRawHeader ("Content-Type", "application/json");
+
+        nam->sendCustomRequest(request,"DELETE");
+    }
+    else{
+        information_box("x","Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
+    }
+
 }
