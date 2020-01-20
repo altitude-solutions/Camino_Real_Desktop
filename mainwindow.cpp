@@ -34,16 +34,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->frame->setFixedHeight(static_cast<int>(height*0.1));
 
    // Set icons
-  double pix_w_a = (width*100)/1920;
-  double pix_h_a = (height*100)/1080;
+  double pix_w_a = (width*80)/1366;
+  double pix_h_a = (height*60)/768;
 
   QPixmap main_pix(":/images/images/camino_real.png");
   ui->main_icon->setPixmap(main_pix.scaled( static_cast<int>(pix_w_a),static_cast<int>(pix_w_a), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->main_icon->setFixedSize(static_cast<int>(pix_w_a), static_cast<int>(pix_h_a));
 
    //set Icons
-  double pix_w_b = (width*30)/1920;
-  double pix_h_b = (height*30)/1080;
+  double pix_w_b = (width*30)/1366;
+  double pix_h_b = (height*30)/768;
   QPixmap back_pix(":/images/images/hamburguesa.png");
   QIcon ButtonIcon(back_pix.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_back->setIcon(ButtonIcon);

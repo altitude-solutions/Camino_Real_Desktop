@@ -36,7 +36,6 @@ private slots:
     void on_primer_butt_clicked();
     void on_tarifario_butt_clicked();
     void on_cotizacion_butt_clicked();
-    void on_nuevacot_butt_clicked();
     void on_reserva_butt_clicked();
     void on_no_interesa_clicked();
 
@@ -61,6 +60,8 @@ private slots:
     void information_box(QString, QString, QString);
 
     void on_icon_pluss_clicked();
+
+    void on_contacto_drop_currentTextChanged(const QString &arg1);
 
 private:
     Ui::page_2 *ui;
@@ -88,6 +89,22 @@ private:
 
     //Information of the clients
     QHash<QString, QHash<QString, QString>> db_clients;
+
+
+    //From the database
+    QHash<QString, QHash<QString, QString>>clientes;
+    QHash<QString, QString>regionales;
+    QHash<QString, QHash<QString, QString>>contactos;
+
+    //To send to the database
+    QString contact_name;
+    QString contact_phone;
+    QString contact_mail;
+    QString contact_job;
+    QString cid;
+
+    //Actual Selection
+    QHash<QString, QString>contact_data;
 };
 
 #endif // PAGE_2_H

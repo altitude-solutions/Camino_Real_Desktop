@@ -33,21 +33,21 @@ void InOut::receive_info(QString userName, QString realName, QString token, QStr
     this -> token = token;
     this -> url = url;
 
-    QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
             "color:white;"
             "background-color:rgba(153,153,153,50%);"
             "min-width:7em;"
             "max-width:7em;"
-            "min-height:2.5em;"
-            "max-height:2.5em;";
+            "min-height:2em;"
+            "max-height:2em;";
 
-    QString released = "font: 14pt \"MS Shell Dlg 2\";"
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
                     "color:white;"
                     "background-color:#79634E;"
                     "min-width:7em;"
                     "max-width:7em;"
-                    "min-height:2.5em;"
-                    "max-height:2.5em;";
+                    "min-height:2em;"
+                    "max-height:2em;";
 
     l_a = new QVBoxLayout(this);
     p1 = new page_1(this);
@@ -69,21 +69,21 @@ void InOut::receive_info(QString userName, QString realName, QString token, QStr
 
 void InOut::on_pushButton_clicked()
 {
-    QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
             "color:white;"
             "background-color:rgba(153,153,153,50%);"
             "min-width:7em;"
             "max-width:7em;"
-            "min-height:2.5em;"
-            "max-height:2.5em;";
+            "min-height:2em;"
+            "max-height:2em;";
 
-    QString released = "font: 14pt \"MS Shell Dlg 2\";"
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
                     "color:white;"
                     "background-color:#79634E;"
                     "min-width:7em;"
                     "max-width:7em;"
-                    "min-height:2.5em;"
-                    "max-height:2.5em;";
+                    "min-height:2em;"
+                    "max-height:2em;";
 
     if(actual_widget=="page_2"){
        l_a->removeItem(l_a->itemAt(0));
@@ -105,21 +105,21 @@ void InOut::on_pushButton_clicked()
 
 void InOut::on_pushButton_2_clicked()
 {
-    QString pushed = "font: 14pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
             "color:white;"
             "background-color:rgba(153,153,153,50%);"
             "min-width:7em;"
             "max-width:7em;"
-            "min-height:2.5em;"
-            "max-height:2.5em;";
+            "min-height:2em;"
+            "max-height:2em;";
 
-    QString released = "font: 14pt \"MS Shell Dlg 2\";"
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
                     "color:white;"
                     "background-color:#79634E;"
                     "min-width:7em;"
                     "max-width:7em;"
-                    "min-height:2.5em;"
-                    "max-height:2.5em;";
+                    "min-height:2em;"
+                    "max-height:2em;";
 
     if(actual_widget=="page_1"){
         l_a->removeItem(l_a->itemAt(0));

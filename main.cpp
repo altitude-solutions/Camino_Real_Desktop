@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
     //Get screen Size
    const auto screens = qApp->screens();
 
-   double width = screens[0]->geometry().width()*0.3;
-   double height = screens[0]->geometry().height()*0.3;
+   double width = screens[0]->geometry().width()*0.45;
+   double height = screens[0]->geometry().height()*0.4;
 
     QSplashScreen splash(pixmap.scaled( static_cast<int>(width),static_cast<int>(height), Qt::KeepAspectRatio, Qt::SmoothTransformation), Qt::WindowStaysOnTopHint);
     splash.show();

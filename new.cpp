@@ -29,7 +29,7 @@ New::New(QWidget *parent) :
 
     //Frames size
     ui -> frame_4 -> setFixedWidth(static_cast<int>(width/2.5));
-    ui -> frame_4 -> setFixedHeight(static_cast<int>(height/2));
+    ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.9));
 
     ui -> frame_2 -> setFixedHeight(static_cast<int>(height*0.05));
 

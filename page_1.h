@@ -52,6 +52,8 @@ private slots:
 
     void on_icon_pluss_clicked();
 
+    void on_contacto_drop_currentTextChanged(const QString &arg1);
+
 private:
     Ui::page_1 *ui;
 
@@ -72,6 +74,21 @@ private:
 
     //Information of the clients
     QHash<QString, QHash<QString, QString>> db_clients;
+
+    //From the database
+    QHash<QString, QHash<QString, QString>>clientes;
+    QHash<QString, QString>regionales;
+    QHash<QString, QHash<QString, QString>>contactos;
+
+    //To send to the database
+    QString contact_name;
+    QString contact_phone;
+    QString contact_mail;
+    QString contact_job;
+    QString cid;
+
+    //Actual Selection
+    QHash<QString, QString>contact_data;
 };
 
 #endif // PAGE_1_H

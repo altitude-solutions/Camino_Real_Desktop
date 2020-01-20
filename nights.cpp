@@ -17,7 +17,7 @@ Nights::Nights(QWidget *parent) :
 
     //set widget size dynamic, aspect ratio 16:9
     double size_w = (width)/2;
-    double size_h = (height)/1.8;
+    double size_h = (height)/1.5;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 
@@ -71,7 +71,7 @@ void Nights::information_box(QString icon, QString header, QString text){
 
      //set widget size dynamic, aspect ratio 16:9
      double w = (width)/2;
-     double h = (height)/1.8;
+     double h = (height)/1.5;
 
     emit send_info_box(icon, header, text, w, h);
     box_info->show();

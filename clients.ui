@@ -102,7 +102,7 @@
               <item>
                <widget class="QLabel" name="label_9">
                 <property name="styleSheet">
-                 <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                 <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: white;</string>
                 </property>
                 <property name="text">
@@ -113,13 +113,13 @@ color: white;</string>
               <item>
                <widget class="QLineEdit" name="lineEdit">
                 <property name="styleSheet">
-                 <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                 <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 background-color:white;
-min-height:1.8em;
-max-height:1.8em;
+min-height:1.5em;
+max-height:1.5em;
 padding:5px;
-min-width:15em;
-max-width:15em;
+min-width:10em;
+max-width:10em;
 color: #294D39;</string>
                 </property>
                 <property name="placeholderText">
@@ -143,13 +143,13 @@ color: #294D39;</string>
               <item>
                <widget class="QPushButton" name="new_butt">
                 <property name="styleSheet">
-                 <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                 <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:rgba(255,255,255,30%);
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
                 </property>
                 <property name="text">
                  <string>NUEVO</string>
@@ -159,13 +159,13 @@ max-height:2.5em;</string>
               <item>
                <widget class="QPushButton" name="modify_butt">
                 <property name="styleSheet">
-                 <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                 <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:rgba(255,255,255,30%);
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
                 </property>
                 <property name="text">
                  <string>ACTUALIZAR</string>
@@ -175,13 +175,13 @@ max-height:2.5em;</string>
               <item>
                <widget class="QPushButton" name="delete_butt">
                 <property name="styleSheet">
-                 <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                 <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:rgba(255,255,255,30%);
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
                 </property>
                 <property name="text">
                  <string>BORRAR</string>
@@ -239,6 +239,9 @@ QHeaderView::section {
 	padding:0;
     height: 2em;
 }</string>
+                </property>
+                <property name="horizontalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
                 </property>
                 <property name="editTriggers">
                  <set>QAbstractItemView::NoEditTriggers</set>

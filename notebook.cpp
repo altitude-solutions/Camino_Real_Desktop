@@ -33,7 +33,7 @@ Notebook::Notebook(QWidget *parent) :
 
     //Frames size:
     ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.45));
-    ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.8));
+    ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.5));
 
     //Set the table Size
     ui -> your_table -> setColumnCount(6);

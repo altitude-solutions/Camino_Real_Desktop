@@ -117,7 +117,7 @@
               <widget class="QPushButton" name="pushButton_9">
                <property name="styleSheet">
                 <string notr="true">QPushButton#pushButton_9 {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:transparent;
 	min-width:6em;	
@@ -127,7 +127,7 @@
 }
 
 QPushButton:hover#pushButton_9 {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:rgba(50,50,50,50%);
 	min-width:6em;	
@@ -187,7 +187,7 @@ QPushButton:hover#pushButton_9 {
               <widget class="QPushButton" name="pushButton_10">
                <property name="styleSheet">
                 <string notr="true">QPushButton#pushButton_10 {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:transparent;
 	min-width:6em;	
@@ -197,7 +197,7 @@ QPushButton:hover#pushButton_9 {
 }
 
 QPushButton:hover#pushButton_10 {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:rgba(50,50,50,50%);
 	min-width:6em;	
@@ -255,7 +255,7 @@ QPushButton:hover#pushButton_10 {
               <widget class="QPushButton" name="clients">
                <property name="styleSheet">
                 <string notr="true">QPushButton#clients {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:transparent;
 	min-width:6em;	
@@ -265,7 +265,7 @@ QPushButton:hover#pushButton_10 {
 }
 
 QPushButton:hover#clients {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:rgba(50,50,50,50%);
 	min-width:6em;	
@@ -321,7 +321,7 @@ QPushButton:hover#clients {
               <widget class="QPushButton" name="close_seesion">
                <property name="styleSheet">
                 <string notr="true">QPushButton#close_seesion {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:transparent;
 	min-width:6em;	
@@ -331,7 +331,7 @@ QPushButton:hover#clients {
 }
 
 QPushButton:hover#close_seesion {
-    font: 14pt &quot;MS Shell Dlg 2&quot;;
+    font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color:#294D39;		
 	background-color:rgba(50,50,50,50%);
 	min-width:6em;	

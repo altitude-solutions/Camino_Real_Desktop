@@ -24,21 +24,21 @@ page_1::page_1(QWidget *parent) :
 
     //set widget size dynamic, aspect ratio 16:9
     double size_w = (width)/2;
-    double size_h = (height)/1.8;
+    double size_h = (height)/1.5;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 
     //  Set icons
-   double pix_w_b = (width*111)/1920;
-   double pix_h_b= (height*60)/1080;
+   double pix_w_b = (width*111)/1366;
+   double pix_h_b= (height*60)/768;
 
    QPixmap pix_client(":/images/images/cliente-fondo.png");
    ui->icon_cliente->setPixmap(pix_client.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
    ui->icon_cliente->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
    //  Set icons
-  double pix_w_a = (width*43)/1920;
-  double pix_h_a = (height*43)/1080;
+  double pix_w_a = (width*43)/1366;
+  double pix_h_a = (height*43)/768;
 
    QPixmap pix_search(":/images/images/lupa-fondo.png");
    QIcon ButtonIcon(pix_search.scaled( static_cast<int>(pix_w_a),static_cast<int>(pix_h_a), Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -55,7 +55,6 @@ page_1::~page_1()
 {
     delete ui;
 }
-
 
 //This section is for "VÍA"
 void page_1::on_mail_butt_clicked()
@@ -84,21 +83,21 @@ void page_1::on_wpp_butt_clicked()
 
 void page_1::paint_via(QString painter){
 
-    QString released = "font: 12pt \"MS Shell Dlg 2\";"
+    QString released = "font: 10pt \"MS Shell Dlg 2\";"
                                     "color:white;"
                                     "background-color:rgba(121,99,78,50%);"
-                                    "min-width:8.5em;"
-                                    "max-width:8.5em;"
-                                    "min-height:2.5em;"
-                                    "max-height:2.5em;";
+                                    "min-width:8em;"
+                                    "max-width:8em;"
+                                    "min-height:2em;"
+                                    "max-height:2em;";
 
-    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 10pt \"MS Shell Dlg 2\";"
                                        "color:white;"
                                        "background-color:#79634E;"
-                                       "min-width:8.5em;"
-                                       "max-width:8.5em;"
-                                       "min-height:2.5em;"
-                                       "max-height:2.5em;";
+                                       "min-width:8em;"
+                                       "max-width:8em;"
+                                       "min-height:2em;"
+                                       "max-height:2em;";
 
     if (painter ==  "E-mail"){
         ui -> mail_butt -> setStyleSheet(pushed);
@@ -159,21 +158,21 @@ void page_1::on_otros_butt_clicked()
 }
 
 void page_1::paint_motivo(QString painter){
-    QString released = "font: 12pt \"MS Shell Dlg 2\";"
+    QString released = "font: 10pt \"MS Shell Dlg 2\";"
                                     "color:white;"
                                     "background-color:rgba(121,99,78,50%);"
-                                    "min-width:8.5em;"
-                                    "max-width:8.5em;"
-                                    "min-height:2.5em;"
-                                    "max-height:2.5em;";
+                                    "min-width:8em;"
+                                    "max-width:8em;"
+                                    "min-height:2em;"
+                                    "max-height:2em;";
 
-    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 10pt \"MS Shell Dlg 2\";"
                                        "color:white;"
                                        "background-color:#79634E;"
-                                       "min-width:8.5em;"
-                                       "max-width:8.5em;"
-                                       "min-height:2.5em;"
-                                       "max-height:2.5em;";
+                                       "min-width:8em;"
+                                       "max-width:8em;"
+                                       "min-height:2em;"
+                                       "max-height:2em;";
 
     if (painter ==  "Tarifario"){
         ui -> tarifario_butt -> setStyleSheet(pushed);
@@ -236,7 +235,6 @@ void page_1::read_client_info()
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
             foreach (QJsonValue regional, entidad.toObject().value("regionals").toArray()) {
                 foreach( QJsonValue contacto, regional.toObject().value("contacts").toArray()){
-
                     QHash<QString, QString> current;
                     current.insert ("contact", contacto.toObject ().value ("name").toString ());
                     current.insert ("job", contacto.toObject ().value ("job").toString());
@@ -253,7 +251,22 @@ void page_1::read_client_info()
                     current.insert("real_name",regional.toObject ().value("salesAgent").toObject().value("realName").toString());
 
                     current.insert("id_cliente",entidad.toObject ().value("_id").toString());
-                    db_clients.insert(entidad.toObject ().value("name").toString()+"/"+regional.toObject ().value("city").toString(), current);
+                    db_clients.insert(entidad.toObject ().value("name").toString()+"//"+regional.toObject ().value("city").toString(), current);
+
+
+                    //Información de contacto
+                    contactos[contacto.toObject ().value ("_id").toString()]["name"] = contacto.toObject ().value ("name").toString();
+                    contactos[contacto.toObject ().value ("_id").toString()]["phone"] = contacto.toObject ().value ("phoneNumbers").toArray().at(0).toString();
+                    contactos[contacto.toObject ().value ("_id").toString()]["email"] = contacto.toObject ().value ("emailAddresses").toArray().at(0).toString();
+                    contactos[contacto.toObject ().value ("_id").toString()]["job"] = contacto.toObject ().value ("job").toString();
+                    contactos[contacto.toObject ().value ("_id").toString()]["regional"] = regional.toObject ().value("_id").toString();
+                    contactos[contacto.toObject ().value ("_id").toString()]["client"] = entidad.toObject ().value("_id").toString();
+
+                    clientes[entidad.toObject ().value("_id").toString()]["name"] = entidad.toObject ().value("name").toString();
+                    clientes[entidad.toObject ().value("_id").toString()][regional.toObject ().value("_id").toString()] =regional.toObject ().value("city").toString();
+
+                    regionales[regional.toObject ().value("_id").toString()] = regional.toObject ().value("city").toString();
+
                 }
              }
           }
@@ -288,14 +301,88 @@ void page_1::read_client_info()
 
 void page_1::on_cliente_editingFinished()
 {
-   QString client = ui -> cliente -> text();
+   QString local = ui -> cliente -> text();
+   QStringList client_info = local.split("//");
+
+   QString client = client_info[0];
+   QString region = client_info[1];
+
+    QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
+    QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
+    QHashIterator<QString, QString>iter_region(regionales);
+    QString client_id = "";
+    QString regional_id = "";
+    QString auxiliar = "";
+
+    ui -> contacto_drop -> clear();
+    contact_data.clear();
 
    if(client!=""){
-        ui -> contacto -> setText(db_clients[client]["contact"]);
-        ui -> cargo -> setText(db_clients[client]["job"]);
-        ui -> telefono -> setText(db_clients[client]["phone"]);
-        ui -> mail -> setText(db_clients[client]["email"]);
+
+       while (iter_client.hasNext()) {
+           auto client_key = iter_client.next().key();
+           if(client == clientes[client_key]["name"]){
+                client_id =   client_key;
+
+                while (iter_region.hasNext()) {
+                    auto region_key = iter_region.next().key();
+                     if(region==regionales[region_key] && clientes[client_id][region_key]!=""){
+                         regional_id = region_key;
+                     }
+                }
+                break;
+           }
+       }
+
+      if (client_id !="" && regional_id!=""){
+            while(iter_contact.hasNext()){
+
+                auto contact_key = iter_contact.next().key();
+
+                if (client_id == contactos[contact_key]["client"] && regional_id == contactos[contact_key]["regional"]) {
+
+                    ui -> contacto_drop -> addItem(contactos[contact_key]["name"]);
+                    ui -> contacto_drop -> setCurrentText(contactos[contact_key]["name"]);
+
+                    contact_data[contact_key] = contactos[contact_key]["name"];
+
+                    ui -> cargo -> setText(contactos[contact_key]["job"]);
+                    ui -> telefono -> setText(contactos[contact_key]["phone"]);
+                    ui -> mail -> setText(contactos[contact_key]["email"]);
+
+                    contact_name = contactos[contact_key]["name"];
+                    contact_phone = contactos[contact_key]["phone"];
+                    contact_mail = contactos[contact_key]["email"];
+                    contact_job = contactos[contact_key]["job"];
+                    cid = contact_key;
+                }
+            }
+       }
    }
+}
+
+void page_1::on_contacto_drop_currentTextChanged(const QString &arg1)
+{
+
+      QHashIterator<QString,QString>iter_contact(contact_data);
+
+      if(arg1!=""){
+          while (iter_contact.hasNext()) {
+               auto main_key = iter_contact.next().key();
+               if(arg1 == contact_data[main_key]){
+
+                   ui -> cargo -> setText(contactos[main_key]["job"]);
+                   ui -> telefono -> setText(contactos[main_key]["phone"]);
+                   ui -> mail -> setText(contactos[main_key]["email"]);
+
+                   contact_name = contactos[main_key]["name"];
+                   contact_phone = contactos[main_key]["phone"];
+                   contact_mail = contactos[main_key]["email"];
+                   contact_job = contactos[main_key]["job"];
+                   cid = main_key;
+               }
+          }
+     }
 }
 
 void page_1::on_icon_search_clicked()
@@ -317,7 +404,7 @@ void page_1::on_pushButton_9_clicked()
     if (via!=""&&motivo!="" ){
         main_object.insert("client", db_clients[hash_id]["id_cliente"]);
         main_object.insert("regional", db_clients[hash_id]["id_regional"]);
-        main_object.insert("contact", db_clients[hash_id]["id_contacto"]);
+        main_object.insert("contact", cid);
         main_object.insert("via", via);
         main_object.insert("reason", motivo);        
         main_object.insert("date", QDateTime::fromString(time,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
@@ -374,21 +461,30 @@ void page_1::restart(){
     motivo = "";
 
     ui -> cliente -> setText("");
-    ui -> contacto -> setText("");
     ui -> mail -> setText("");
     ui -> telefono -> setText("");
     ui -> cargo -> setText("");
     ui -> comentarios -> setPlainText("");
 
+    contact_name="";
+    contact_phone="";
+    contact_mail="";
+    contact_job="";
+    cid = "";
+
+    ui -> contacto_drop -> clear();
+
+    contact_data.clear();
+
     this -> n_nights  = "";
 
-    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+    QString pushed = "font: 10pt \"MS Shell Dlg 2\";"
                                        "color:white;"
                                        "background-color:#79634E;"
-                                       "min-width:8.5em;"
-                                       "max-width:8.5em;"
-                                       "min-height:2.5em;"
-                                       "max-height:2.5em;";
+                                       "min-width:8em;"
+                                       "max-width:8em;"
+                                       "min-height:2em;"
+                                       "max-height:2em;";
 
     ui -> tarifario_butt -> setStyleSheet(pushed);
     ui -> cotizacion_butt -> setStyleSheet(pushed);
@@ -413,8 +509,8 @@ void page_1::information_box(QString icon, QString header, QString text){
     int height = screens[0]->geometry().height();
 
      //set widget size dynamic, aspect ratio 16:9
-     double w = (width)/2;
-     double h = (height)/1.8;
+     double w = static_cast<int>((width)/2);
+     double h = static_cast<int>((height)/1.5);
 
     emit send_info_box(icon, header, text, w, h);
     box_info->show();
@@ -425,3 +521,5 @@ void page_1::on_icon_pluss_clicked()
 {
     emit send_clients();
 }
+
+

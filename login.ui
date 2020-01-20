@@ -152,9 +152,10 @@
           <widget class="QLabel" name="label">
            <property name="styleSheet">
             <string notr="true">background-color:#79634E;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-min-height:2.1em;
-max-height:2.1em;
+min-height:2em;
+max-height:2em;
 min-width:7em;
 max-width:7em;</string>
            </property>
@@ -169,11 +170,15 @@ max-width:7em;</string>
          <item>
           <widget class="QLineEdit" name="user">
            <property name="styleSheet">
-            <string notr="true">min-height:2em;
+            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+min-height:2em;
 max-height:2em;
-min-width:15em;
-max-width:15em;
-color: #294D39;</string>
+min-width:10em;
+max-width:10em;
+color: #294D39;
+
+
+</string>
            </property>
           </widget>
          </item>
@@ -185,9 +190,10 @@ color: #294D39;</string>
           <widget class="QLabel" name="label_2">
            <property name="styleSheet">
             <string notr="true">background-color:#79634E;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-min-height:2.1em;
-max-height:2.1em;
+min-height:2em;
+max-height:2em;
 min-width:7em;
 max-width:7em;</string>
            </property>
@@ -202,11 +208,15 @@ max-width:7em;</string>
          <item>
           <widget class="QLineEdit" name="password">
            <property name="styleSheet">
-            <string notr="true">min-height:2em;
+            <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+min-height:2em;
 max-height:2em;
-min-width:15em;
-max-width:15em;
-color: #294D39;</string>
+min-width:10em;
+max-width:10em;
+color: #294D39;
+
+
+</string>
            </property>
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
@@ -234,9 +244,10 @@ color: #294D39;</string>
           <widget class="QPushButton" name="pushButton">
            <property name="styleSheet">
             <string notr="true">background-color:#79634E;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
-min-height:2.5em;
-max-height:2.5em;
+min-height:2em;
+max-height:2em;
 min-width:9em;
 max-width:9em;</string>
            </property>

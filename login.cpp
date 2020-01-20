@@ -27,17 +27,17 @@ Login::Login(QWidget *parent)
    int height = screens[0]->geometry().height();
 
     //frames sized
-   ui -> frame_1 -> setFixedWidth(static_cast<int>(width*0.15));
+   ui -> frame_1 -> setFixedWidth(static_cast<int>(width*0.17));
 
-   //set widget size dynamic, aspect ratio 16:9
-   double size_w = (width)/3;
-   double size_h = (height)/3;
+   //set widget size dynamic, aspect ratio 683:384
+   double size_w = (width*0.4);
+   double size_h = (height)/2.5;
    QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
    this->setFixedSize(size);
 
    //  Set icons
-  double pix_w_a = (width*220)/1920;
-  double pix_h_a = (height*220)/1080;
+  double pix_w_a = (width*200)/1366;
+  double pix_h_a = (height*200)/768;
 
   QPixmap main_pix(":/images/images/camino_real.png");
   ui->main_icon->setPixmap(main_pix.scaled( static_cast<int>(pix_w_a),static_cast<int>(pix_w_a), Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -167,8 +167,8 @@ void Login::information_box(QString icon, QString header, QString text){
     int height = screens[0]->geometry().height();
 
      //set widget size dynamic, aspect ratio 16:9
-     double w = (width)/3;
-     double h = (height)/3;
+    double w = static_cast<int>(width*0.4);
+    double h = static_cast<int>(height)/2.5;
 
     emit send_info_box(icon, header, text, w, h);
     box_info->show();

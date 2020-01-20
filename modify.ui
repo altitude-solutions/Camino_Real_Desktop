@@ -161,7 +161,7 @@ min-height:2em;
 max-height:2em;
 padding:5px;
 color:white;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 </string>
                     </property>
                     <property name="text">
@@ -175,7 +175,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
                   <item>
                    <widget class="QLabel" name="cliente">
                     <property name="styleSheet">
-                     <string notr="true">font: 18pt &quot;MS Shell Dlg 2&quot;;
+                     <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;</string>
                     </property>
@@ -211,7 +211,7 @@ min-height:2em;
 max-height:2em;
 padding:5px;
 color:white;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 </string>
                     </property>
                     <property name="text">
@@ -225,7 +225,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
                   <item>
                    <widget class="QLabel" name="regional">
                     <property name="styleSheet">
-                     <string notr="true">font: 18pt &quot;MS Shell Dlg 2&quot;;
+                     <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;</string>
                     </property>
@@ -283,7 +283,7 @@ padding:10px;</string>
                 <item>
                  <widget class="QLabel" name="label_6">
                   <property name="styleSheet">
-                   <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;
+                   <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;
 min-width:5em;</string>
@@ -331,7 +331,7 @@ min-width:5em;</string>
                 <item>
                  <widget class="QLabel" name="label_14">
                   <property name="styleSheet">
-                   <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                   <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;
 min-width:5em;</string>
@@ -345,7 +345,7 @@ min-width:5em;</string>
                  <widget class="QLineEdit" name="nombre">
                   <property name="styleSheet">
                    <string notr="true">background-color:#F2F2F2;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 border:0px solid;
 min-height:1.5em;
 max-height:1.5em;
@@ -361,7 +361,7 @@ color: #294D39;
                 <item>
                  <widget class="QLabel" name="label_15">
                   <property name="styleSheet">
-                   <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                   <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;
 min-width:5em;</string>
@@ -375,7 +375,7 @@ min-width:5em;</string>
                  <widget class="QLineEdit" name="telefono">
                   <property name="styleSheet">
                    <string notr="true">background-color:#F2F2F2;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 border:0px solid;
 min-height:1.5em;
 max-height:1.5em;
@@ -391,7 +391,7 @@ color: #294D39;
                 <item>
                  <widget class="QLabel" name="label_16">
                   <property name="styleSheet">
-                   <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                   <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;
 min-width:5em;</string>
@@ -405,12 +405,11 @@ min-width:5em;</string>
                  <widget class="QLineEdit" name="mail">
                   <property name="styleSheet">
                    <string notr="true">background-color:#F2F2F2;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 border:0px solid;
 min-height:1.5em;
 max-height:1.5em;
-color: #294D39;
-</string>
+color: #294D39;</string>
                   </property>
                  </widget>
                 </item>
@@ -421,7 +420,7 @@ color: #294D39;
                 <item>
                  <widget class="QLabel" name="label_17">
                   <property name="styleSheet">
-                   <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                   <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 padding:10px;
 min-width:5em;</string>
@@ -435,12 +434,11 @@ min-width:5em;</string>
                  <widget class="QLineEdit" name="cargo">
                   <property name="styleSheet">
                    <string notr="true">background-color:#F2F2F2;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 border:0px solid;
 min-height:1.5em;
 max-height:1.5em;
-color: #294D39;
-</string>
+color: #294D39;</string>
                   </property>
                  </widget>
                 </item>
@@ -467,13 +465,13 @@ color: #294D39;
              <item>
               <widget class="QPushButton" name="pushButton">
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:rgba(121,99,78,100%);;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
                </property>
                <property name="text">
                 <string>Cancelar</string>
@@ -483,13 +481,13 @@ max-height:2.5em;</string>
              <item>
               <widget class="QPushButton" name="tarifario_butt">
                <property name="styleSheet">
-                <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:rgba(121,99,78,100%);;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
                </property>
                <property name="text">
                 <string>Guardar</string>

@@ -139,14 +139,10 @@ color:white;</string>
            <number>0</number>
           </property>
           <item>
-           <widget class="QLineEdit" name="contacto">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+           <widget class="QComboBox" name="contacto_drop">
             <property name="styleSheet">
-             <string notr="true">min-height:2.5em;
-max-height:2.5em;
-min-width:60em;
+             <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+padding: 5px;
 border:1px  solid #79634E;
 color: #294D39;</string>
             </property>
@@ -190,7 +186,7 @@ color:white;</string>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
-min-width:60em;
+min-width:30em;
 border:1px  solid #79634E;
 color: #294D39;</string>
             </property>
@@ -234,7 +230,7 @@ color:white;</string>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
-min-width:60em;
+min-width:30em;
 border:1px  solid #79634E;
 color: #294D39;</string>
             </property>
@@ -278,7 +274,7 @@ color:white;</string>
             <property name="styleSheet">
              <string notr="true">min-height:2.5em;
 max-height:2.5em;
-min-width:60em;
+min-width:30em;
 border:1px  solid #79634E;
 color: #294D39;</string>
             </property>
@@ -356,13 +352,13 @@ color: #294D39;</string>
             <item>
              <widget class="QPushButton" name="mail_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -373,13 +369,14 @@ max-height:2.5em;
             <item>
              <widget class="QPushButton" name="visita_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
+;
 </string>
               </property>
               <property name="text">
@@ -390,13 +387,13 @@ max-height:2.5em;
             <item>
              <widget class="QPushButton" name="telefono_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -407,13 +404,13 @@ max-height:2.5em;
             <item>
              <widget class="QPushButton" name="wpp_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -501,13 +498,13 @@ color: #294D39;</string>
             <item>
              <widget class="QPushButton" name="tarifario_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -518,13 +515,13 @@ max-height:2.5em;
             <item>
              <widget class="QPushButton" name="cotizacion_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -535,13 +532,13 @@ max-height:2.5em;
             <item>
              <widget class="QPushButton" name="reserva_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -552,13 +549,13 @@ max-height:2.5em;
             <item>
              <widget class="QPushButton" name="otros_butt">
               <property name="styleSheet">
-               <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;
 </string>
               </property>
               <property name="text">
@@ -658,13 +655,13 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <item>
       <widget class="QPushButton" name="pushButton_9">
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+        <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
        </property>
        <property name="text">
         <string>GUARDAR</string>

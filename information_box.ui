@@ -145,12 +145,12 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
                <item>
                 <widget class="QLabel" name="main_text">
                  <property name="styleSheet">
-                  <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;
+                  <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
 min-width:10em;
 max-width:10em;
-min-height:5em;
-max-height:5em;</string>
+min-height:4em;
+max-height:4em;</string>
                  </property>
                  <property name="text">
                   <string>INFORMATION BOX</string>
@@ -196,13 +196,13 @@ max-height:5em;</string>
                <item>
                 <widget class="QPushButton" name="pushButton_14">
                  <property name="styleSheet">
-                  <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
 background-color:#79634E;
-min-width:8.5em;
-max-width:8.5em;
-min-height:2.5em;
-max-height:2.5em;</string>
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
                  </property>
                  <property name="text">
                   <string>OK</string>
