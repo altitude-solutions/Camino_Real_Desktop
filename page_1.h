@@ -19,8 +19,10 @@ public:
 
 signals:
     void send_page(QString);
-    void send_info_box(QString, QString,QString, double, double);
     void send_clients();
+
+    void send_nights_back();
+    void send_info_box(QString, QString, QString);
 
 private slots:
     void on_mail_butt_clicked();
@@ -49,13 +51,9 @@ private slots:
 
     //Information Box
     void information_box(QString, QString, QString);
-
     void on_icon_pluss_clicked();
-
     void on_contacto_drop_currentTextChanged(const QString &arg1);
-
     void on_pushButton_clicked();
-
     void on_reclamo_clicked();
 
 private:

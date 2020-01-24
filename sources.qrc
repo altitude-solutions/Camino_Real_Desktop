@@ -33,5 +33,12 @@
         <file>images/mas-fondo-oscuro.png</file>
         <file>images/hamburguesa.png</file>
         <file>images/hamburguesa-fondo.png</file>
+        <file>images/cargo.png</file>
+        <file>images/cargo_fondo.png</file>
+        <file>images/cliente_fondo.png</file>
+        <file>images/e-mail.png</file>
+        <file>images/e-mail_fondo.png</file>
+        <file>images/telefono.png</file>
+        <file>images/telefono_fondo.png</file>
     </qresource>
 </RCC>

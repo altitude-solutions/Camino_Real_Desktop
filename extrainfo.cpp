@@ -14,8 +14,8 @@ ExtraInfo::ExtraInfo(QWidget *parent) :
    int height = screens[0]->geometry().height();
 
     //set widget size dynamic, aspect ratio 16:9
-    double size_w = (width)/2;
-    double size_h = (height)/1.5;
+    double size_w = (width);
+    double size_h = (height);
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 

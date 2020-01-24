@@ -23,18 +23,43 @@ page_1::page_1(QWidget *parent) :
    int height = screens[0]->geometry().height();
 
     //set widget size dynamic, aspect ratio 16:9
-    double size_w = (width)/2;
-    double size_h = (height)/1.5;
+    double size_w = (width)/1.8;
+    double size_h = (height)/1.6;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 
-    //  Set icons
-   double pix_w_b = (width*111)/1366;
-   double pix_h_b= (height*60)/768;
+    //Set frame sizes
+    ui -> frame_5 -> setFixedWidth(static_cast<int>(width*0.13));
+    ui -> frame_6 -> setFixedWidth(static_cast<int>(width*0.13));
+    ui -> frame_5 -> setFixedHeight(static_cast<int>(height*0.08));
+    ui -> frame_6 -> setFixedHeight(static_cast<int>(height*0.08));
+    ui -> frame_7 -> setFixedHeight(static_cast<int>(height*0.08));
+    ui -> frame_8 -> setFixedHeight(static_cast<int>(height*0.08));
 
-   QPixmap pix_client(":/images/images/cliente-fondo.png");
-   ui->icon_cliente->setPixmap(pix_client.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-   ui->icon_cliente->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+    ui -> frame_2 -> setFixedWidth(static_cast<int>(width*0.13));
+    ui -> frame_3 -> setFixedWidth(static_cast<int>(width*0.13));
+    ui -> frame_9 -> setFixedWidth(static_cast<int>(width*0.13));
+    ui -> frame -> setFixedWidth(static_cast<int>(width*0.13));
+
+    //  Set Images
+   double pix_w_b = (width*40)/1366;
+   double pix_h_b= (height*40)/768;
+
+   QPixmap pix_contacto(":/images/images/cliente.png");
+   ui->icon_contacto->setPixmap(pix_contacto.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+   ui->icon_contacto->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  QPixmap pix_cargo(":/images/images/cargo.png");
+  ui->icon_cargo->setPixmap(pix_cargo.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_cargo->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  QPixmap pix_telefono(":/images/images/telefono.png");
+  ui->icon_telefono->setPixmap(pix_telefono.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_telefono->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  QPixmap pix_email(":/images/images/e-mail.png");
+  ui->icon_email->setPixmap(pix_email.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_email->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
    //  Set icons
   double pix_w_a = (width*43)/1366;
@@ -162,11 +187,8 @@ void page_1::on_reserva_butt_clicked()
     motivo = "Reserva";
     paint_motivo(motivo);
 
-    nights = new Nights(this);
-    connect(this, SIGNAL(send_page(QString)),nights, SLOT(receive_page(QString)));
-    connect (nights, &Nights::send_nights, this, &page_1::receive_nights);
-    emit send_page("in_page");
-    nights->show();
+    //send the signal Back
+    emit send_nights_back();
 }
 
 void page_1::on_otros_butt_clicked()
@@ -181,6 +203,7 @@ void page_1::on_reclamo_clicked()
     motivo = "Reclamo";
     paint_motivo(motivo);
 }
+
 
 void page_1::paint_motivo(QString painter){
     QString released = "font: 10pt \"MS Shell Dlg 2\";"
@@ -247,8 +270,9 @@ void page_1::receiver(QString userName, QString realName, QString token, QString
     read_client_info();
 }
 
+//Function to receive number of nights
 void page_1::receive_nights(QString nights){
-      this -> n_nights = nights;
+    this -> n_nights = nights;
     qDebug()<<"page_1:  "<<this->n_nights;
 }
 
@@ -321,8 +345,6 @@ void page_1::read_client_info()
         client_completer -> setFilterMode(Qt::MatchContains);
 
         ui -> cliente -> setCompleter(client_completer);
-        reply->deleteLater ();
-
     });
 
     QNetworkRequest request;
@@ -341,59 +363,61 @@ void page_1::on_cliente_editingFinished()
    if(local!=""){
 
        QStringList client_info = local.split("//");
+       if (client_info.size()>1){
+           QString client = client_info[0];
+           QString region = client_info[1];
 
-       QString client = client_info[0];
-       QString region = client_info[1];
+            QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
+            QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
+            QHashIterator<QString, QString>iter_region(regionales);
+            QString client_id = "";
+            QString regional_id = "";
+            QString auxiliar = "";
 
-        QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
-        QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
-        QHashIterator<QString, QString>iter_region(regionales);
-        QString client_id = "";
-        QString regional_id = "";
-        QString auxiliar = "";
+            ui -> contacto_drop -> clear();
+            contact_data.clear();
 
-        ui -> contacto_drop -> clear();
-        contact_data.clear();
+            while (iter_client.hasNext()) {
+               auto client_key = iter_client.next().key();
+               if(client == clientes[client_key]["name"]){
+                    client_id =   client_key;
 
-        while (iter_client.hasNext()) {
-           auto client_key = iter_client.next().key();
-           if(client == clientes[client_key]["name"]){
-                client_id =   client_key;
+                    while (iter_region.hasNext()) {
+                        auto region_key = iter_region.next().key();
+                         if(region==regionales[region_key] && clientes[client_id][region_key]!=""){
+                             regional_id = region_key;
+                         }
+                    }
+                    break;
+               }
+           }
 
-                while (iter_region.hasNext()) {
-                    auto region_key = iter_region.next().key();
-                     if(region==regionales[region_key] && clientes[client_id][region_key]!=""){
-                         regional_id = region_key;
-                     }
+          if (client_id !="" && regional_id!=""){
+                while(iter_contact.hasNext()){
+
+                    auto contact_key = iter_contact.next().key();
+
+                    if (client_id == contactos[contact_key]["client"] && regional_id == contactos[contact_key]["regional"]) {
+
+                        ui -> contacto_drop -> addItem(contactos[contact_key]["name"]);
+                        ui -> contacto_drop -> setCurrentText(contactos[contact_key]["name"]);
+
+                        contact_data[contact_key] = contactos[contact_key]["name"];
+
+                        ui -> cargo -> setText(contactos[contact_key]["job"]);
+                        ui -> telefono -> setText(contactos[contact_key]["phone"]);
+                        ui -> mail -> setText(contactos[contact_key]["email"]);
+
+                        contact_name = contactos[contact_key]["name"];
+                        contact_phone = contactos[contact_key]["phone"];
+                        contact_mail = contactos[contact_key]["email"];
+                        contact_job = contactos[contact_key]["job"];
+                        cid = contact_key;
+                    }
                 }
-                break;
            }
        }
 
-      if (client_id !="" && regional_id!=""){
-            while(iter_contact.hasNext()){
-
-                auto contact_key = iter_contact.next().key();
-
-                if (client_id == contactos[contact_key]["client"] && regional_id == contactos[contact_key]["regional"]) {
-
-                    ui -> contacto_drop -> addItem(contactos[contact_key]["name"]);
-                    ui -> contacto_drop -> setCurrentText(contactos[contact_key]["name"]);
-
-                    contact_data[contact_key] = contactos[contact_key]["name"];
-
-                    ui -> cargo -> setText(contactos[contact_key]["job"]);
-                    ui -> telefono -> setText(contactos[contact_key]["phone"]);
-                    ui -> mail -> setText(contactos[contact_key]["email"]);
-
-                    contact_name = contactos[contact_key]["name"];
-                    contact_phone = contactos[contact_key]["phone"];
-                    contact_mail = contactos[contact_key]["email"];
-                    contact_job = contactos[contact_key]["job"];
-                    cid = contact_key;
-                }
-            }
-       }
    }
 }
 
@@ -545,21 +569,8 @@ void page_1::restart(){
 
 void page_1::information_box(QString icon, QString header, QString text){
 
-    box_info = new Information_box(this);
-    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
-
-    //Get screen Size
-   const auto screens = qApp->screens();
-
-    int width = screens[0]->geometry().width();
-    int height = screens[0]->geometry().height();
-
-     //set widget size dynamic, aspect ratio 16:9
-     double w = static_cast<int>((width)/2);
-     double h = static_cast<int>((height)/1.5);
-
-    emit send_info_box(icon, header, text, w, h);
-    box_info->show();
+    //Send information Box back
+    emit send_info_box(icon, header, text);
 
 }
 

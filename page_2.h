@@ -20,8 +20,14 @@ public:
 
 signals:
     void send_page(QString);
-    void send_info_box(QString, QString,QString, double, double);
+    void send_info_box(QString, QString,QString);
     void send_clients();
+
+    //send nights back
+    void send_nights_back();
+
+    //send extra info back
+    void send_info_back();
 
 private slots:
     void on_pushButton_15_clicked();

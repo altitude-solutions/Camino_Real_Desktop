@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
-    <height>598</height>
+    <width>756</width>
+    <height>494</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color:rgba(0,0,0,0)t;</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_7">
-   <property name="spacing">
-    <number>10</number>
-   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_10">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -43,14 +40,16 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="icon_cliente">
+        <widget class="QLabel" name="label">
          <property name="styleSheet">
-          <string notr="true">background-color:transparent;
-min-height:2.5em;
-min-width:3em;</string>
+          <string notr="true">background-color:#79634E;
+color:white;
+max-height:2.5em;
+padding-right:5px;
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
          </property>
          <property name="text">
-          <string>ICON</string>
+          <string>CLIENTE</string>
          </property>
         </widget>
        </item>
@@ -101,191 +100,315 @@ max-width:2em;</string>
     </layout>
    </item>
    <item>
-    <widget class="QFrame" name="frame">
-     <property name="styleSheet">
-      <string notr="true">background-color:white;</string>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <property name="spacing">
+      <number>10</number>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_10">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="styleSheet">
-           <string notr="true">background-color:#79634E;
-min-width:6em;
-max-width:6em;
-min-height:2em;
-max-height:2em;
-padding:5px;
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_5">
+         <property name="styleSheet">
+          <string notr="true">background-color:#79634E;
 color:white;</string>
-          </property>
-          <property name="text">
-           <string>CONTACTO</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
           <property name="spacing">
-           <number>0</number>
+           <number>5</number>
           </property>
+          <item>
+           <widget class="QLabel" name="icon_contacto">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="iconcontacto_2">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+padding:5px;</string>
+            </property>
+            <property name="text">
+             <string>CONTACTO</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QComboBox" name="contacto_drop">
             <property name="styleSheet">
              <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
 padding: 5px;
-border:1px  solid #79634E;
+border:0px  solid #79634E;
 color: #294D39;</string>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_9">
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="styleSheet">
-           <string notr="true">background-color:#79634E;
-min-width:6em;
-max-width:6em;
-min-height:2em;
-max-height:2em;
-padding:5px;
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_6">
+         <property name="styleSheet">
+          <string notr="true">background-color:#79634E;
 color:white;</string>
-          </property>
-          <property name="text">
-           <string>CARGO</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_19">
           <property name="spacing">
-           <number>0</number>
+           <number>5</number>
           </property>
+          <item>
+           <widget class="QLabel" name="icon_cargo">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="iconcontacto_4">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+padding:5px;</string>
+            </property>
+            <property name="text">
+             <string>CARGO</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_9">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QLineEdit" name="cargo">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">min-height:2.5em;
-max-height:2.5em;
-min-width:30em;
-border:1px  solid #79634E;
+             <string notr="true">min-height:1.8em;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+max-height:1.8em;
+border:0px;
 color: #294D39;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_8">
-        <item>
-         <widget class="QLabel" name="label_6">
-          <property name="styleSheet">
-           <string notr="true">background-color:#79634E;
-min-width:6em;
-max-width:6em;
-min-height:2em;
-max-height:2em;
-padding:5px;
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_7">
+         <property name="styleSheet">
+          <string notr="true">background-color:#79634E;
 color:white;</string>
-          </property>
-          <property name="text">
-           <string>TELÉFONO</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_20">
           <property name="spacing">
-           <number>0</number>
+           <number>5</number>
           </property>
+          <item>
+           <widget class="QLabel" name="icon_telefono">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="iconcontacto_5">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+padding:5px;</string>
+            </property>
+            <property name="text">
+             <string>TELÉFONO</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_10">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
            <widget class="QLineEdit" name="telefono">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">min-height:2.5em;
-max-height:2.5em;
-min-width:30em;
-border:1px  solid #79634E;
+             <string notr="true">min-height:1.8em;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+max-height:1.8em;
+border:0px;
 color: #294D39;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_7">
-        <item>
-         <widget class="QLabel" name="label_7">
-          <property name="styleSheet">
-           <string notr="true">background-color:#79634E;
-min-width:6em;
-max-width:6em;
-min-height:2em;
-max-height:2em;
-padding:5px;
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frame_8">
+         <property name="styleSheet">
+          <string notr="true">background-color:#79634E;
 color:white;</string>
-          </property>
-          <property name="text">
-           <string>E-MAIL</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_21">
           <property name="spacing">
-           <number>0</number>
+           <number>5</number>
           </property>
+          <item>
+           <widget class="QLabel" name="icon_email">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="iconcontacto_6">
+            <property name="styleSheet">
+             <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+padding:5px;</string>
+            </property>
+            <property name="text">
+             <string>E-MAIL</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_11">
+         <property name="styleSheet">
+          <string notr="true">background-color:white;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="QLineEdit" name="mail">
             <property name="enabled">
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">min-height:2.5em;
-max-height:2.5em;
-min-width:30em;
-border:1px  solid #79634E;
+             <string notr="true">min-height:1.8em;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+max-height:1.8em;
+border:0px;
 color: #294D39;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
          </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_17">
