@@ -51,6 +51,10 @@ private slots:
 
     void on_delete_butt_2_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Notebook *ui;
 

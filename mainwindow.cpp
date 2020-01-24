@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
   double pix_w = width;
   double pix_h = (height*0.9);
 
-  QPixmap pixmap(":/images/images/dark_background.jpg");
+  QPixmap pixmap(":/images/images/background.jpg");
   QPalette palette;
 
   palette.setBrush(QPalette::Background, pixmap.scaled(static_cast<int>(pix_w),static_cast<int>(pix_h)));

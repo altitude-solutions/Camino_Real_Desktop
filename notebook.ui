@@ -35,7 +35,7 @@
    <item>
     <widget class="QFrame" name="frame_2">
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(0,0,0,40%);</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -75,7 +75,7 @@
         <item>
          <widget class="QFrame" name="frame_4">
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">background-color:transparent;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>

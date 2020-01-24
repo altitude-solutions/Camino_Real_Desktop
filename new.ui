@@ -68,6 +68,9 @@
         </item>
         <item>
          <widget class="QFrame" name="frame_4">
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
