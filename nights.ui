@@ -130,27 +130,12 @@ color: #294D39;</string>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <spacer name="horizontalSpacer_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
               <widget class="QLineEdit" name="nights">
                <property name="styleSheet">
                 <string notr="true">background-color:#F2F2F2;
 font: 12pt &quot;MS Shell Dlg 2&quot;;
 border:0px solid;
 color: #294D39;
-min-width:20em;
-max-width:20em;
 min-height:2em;
 max-height:2em;</string>
                </property>
@@ -161,19 +146,6 @@ max-height:2em;</string>
                 <set>Qt::AlignCenter</set>
                </property>
               </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
              </item>
             </layout>
            </item>

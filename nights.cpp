@@ -15,12 +15,11 @@ Nights::Nights(QWidget *parent) :
    int width = screens[0]->geometry().width();
    int height = screens[0]->geometry().height();
 
-    //set widget size dynamic, aspect ratio 16:9
+   ui -> frame -> setFixedWidth(static_cast<int>(width*0.22));
+
    double size_w = (width);
    double size_h = (height*0.9);
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
-    //this->setFixedSize(size);
-    //this -> setMinimumWidth();
     this -> setMinimumSize(size);
 
 }
@@ -45,13 +44,11 @@ void Nights::on_pushButton_9_clicked()
         }
         else{
             information_box("x","Error","Ingresar el número de noches porfavor");
-             //QMessageBox::critical (this, "Error", "Ingresar el número de noches porfavor");
              ui -> nights -> setText("");
         }
     }
     else{
         information_box("x","Error","Ingresar un número válido porfavor");
-        //QMessageBox::critical (this, "Error", "Ingresar un número válido porfavor");
         ui -> nights -> setText("");
     }
 }
@@ -71,9 +68,8 @@ void Nights::information_box(QString icon, QString header, QString text){
     int width = screens[0]->geometry().width();
     int height = screens[0]->geometry().height();
 
-     //set widget size dynamic, aspect ratio 16:9
-     double w = (width)/2;
-     double h = (height)/1.5;
+     double w = (width);
+     double h = (height*0.9);
 
     emit send_info_box(icon, header, text, w, h);
     box_info->show();

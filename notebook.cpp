@@ -150,8 +150,13 @@ void Notebook::read_your_info(QString a, QString b){
             current.insert("client",registro.toObject ().value("client").toObject().value("name").toString());
 
             //Regional data
-            current.insert("id_regional",registro.toObject ().value("regional").toObject().value("_id").toString());
-            current.insert("regional",registro.toObject ().value("regional").toObject().value("city").toString());
+            current.insert("id_regional",registro.toObject().value("regional").toObject().value("_id").toString());
+            current.insert("id_ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("_id").toString());
+            current.insert("ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("city").toString());
+
+            //Category data
+            current.insert("id_categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("_id").toString());
+            current.insert("categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("category").toString());
 
             //Agent data
             current.insert("id_agent",registro.toObject ().value("creationAgent").toObject().value("_id").toString());
@@ -205,8 +210,13 @@ void Notebook::read_gral_info(QString a, QString b, QString c){
             current.insert("client",registro.toObject ().value("client").toObject().value("name").toString());
 
             //Regional data
-            current.insert("id_regional",registro.toObject ().value("regional").toObject().value("_id").toString());
-            current.insert("regional",registro.toObject ().value("regional").toObject().value("city").toString());
+            current.insert("id_regional",registro.toObject().value("regional").toObject().value("_id").toString());
+            current.insert("id_ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("_id").toString());
+            current.insert("ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("city").toString());
+
+            //Category data
+            current.insert("id_categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("_id").toString());
+            current.insert("categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("category").toString());
 
             //Agent data
             current.insert("id_agent",registro.toObject ().value("creationAgent").toObject().value("_id").toString());
@@ -250,7 +260,7 @@ void Notebook::update_your_table(QHash<QString, QHash<QString, QString>>update){
         //Writing the current row
         ui->your_table->setItem(row_control, 0, new QTableWidgetItem(update[current]["date"]));
         ui->your_table->setItem(row_control, 1, new QTableWidgetItem(update[current]["client"]));
-        ui->your_table->setItem(row_control, 2, new QTableWidgetItem(update[current]["regional"]));
+        ui->your_table->setItem(row_control, 2, new QTableWidgetItem(update[current]["ciudad"]));
         ui->your_table->setItem(row_control, 3, new QTableWidgetItem(update[current]["task"]));
         ui->your_table->setItem(row_control, 4, new QTableWidgetItem(update[current]["comments"]));
         ui->your_table->setItem(row_control, 5, new QTableWidgetItem(current));
@@ -320,7 +330,7 @@ void Notebook::update_gral_table(QHash<QString, QHash<QString, QString>> update)
         //Writing the current row
         ui->general_table->setItem(row_control, 0, new QTableWidgetItem(update[current]["date"]));
         ui->general_table->setItem(row_control, 1, new QTableWidgetItem(update[current]["client"]));
-        ui->general_table->setItem(row_control, 2, new QTableWidgetItem(update[current]["regional"]));
+        ui->general_table->setItem(row_control, 2, new QTableWidgetItem(update[current]["ciudad"]));
         ui->general_table->setItem(row_control, 3, new QTableWidgetItem(update[current]["task"]));
         ui->general_table->setItem(row_control, 4, new QTableWidgetItem(update[current]["comments"]));
         ui->general_table->setItem(row_control, 5, new QTableWidgetItem(update[current]["agent"]));
@@ -424,9 +434,14 @@ void Notebook::all_your_info()
             client_list<<registro.toObject ().value("client").toObject().value("name").toString();
 
             //Regional data
-            current.insert("id_regional",registro.toObject ().value("regional").toObject().value("_id").toString());
-            current.insert("regional",registro.toObject ().value("regional").toObject().value("city").toString());
-            regional_list<<registro.toObject ().value("regional").toObject().value("city").toString();
+            current.insert("id_regional",registro.toObject().value("regional").toObject().value("_id").toString());
+            current.insert("id_ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("_id").toString());
+            current.insert("ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("city").toString());
+            regional_list<<registro.toObject().value("regional").toObject().value("city").toObject().value("city").toString();
+
+            //Category data
+            current.insert("id_categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("_id").toString());
+            current.insert("categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("category").toString());
 
             //Agent data
             current.insert("id_agent",registro.toObject ().value("creationAgent").toObject().value("_id").toString());
@@ -503,9 +518,14 @@ void Notebook::all_gral_info()
             client_list<<registro.toObject ().value("client").toObject().value("name").toString();
 
             //Regional data
-            current.insert("id_regional",registro.toObject ().value("regional").toObject().value("_id").toString());
-            current.insert("regional",registro.toObject ().value("regional").toObject().value("city").toString());
-            regional_list<<registro.toObject ().value("regional").toObject().value("city").toString();
+            current.insert("id_regional",registro.toObject().value("regional").toObject().value("_id").toString());
+            current.insert("id_ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("_id").toString());
+            current.insert("ciudad",registro.toObject().value("regional").toObject().value("city").toObject().value("city").toString());
+            regional_list<<registro.toObject().value("regional").toObject().value("city").toObject().value("city").toString();
+
+            //Category data
+            current.insert("id_categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("_id").toString());
+            current.insert("categoria",registro.toObject().value("regional").toObject().value("category").toObject().value("category").toString());
 
             //Agent data
             current.insert("id_agent",registro.toObject ().value("creationAgent").toObject().value("_id").toString());
@@ -601,9 +621,9 @@ void Notebook::on_regional_editingFinished()
     if(filtered!=""){
         while (iter.hasNext()){
             auto key = iter.next().key();
-            if(filtered==all_your_tasks[key]["regional"]){
+            if(filtered==all_your_tasks[key]["ciudad"]){
                 find = "yes";
-                id = all_your_tasks[key]["id_regional"];
+                id = all_your_tasks[key]["id_ciudad"];
             }
         }
         if(find!="no"){
@@ -664,9 +684,9 @@ void Notebook::on_regional_2_editingFinished()
     if(filtered!=""){
         while (iter.hasNext()){
             auto key = iter.next().key();
-            if(filtered==all_gral_tasks[key]["regional"]){
+            if(filtered==all_gral_tasks[key]["ciudad"]){
                 find = "yes";
-                id = all_gral_tasks[key]["id_regional"];
+                id = all_gral_tasks[key]["id_ciudad"];
             }
         }
         if(find!="no"){

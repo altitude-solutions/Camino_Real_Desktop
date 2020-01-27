@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QColor>
 #include <QJsonDocument>
+#include <QMessageBox>
 
 Clients::Clients(QWidget *parent) :
     QWidget(parent),
@@ -60,6 +61,25 @@ Clients::~Clients()
     delete ui;
 }
 
+void Clients::information_box(QString icon, QString header, QString text)
+{
+    box_info = new Information_box(this);
+    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
+
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+   int width = screens[0]->geometry().width();
+   int height = screens[0]->geometry().height();
+
+    //set widget size dynamic, aspect ratio 16:9
+    double w = (static_cast<int>(width));
+    double h = (static_cast<int>(height*0.9));
+
+    emit send_info_box(icon, header, text, w, h);
+    box_info->show();
+}
+
 void Clients::receive_info(QString userName, QString realName, QString token, QString url){
 
     this -> userName = userName;
@@ -85,35 +105,67 @@ void Clients::read_client_info()
             return;
         }
 
-        db_clients.clear();
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
+        tabla_contactos.clear();
+
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
+            QString cliente = entidad.toObject ().value("name").toString();
+            QString id_cliente = entidad.toObject ().value("_id").toString();
+            this -> tabla_clientes[id_cliente] = cliente;
+
             foreach (QJsonValue regional, entidad.toObject().value("regionals").toArray()) {
+
+                QString ciudad = regional.toObject().value("city").toObject().value("city").toString();
+                QString id_ciudad = regional.toObject().value("city").toObject().value("_id").toString();
+                QString id_sucursal = regional.toObject().value("_id").toString();
+                this -> tabla_regionales[id_cliente][ciudad] = id_sucursal;
+
+                QString categoria = regional.toObject().value("category").toObject().value("category").toString();
+                QString id_categoria = regional.toObject().value("category").toObject().value("_id").toString();
+                this -> tabla_categorias[id_categoria] = categoria;
+
+                QString agente = regional.toObject().value("salesAgent").toObject().value("realName").toString();
+                QString id_agente = regional.toObject().value("salesAgent").toObject().value("_id").toString();
+                this -> tabla_agentes[id_agente] = agente;
+
                 foreach( QJsonValue contacto, regional.toObject().value("contacts").toArray()){
 
-                    QHash<QString, QString> current;
-                    current.insert ("contact", contacto.toObject ().value ("name").toString ());
-                    current.insert ("job", contacto.toObject ().value ("job").toString());
-                    current.insert ("phone", contacto.toObject ().value ("phoneNumbers").toArray().at(0).toString());
-                    current.insert ("email", contacto.toObject ().value ("emailAddresses").toArray().at(0).toString());
-                    current.insert ("id_contacto", contacto.toObject ().value ("_id").toString());
+                    QHash<QString,QStringList>current_contact;
 
-                    current.insert("regional",regional.toObject ().value("city").toString());
-                    current.insert("id_regional",regional.toObject ().value("_id").toString());
-                    current.insert("category",regional.toObject ().value("category").toString());
+                    QString id_contacto = contacto.toObject().value("_id").toString();
+                    QString nombre_contacto = contacto.toObject().value("name").toString();
+                    QString cargo_contacto = contacto.toObject().value("job").toString();
+                    bool default_contact = contacto.toObject().value("primary").toBool();
 
-                    current.insert("agent_id",regional.toObject ().value("salesAgent").toObject().value("_id").toString());
-                    current.insert("user_name",regional.toObject ().value("salesAgent").toObject().value("userName").toString());
-                    current.insert("real_name",regional.toObject ().value("salesAgent").toObject().value("realName").toString());
+                    QStringList phones;
+                    QStringList emails;
 
-                    current.insert("id_cliente",entidad.toObject ().value("_id").toString());
-                    current.insert("client",entidad.toObject ().value("name").toString());
+                    foreach (QJsonValue telefono, contacto.toObject().value("phoneNumbers").toArray()) {
+                        phones << telefono.toString();
+                    }
 
-                    db_clients.insert(contacto.toObject ().value("_id").toString(), current);
+                    foreach (QJsonValue email, contacto.toObject().value("emailAddresses").toArray()) {
+                        emails << email.toString();
+                    }
+
+                    this -> tabla_telefonos[id_contacto] = phones;
+                    this -> tabla_mails[id_contacto] = emails;
+
+                    this -> tabla_contactos[id_contacto]["contact"] = nombre_contacto;
+                    this -> tabla_contactos[id_contacto]["id_contacto"] = id_contacto;
+                    this -> tabla_contactos[id_contacto]["job"] = cargo_contacto;
+                    this -> tabla_contactos[id_contacto]["client"] = id_cliente;
+                    this -> tabla_contactos[id_contacto]["city_id"] = id_ciudad;
+                    this -> tabla_contactos[id_contacto]["category"] = id_categoria;
+                    this -> tabla_contactos[id_contacto]["default"] = default_contact;
+                    this -> tabla_contactos[id_contacto]["regional"] = id_sucursal;
+                    this -> tabla_contactos[id_contacto]["city"] = ciudad;
+                    this -> tabla_contactos[id_contacto]["agent"] = id_agente;
                 }
              }
           }
-        update_table(db_clients);
+
+        update_table(tabla_contactos);
         reply->deleteLater ();
     });
 
@@ -125,25 +177,6 @@ void Clients::read_client_info()
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
     nam->get (request);
-}
-
-void Clients::information_box(QString icon, QString header, QString text)
-{
-    box_info = new Information_box(this);
-    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
-
-    //Get screen Size
-   const auto screens = qApp->screens();
-
-   int width = screens[0]->geometry().width();
-   int height = screens[0]->geometry().height();
-
-    //set widget size dynamic, aspect ratio 16:9
-    double w = (static_cast<int>(width));
-    double h = (static_cast<int>(height*0.9));
-
-    emit send_info_box(icon, header, text, w, h);
-    box_info->show();
 }
 
 void Clients::update_table(QHash<QString, QHash<QString, QString>> update){
@@ -162,13 +195,13 @@ void Clients::update_table(QHash<QString, QHash<QString, QString>> update){
         row_control= ui->table_clients->rowCount()-1;
 
         //Writing the current row
-        ui->table_clients->setItem(row_control, 0, new QTableWidgetItem(update[current]["client"]));
-        ui->table_clients->setItem(row_control, 1, new QTableWidgetItem(update[current]["regional"]));
+        ui->table_clients->setItem(row_control, 0, new QTableWidgetItem(tabla_clientes[update[current]["client"]]));
+        ui->table_clients->setItem(row_control, 1, new QTableWidgetItem(update[current]["city"]));
         ui->table_clients->setItem(row_control, 2, new QTableWidgetItem(update[current]["contact"]));
-        ui->table_clients->setItem(row_control, 3, new QTableWidgetItem(update[current]["phone"]));
-        ui->table_clients->setItem(row_control, 4, new QTableWidgetItem(update[current]["email"]));
+        ui->table_clients->setItem(row_control, 3, new QTableWidgetItem(tabla_telefonos[current][0]));
+        ui->table_clients->setItem(row_control, 4, new QTableWidgetItem(tabla_mails[current][0]));
         ui->table_clients->setItem(row_control, 5, new QTableWidgetItem(update[current]["job"]));
-        ui->table_clients->setItem(row_control, 6, new QTableWidgetItem(update[current]["real_name"]));
+        ui->table_clients->setItem(row_control, 6, new QTableWidgetItem(tabla_agentes[update[current]["agent"]]));
         ui->table_clients->setItem(row_control, 7, new QTableWidgetItem(current));
 
     }
@@ -246,36 +279,39 @@ void Clients::update_client(){
 
 void Clients::on_delete_butt_clicked()
 {
-    if(contact["id_contacto"]!=""){
-        //Send information
-        QNetworkAccessManager* nam = new QNetworkAccessManager (this);
-        connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
-            QByteArray binReply = reply->readAll ();
-           qDebug()<<binReply;
-            if (reply->error ()) {
-                QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
-                if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                    information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                    //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                } else {
-                    information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
-                    //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Eliminar contacto", "Seguro desea remover este contacto de la base de datos?",QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes){
+        if(contact["id_contacto"]!=""){
+            //Send information
+            QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+            connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+                QByteArray binReply = reply->readAll ();
+               qDebug()<<binReply;
+                if (reply->error ()) {
+                    QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                    if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                        information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    }
+                    else {
+                        information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    }
                 }
-            }
-            update_client();
-            reply->deleteLater ();
-        });
+                update_client();
+                reply->deleteLater ();
+            });
 
-        QNetworkRequest request;
-        qDebug()<< "http://"+this -> url + "/clients/"+contact["id_contacto"];
-        request.setUrl (QUrl ("http://"+this -> url + "/contacts/"+contact["id_contacto"]));
-        request.setRawHeader ("token", this -> token.toUtf8 ());
-        request.setRawHeader ("Content-Type", "application/json");
+            QNetworkRequest request;
+            qDebug()<< "http://"+this -> url + "/clients/"+contact["id_contacto"];
+            request.setUrl (QUrl ("http://"+this -> url + "/contacts/"+contact["id_contacto"]));
+            request.setRawHeader ("token", this -> token.toUtf8 ());
+            request.setRawHeader ("Content-Type", "application/json");
 
-        nam->sendCustomRequest(request,"DELETE");
+            nam->sendCustomRequest(request,"DELETE");
+        }
+        else{
+            information_box("x","Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
+        }
+
     }
-    else{
-        information_box("x","Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
-    }
-
 }

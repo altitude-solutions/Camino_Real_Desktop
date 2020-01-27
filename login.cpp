@@ -126,6 +126,9 @@ void Login::read_url(){
 
     QString path = QDir::homePath();
 
+    QDir any;
+    any.mkdir(path+"/Camino_Real");
+
     QFile file(path+"/Camino_Real/url.txt");
 
     QString line;

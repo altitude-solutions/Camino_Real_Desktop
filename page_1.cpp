@@ -287,58 +287,72 @@ void page_1::read_client_info()
         if (reply->error ()) {
             QJsonDocument errorJson = QJsonDocument::fromJson (resBin);
             information_box("x","Error",QString::fromStdString (errorJson.toJson ().toStdString ()));
-            //QMessageBox::critical (this, "Error", QString::fromStdString (errorJson.toJson ().toStdString ()));
             return;
         }
 
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
+        QStringList completer_list;
+
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
+            QString cliente = entidad.toObject ().value("name").toString();
+            QString id_cliente = entidad.toObject ().value("_id").toString();
+            this -> tabla_clientes[cliente] = id_cliente;
+
             foreach (QJsonValue regional, entidad.toObject().value("regionals").toArray()) {
+
+                QString ciudad = regional.toObject().value("city").toObject().value("city").toString();
+                QString id_ciudad = regional.toObject().value("city").toObject().value("_id").toString();
+                QString id_sucursal = regional.toObject().value("_id").toString();
+                this -> tabla_regionales[id_cliente][ciudad] = id_sucursal;
+
+                QString categoria = regional.toObject().value("category").toObject().value("category").toString();
+                QString id_categoria = regional.toObject().value("category").toObject().value("_id").toString();
+                this -> tabla_categorias[categoria] = id_categoria;
+
+                QString agente = regional.toObject().value("salesAgent").toObject().value("realName").toString();
+                QString id_agente = regional.toObject().value("salesAgent").toObject().value("_id").toString();
+                this -> tabla_agentes[agente] = id_agente;
+
+                completer_list << cliente + " / " + ciudad;
+
                 foreach( QJsonValue contacto, regional.toObject().value("contacts").toArray()){
-                    QHash<QString, QString> current;
-                    current.insert ("contact", contacto.toObject ().value ("name").toString ());
-                    current.insert ("job", contacto.toObject ().value ("job").toString());
-                    current.insert ("phone", contacto.toObject ().value ("phoneNumbers").toArray().at(0).toString());
-                    current.insert ("email", contacto.toObject ().value ("emailAddresses").toArray().at(0).toString());
-                    current.insert ("id_contacto", contacto.toObject ().value ("_id").toString());
 
-                    current.insert("regional",regional.toObject ().value("city").toString());
-                    current.insert("id_regional",regional.toObject ().value("_id").toString());
-                    current.insert("category",regional.toObject ().value("category").toString());
+                    QHash<QString,QStringList>current_contact;
 
-                    current.insert("agent_id",regional.toObject ().value("salesAgent").toObject().value("_id").toString());
-                    current.insert("user_name",regional.toObject ().value("salesAgent").toObject().value("userName").toString());
-                    current.insert("real_name",regional.toObject ().value("salesAgent").toObject().value("realName").toString());
+                    QString id_contacto = contacto.toObject().value("_id").toString();
+                    QString nombre_contacto = contacto.toObject().value("name").toString();
+                    QString cargo_contacto = contacto.toObject().value("job").toString();
+                    bool default_contact = contacto.toObject().value("primary").toBool();
 
-                    current.insert("id_cliente",entidad.toObject ().value("_id").toString());
-                    db_clients.insert(entidad.toObject ().value("name").toString()+"//"+regional.toObject ().value("city").toString(), current);
+                    QStringList phones;
+                    QStringList emails;
 
+                    foreach (QJsonValue telefono, contacto.toObject().value("phoneNumbers").toArray()) {
+                        phones << telefono.toString();
+                    }
 
-                    //Información de contacto
-                    contactos[contacto.toObject ().value ("_id").toString()]["name"] = contacto.toObject ().value ("name").toString();
-                    contactos[contacto.toObject ().value ("_id").toString()]["phone"] = contacto.toObject ().value ("phoneNumbers").toArray().at(0).toString();
-                    contactos[contacto.toObject ().value ("_id").toString()]["email"] = contacto.toObject ().value ("emailAddresses").toArray().at(0).toString();
-                    contactos[contacto.toObject ().value ("_id").toString()]["job"] = contacto.toObject ().value ("job").toString();
-                    contactos[contacto.toObject ().value ("_id").toString()]["regional"] = regional.toObject ().value("_id").toString();
-                    contactos[contacto.toObject ().value ("_id").toString()]["client"] = entidad.toObject ().value("_id").toString();
+                    foreach (QJsonValue email, contacto.toObject().value("emailAddresses").toArray()) {
+                        emails << email.toString();
+                    }
 
-                    clientes[entidad.toObject ().value("_id").toString()]["name"] = entidad.toObject ().value("name").toString();
-                    clientes[entidad.toObject ().value("_id").toString()][regional.toObject ().value("_id").toString()] =regional.toObject ().value("city").toString();
+                    this -> tabla_telefonos[id_contacto] = phones;
+                    this -> tabla_mails[id_contacto] = emails;
 
-                    regionales[regional.toObject ().value("_id").toString()] = regional.toObject ().value("city").toString();
-
+                    this -> tabla_contactos[id_contacto]["contact"] = nombre_contacto;
+                    this -> tabla_contactos[id_contacto]["id_contacto"] = id_contacto;
+                    this -> tabla_contactos[id_contacto]["job"] = cargo_contacto;
+                    this -> tabla_contactos[id_contacto]["client"] = id_cliente;
+                    this -> tabla_contactos[id_contacto]["region"] = id_ciudad;
+                    this -> tabla_contactos[id_contacto]["category"] = id_categoria;
+                    this -> tabla_contactos[id_contacto]["default"] = default_contact;
+                    this -> tabla_contactos[id_contacto]["city"] = ciudad;
                 }
              }
           }
-        //Extracting labels for routes
-        QHashIterator<QString, QHash<QString, QString>>client_iter(db_clients);
-        QStringList client_list;
 
-        while(client_iter.hasNext()){
-            client_list<<client_iter.next().key();
-        }
-        std::sort(client_list.begin(), client_list.end());
-        QCompleter *client_completer = new QCompleter(client_list,this);
+        completer_list.removeDuplicates();
+        std::sort(completer_list.begin(), completer_list.end());
+        QCompleter *client_completer = new QCompleter(completer_list,this);
 
         client_completer -> setCaseSensitivity(Qt::CaseInsensitive);
         client_completer -> setCompletionMode(QCompleter::PopupCompletion);
@@ -362,68 +376,53 @@ void page_1::on_cliente_editingFinished()
     QString local = ui -> cliente -> text();
    if(local!=""){
 
-       QStringList client_info = local.split("//");
+       QStringList client_info = local.split(" / ");
        if (client_info.size()>1){
+
            QString client = client_info[0];
            QString region = client_info[1];
+           QString sucursal;
 
-            QHashIterator<QString, QHash<QString,QString>>iter_contact(contactos);
-            QHashIterator<QString, QHash<QString,QString>>iter_client(clientes);
-            QHashIterator<QString, QString>iter_region(regionales);
-            QString client_id = "";
-            QString regional_id = "";
-            QString auxiliar = "";
+           client = tabla_clientes[client];
+           sucursal = tabla_regionales[client][region];
 
-            ui -> contacto_drop -> clear();
-            contact_data.clear();
+           this -> client_selected = client;
+           this -> regional_selected = sucursal;
 
-            while (iter_client.hasNext()) {
-               auto client_key = iter_client.next().key();
-               if(client == clientes[client_key]["name"]){
-                    client_id =   client_key;
+           ui -> contacto_drop -> clear();
+           contact_data.clear();
 
-                    while (iter_region.hasNext()) {
-                        auto region_key = iter_region.next().key();
-                         if(region==regionales[region_key] && clientes[client_id][region_key]!=""){
-                             regional_id = region_key;
-                         }
-                    }
-                    break;
+           QHashIterator<QString,QHash<QString, QString>>iter_clients(tabla_contactos);
+
+           while (iter_clients.hasNext()){
+
+               auto contact_key = iter_clients.next().key();
+               if(tabla_contactos[contact_key]["client"] == client && tabla_contactos[contact_key]["city"] == region){
+
+                   ui -> contacto_drop -> addItem(tabla_contactos[contact_key]["contact"]);
+                   contact_data[contact_key] = tabla_contactos[contact_key]["contact"];
+
+                   if( tabla_contactos[contact_key]["default"] == true){
+
+                       ui -> contacto_drop -> setCurrentText(tabla_contactos[contact_key]["contact"]);
+                       ui -> cargo -> setText(tabla_contactos[contact_key]["job"]);
+                       ui -> telefono -> setText(tabla_telefonos[contact_key][0]);
+                       ui -> mail -> setText(tabla_mails[contact_key][0]);
+
+                       contact_name = tabla_contactos[contact_key]["contact"];
+                       contact_phone = tabla_telefonos[contact_key][0];
+                       contact_mail = tabla_mails[contact_key][0];
+                       contact_job = tabla_contactos[contact_key]["job"];
+                       cid = contact_key;
+                   }
                }
-           }
-
-          if (client_id !="" && regional_id!=""){
-                while(iter_contact.hasNext()){
-
-                    auto contact_key = iter_contact.next().key();
-
-                    if (client_id == contactos[contact_key]["client"] && regional_id == contactos[contact_key]["regional"]) {
-
-                        ui -> contacto_drop -> addItem(contactos[contact_key]["name"]);
-                        ui -> contacto_drop -> setCurrentText(contactos[contact_key]["name"]);
-
-                        contact_data[contact_key] = contactos[contact_key]["name"];
-
-                        ui -> cargo -> setText(contactos[contact_key]["job"]);
-                        ui -> telefono -> setText(contactos[contact_key]["phone"]);
-                        ui -> mail -> setText(contactos[contact_key]["email"]);
-
-                        contact_name = contactos[contact_key]["name"];
-                        contact_phone = contactos[contact_key]["phone"];
-                        contact_mail = contactos[contact_key]["email"];
-                        contact_job = contactos[contact_key]["job"];
-                        cid = contact_key;
-                    }
-                }
-           }
-       }
-
-   }
+            }
+        }
+    }
 }
 
 void page_1::on_contacto_drop_currentTextChanged(const QString &arg1)
 {
-
       QHashIterator<QString,QString>iter_contact(contact_data);
 
       if(arg1!=""){
@@ -431,14 +430,14 @@ void page_1::on_contacto_drop_currentTextChanged(const QString &arg1)
                auto main_key = iter_contact.next().key();
                if(arg1 == contact_data[main_key]){
 
-                   ui -> cargo -> setText(contactos[main_key]["job"]);
-                   ui -> telefono -> setText(contactos[main_key]["phone"]);
-                   ui -> mail -> setText(contactos[main_key]["email"]);
+                   ui -> cargo -> setText(tabla_contactos[main_key]["job"]);
+                   ui -> telefono -> setText(tabla_telefonos[main_key][0]);
+                   ui -> mail -> setText(tabla_mails[main_key][0]);
 
-                   contact_name = contactos[main_key]["name"];
-                   contact_phone = contactos[main_key]["phone"];
-                   contact_mail = contactos[main_key]["email"];
-                   contact_job = contactos[main_key]["job"];
+                   contact_name = tabla_contactos[main_key]["contact"];
+                   contact_phone = tabla_telefonos[main_key][0];
+                   contact_mail = tabla_mails[main_key][0];
+                   contact_job = tabla_contactos[main_key]["job"];
                    cid = main_key;
                }
           }
@@ -452,9 +451,9 @@ void page_1::on_icon_search_clicked()
 
 void page_1::on_pushButton_9_clicked()
 {
-
     //create a Json
     QString hash_id = ui -> cliente -> text();
+
     QString comments = ui -> comentarios -> toPlainText();
     QJsonDocument document;
     QStringList saved;
@@ -462,8 +461,8 @@ void page_1::on_pushButton_9_clicked()
     QString time = QDateTime::currentDateTime().toString("dd/MM/yyyy - hh:mm:ss");
 
     if (via!=""&&motivo!="" ){
-        main_object.insert("client", db_clients[hash_id]["id_cliente"]);
-        main_object.insert("regional", db_clients[hash_id]["id_regional"]);
+        main_object.insert("client", this -> client_selected);
+        main_object.insert("regional", this -> regional_selected);
         main_object.insert("contact", cid);
         main_object.insert("via", via);
         main_object.insert("reason", motivo);        
@@ -476,6 +475,7 @@ void page_1::on_pushButton_9_clicked()
         if (this -> n_nights != ""){
             main_object.insert("nights", this -> n_nights.toInt());
         }
+
         document.setObject(main_object);
 
         //Send information
@@ -486,21 +486,16 @@ void page_1::on_pushButton_9_clicked()
                 QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
                 if (errorJson.object ().value ("err").toObject ().contains ("message")) {
                     information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
-                    //QMessageBox::critical (this, "Error", QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
                 } else {
                     information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
-                    //QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                 }
             }
             else{
                 restart();
                 information_box("x", "Base de Datos", "Guardado con éxito");
-
-                //QMessageBox::information(this, "Base de Datos", "Guardado con éxito");
             }
             reply->deleteLater ();
         });
-
 
         QNetworkRequest request;
         request.setUrl (QUrl ("http://"+this -> url + "/in_data"));
@@ -512,7 +507,6 @@ void page_1::on_pushButton_9_clicked()
     }
     else{
         information_box("x", "Datos incompletos", "Seleccionar VÍA y MOTIVO");
-        //QMessageBox::critical (this, "Datos incompletos", "Seleccionar VÍA y MOTIVO");
     }
 }
 
@@ -531,6 +525,9 @@ void page_1::restart(){
     contact_mail="";
     contact_job="";
     cid = "";
+
+    this -> client_selected = "";
+    this -> regional_selected = "";
 
     ui -> contacto_drop -> clear();
 

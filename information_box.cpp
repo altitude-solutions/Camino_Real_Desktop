@@ -22,6 +22,20 @@ void Information_box::receive_info(QString icon, QString header, QString text, d
     ui -> header -> setText(header);
     ui -> main_text -> setText(text);
 
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+   int width = screens[0]->geometry().width();
+
+   if(size_w<width){
+       ui -> frame_2 -> setFixedWidth(static_cast<int>(size_w*0.3));
+       ui -> frame -> setFixedWidth(static_cast<int>(size_w*0.3));
+   }
+   else{
+       ui -> frame_2 -> setFixedWidth(static_cast<int>(size_w*0.2));
+       ui -> frame -> setFixedWidth(static_cast<int>(size_w*0.2));
+   }
+
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 

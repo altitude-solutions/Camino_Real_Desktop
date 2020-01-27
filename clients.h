@@ -55,6 +55,20 @@ private:
 
     QHash<QString, QHash<QString,QString>>db_clients;
     QHash<QString,QString> contact;
+
+    //Actual Selection
+    QHash<QString, QString>contact_data;
+
+    QHash<QString,QHash<QString,QString>>tabla_sucursales;
+    QHash<QString,QHash<QString,QString>>tabla_contactos;
+    QHash<QString,QHash<QString,QString>>tabla_regionales;
+
+    QHash<QString,QString>tabla_clientes;
+    QHash<QString,QString>tabla_categorias;
+    QHash<QString,QString>tabla_agentes;
+
+    QHash<QString,QStringList>tabla_telefonos;
+    QHash<QString,QStringList>tabla_mails;
 };
 
 #endif // CLIENTS_H

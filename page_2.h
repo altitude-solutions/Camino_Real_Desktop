@@ -93,24 +93,30 @@ private:
     QString tarifa;
     QString noches;
 
-    //Information of the clients
-    QHash<QString, QHash<QString, QString>> db_clients;
-
-
-    //From the database
-    QHash<QString, QHash<QString, QString>>clientes;
-    QHash<QString, QString>regionales;
-    QHash<QString, QHash<QString, QString>>contactos;
-
     //To send to the database
     QString contact_name;
     QString contact_phone;
     QString contact_mail;
     QString contact_job;
+    QString client_selected;
+    QString regional_selected;
     QString cid;
+
 
     //Actual Selection
     QHash<QString, QString>contact_data;
+
+    QHash<QString, QHash<QString,QString>>tabla_sucursales;
+    QHash<QString,QHash<QString,QString>>tabla_contactos;
+    QHash<QString,QHash<QString,QString>>tabla_regionales;
+
+    QHash<QString,QString>tabla_clientes;
+    QHash<QString,QString>tabla_categorias;
+    QHash<QString,QString>tabla_agentes;
+
+    QHash<QString,QStringList>tabla_telefonos;
+    QHash<QString,QStringList>tabla_mails;
+
 };
 
 #endif // PAGE_2_H
