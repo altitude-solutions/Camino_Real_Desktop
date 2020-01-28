@@ -25,9 +25,17 @@ private slots:
     void receive_contact(QHash<QString,QString>,QString, QString);
 
     void on_tarifario_butt_clicked();
+    void set_agents();
 
     //Information Box
     void information_box(QString, QString, QString);
+
+    //Modify Contact
+    void contact_change();
+    void regional_change();
+    void read_regional();
+
+    void on_agente_editingFinished();
 
 private:
     Ui::Modify *ui;
@@ -37,6 +45,11 @@ private:
     QString url;
 
     Information_box *box_info;
+
+    QHash<QString,QHash<QString,QString>>tabla_regionales;
+    QHash<QString, QString>tabla_agentes;
+
+    QString general_agent;
 };
 
 #endif // MODIFY_H

@@ -26,7 +26,7 @@ signals:
 
 private slots:
     void on_modify_butt_clicked();
-    void read_client_info();
+    void read_client_info(QString);
     void on_new_butt_clicked();
     void information_box(QString, QString, QString);
     void receive_info(QString, QString, QString, QString);
@@ -36,8 +36,8 @@ private slots:
     void paint_table( int);
 
     void update_client();
-
     void on_delete_butt_clicked();
+    void on_lineEdit_editingFinished();
 
 private:
     Ui::Clients *ui;
@@ -69,6 +69,7 @@ private:
 
     QHash<QString,QStringList>tabla_telefonos;
     QHash<QString,QStringList>tabla_mails;
+
 };
 
 #endif // CLIENTS_H

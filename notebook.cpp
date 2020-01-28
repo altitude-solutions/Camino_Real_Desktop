@@ -30,7 +30,6 @@ Notebook::Notebook(QWidget *parent) :
 
     this->setFixedSize(size);
 
-
     //Frames size:
     ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.45));
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.5));

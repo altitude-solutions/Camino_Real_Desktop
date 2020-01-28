@@ -8,6 +8,7 @@
 #include <QColor>
 #include <QJsonDocument>
 #include <QMessageBox>
+#include <QCompleter>
 
 Clients::Clients(QWidget *parent) :
     QWidget(parent),
@@ -86,12 +87,12 @@ void Clients::receive_info(QString userName, QString realName, QString token, QS
     this -> realName = realName;
     this -> token = token;
     this -> url = url;
-    read_client_info();
+    read_client_info("");
     db_clients.clear();
     contact.clear();
 }
 
-void Clients::read_client_info()
+void Clients::read_client_info(QString filter)
 {
     QNetworkAccessManager* nam = new QNetworkAccessManager (this);
 
@@ -107,11 +108,14 @@ void Clients::read_client_info()
 
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
         tabla_contactos.clear();
+        QStringList completer;
 
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
             QString cliente = entidad.toObject ().value("name").toString();
             QString id_cliente = entidad.toObject ().value("_id").toString();
             this -> tabla_clientes[id_cliente] = cliente;
+
+            completer << cliente;
 
             foreach (QJsonValue regional, entidad.toObject().value("regionals").toArray()) {
 
@@ -148,6 +152,13 @@ void Clients::read_client_info()
                         emails << email.toString();
                     }
 
+                    if(phones.isEmpty()){
+                        phones<<"-";
+                    }
+                    if(emails.isEmpty()){
+                        emails<<"-";
+                    }
+
                     this -> tabla_telefonos[id_contacto] = phones;
                     this -> tabla_mails[id_contacto] = emails;
 
@@ -165,14 +176,29 @@ void Clients::read_client_info()
              }
           }
 
+        completer.removeDuplicates();
+        std::sort(completer.begin(), completer.end());
+        QCompleter *client_completer = new QCompleter(completer,this);
+
+        client_completer -> setCaseSensitivity(Qt::CaseInsensitive);
+        client_completer -> setCompletionMode(QCompleter::PopupCompletion);
+        client_completer -> setFilterMode(Qt::MatchContains);
+
+        ui -> lineEdit -> setCompleter(client_completer);
+
         update_table(tabla_contactos);
         reply->deleteLater ();
     });
+    QString filter_data = "";
+
+    if(filter != ""){
+        filter_data = "&q="+filter;
+    }
 
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/clients?from=0&to=1000&status=1"));
+    request.setUrl (QUrl ("http://"+this->url+"/clients?from=0&to=1000&status=1"+filter_data));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -274,7 +300,7 @@ void Clients::on_new_butt_clicked()
 
 void Clients::update_client(){
     information_box("x","Base de datos", "Actualizado con éxito");
-    read_client_info();
+    read_client_info(ui->lineEdit->text());
 }
 
 void Clients::on_delete_butt_clicked()
@@ -287,7 +313,6 @@ void Clients::on_delete_butt_clicked()
             QNetworkAccessManager* nam = new QNetworkAccessManager (this);
             connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
                 QByteArray binReply = reply->readAll ();
-               qDebug()<<binReply;
                 if (reply->error ()) {
                     QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
                     if (errorJson.object ().value ("err").toObject ().contains ("message")) {
@@ -302,7 +327,6 @@ void Clients::on_delete_butt_clicked()
             });
 
             QNetworkRequest request;
-            qDebug()<< "http://"+this -> url + "/clients/"+contact["id_contacto"];
             request.setUrl (QUrl ("http://"+this -> url + "/contacts/"+contact["id_contacto"]));
             request.setRawHeader ("token", this -> token.toUtf8 ());
             request.setRawHeader ("Content-Type", "application/json");
@@ -312,6 +336,11 @@ void Clients::on_delete_butt_clicked()
         else{
             information_box("x","Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
         }
-
     }
+}
+
+void Clients::on_lineEdit_editingFinished()
+{
+    QString filter = ui -> lineEdit -> text();
+    read_client_info(filter);
 }

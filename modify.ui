@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>897</width>
+    <width>706</width>
     <height>579</height>
    </rect>
   </property>
@@ -17,9 +17,6 @@
    <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_4">
-   <property name="spacing">
-    <number>0</number>
-   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -435,6 +432,35 @@ min-width:5em;</string>
                 </item>
                 <item>
                  <widget class="QLineEdit" name="cargo">
+                  <property name="styleSheet">
+                   <string notr="true">background-color:#F2F2F2;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
+border:0px solid;
+min-height:1.5em;
+max-height:1.5em;
+color: #294D39;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <item>
+                 <widget class="QLabel" name="label_18">
+                  <property name="styleSheet">
+                   <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+color: #294D39;
+padding:10px;
+min-width:5em;</string>
+                  </property>
+                  <property name="text">
+                   <string>Agente</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="agente">
                   <property name="styleSheet">
                    <string notr="true">background-color:#F2F2F2;
 font: 10pt &quot;MS Shell Dlg 2&quot;;
