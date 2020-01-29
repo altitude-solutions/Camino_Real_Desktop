@@ -349,7 +349,7 @@ void New::create_city(QString city_name){
         }
         else{
             QJsonDocument receiver = QJsonDocument::fromJson(binReply);
-            this -> id_ciudad = receiver.object().value("city").toObject().value("city").toString();
+            this -> id_ciudad = receiver.object().value("city").toObject().value("_id").toString();
             set_completer();
             ui -> sucursal -> setText(this -> city_flag);
         }

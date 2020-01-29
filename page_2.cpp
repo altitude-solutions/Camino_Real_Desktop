@@ -457,6 +457,7 @@ void page_2::on_cliente_editingFinished()
 
            QHashIterator<QString,QHash<QString, QString>>iter_clients(tabla_contactos);
 
+           qDebug()<<"second flag";
            while (iter_clients.hasNext()){
 
                auto contact_key = iter_clients.next().key();
@@ -469,22 +470,40 @@ void page_2::on_cliente_editingFinished()
 
                        ui -> contacto_drop -> setCurrentText(tabla_contactos[contact_key]["contact"]);
                        ui -> cargo -> setText(tabla_contactos[contact_key]["job"]);
-                       ui -> telefono -> setText(tabla_telefonos[contact_key][0]);
-                       ui -> mail -> setText(tabla_mails[contact_key][0]);
 
+                       QString telefono;
+                       QString mail;
+
+                       qDebug()<<"Crash";
+                       if(tabla_telefonos[contact_key].isEmpty()){
+                           telefono = "-";
+                       }
+                       else{
+                           telefono = tabla_telefonos[contact_key][0];
+                       }
+
+
+                       if(tabla_mails[contact_key].isEmpty()){
+                           mail = "-";
+                       }
+                       else{
+                           mail = tabla_mails[contact_key][0];
+                       }
+
+                       ui -> telefono -> setText(telefono);
+                       ui -> mail -> setText(mail);
+                        qDebug()<<"worked";
                        contact_name = tabla_contactos[contact_key]["contact"];
-                       contact_phone = tabla_telefonos[contact_key][0];
-                       contact_mail = tabla_mails[contact_key][0];
+                       contact_phone = telefono;
+                       contact_mail = mail;
                        contact_job = tabla_contactos[contact_key]["job"];
                        cid = contact_key;
-
                    }
                }
             }
         }
     }
 }
-
 
 void page_2::on_contacto_drop_currentTextChanged(const QString &arg1)
 {
@@ -495,14 +514,32 @@ void page_2::on_contacto_drop_currentTextChanged(const QString &arg1)
              auto main_key = iter_contact.next().key();
              if(arg1 == contact_data[main_key]){
 
+                 QString telefono;
+                 QString mail;
+
+                 if(tabla_telefonos[main_key].isEmpty()){
+                     telefono = "-";
+                 }
+                 else{
+                     telefono = tabla_telefonos[main_key][0];
+                 }
+
+
+                 if(tabla_mails[main_key].isEmpty()){
+                     mail = "-";
+                 }
+                 else{
+                     mail = tabla_mails[main_key][0];
+                 }
+
                  ui -> cargo -> setText(tabla_contactos[main_key]["job"]);
-                 ui -> telefono -> setText(tabla_telefonos[main_key][0]);
-                 ui -> mail -> setText(tabla_mails[main_key][0]);
+                 ui -> telefono -> setText(telefono);
+                 ui -> mail -> setText(mail);
 
                  contact_name = tabla_contactos[main_key]["contact"];
-                 contact_phone = tabla_telefonos[main_key][0];
-                 contact_mail = tabla_mails[main_key][0];
-                 contact_job = tabla_contactos[main_key]["job"];
+                 contact_phone = telefono;
+                 contact_mail = mail;
+                 contact_job = mail;
                  cid = main_key;
              }
         }
