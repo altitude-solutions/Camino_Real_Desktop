@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     clients.cpp \
+    clients_list.cpp \
     extrainfo.cpp \
     ham_options.cpp \
     information_box.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 
 HEADERS += \
     clients.h \
+    clients_list.h \
     extrainfo.h \
     ham_options.h \
     information_box.h \
@@ -48,6 +50,7 @@ HEADERS += \
 
 FORMS += \
     clients.ui \
+    clients_list.ui \
     extrainfo.ui \
     ham_options.ui \
     information_box.ui \

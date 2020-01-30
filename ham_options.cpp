@@ -66,5 +66,11 @@ void Ham_options::on_pushButton_10_clicked()
 void Ham_options::on_clients_clicked()
 {
     emit send_clients();
-    this->close();
+    this -> close();
+}
+
+void Ham_options::on_contactos_clicked()
+{
+    emit send_clients_list();
+    this -> close();
 }

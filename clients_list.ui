@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Clients</class>
- <widget class="QWidget" name="Clients">
+ <class>Clients_list</class>
+ <widget class="QWidget" name="Clients_list">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1016</width>
-    <height>548</height>
+    <width>887</width>
+    <height>583</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_7">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -27,14 +27,14 @@
     <number>0</number>
    </property>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>18</width>
-       <height>113</height>
+       <width>20</width>
+       <height>155</height>
       </size>
      </property>
     </spacer>
@@ -62,7 +62,7 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -76,14 +76,14 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QFrame" name="frame_3">
+         <widget class="QFrame" name="frame_5">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Raised</enum>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <layout class="QVBoxLayout" name="verticalLayout_5">
            <property name="spacing">
             <number>0</number>
            </property>
@@ -100,7 +100,7 @@
             <number>0</number>
            </property>
            <item>
-            <widget class="QFrame" name="frame_2">
+            <widget class="QFrame" name="frame_6">
              <property name="styleSheet">
               <string notr="true">background-color:#79634E;</string>
              </property>
@@ -110,9 +110,9 @@
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QLabel" name="label_9">
+               <widget class="QLabel" name="label_10">
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: white;</string>
@@ -123,7 +123,7 @@ color: white;</string>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit">
+               <widget class="QLineEdit" name="lineEdit_2">
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 background-color:white;
@@ -140,7 +140,7 @@ color: #294D39;</string>
                </widget>
               </item>
               <item>
-               <spacer name="horizontalSpacer">
+               <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -153,7 +153,7 @@ color: #294D39;</string>
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="new_butt">
+               <widget class="QPushButton" name="new_butt_2">
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
@@ -169,7 +169,7 @@ max-height:2em;</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="modify_butt">
+               <widget class="QPushButton" name="modify_butt_2">
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
@@ -185,7 +185,7 @@ max-height:2em;</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="delete_butt">
+               <widget class="QPushButton" name="delete_butt_2">
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color:white;
@@ -204,7 +204,7 @@ max-height:2em;</string>
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="frame">
+            <widget class="QFrame" name="frame_7">
              <property name="styleSheet">
               <string notr="true">background-color:white;</string>
              </property>
@@ -214,7 +214,7 @@ max-height:2em;</string>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout">
+             <layout class="QVBoxLayout" name="verticalLayout_6">
               <property name="spacing">
                <number>0</number>
               </property>
@@ -231,7 +231,7 @@ max-height:2em;</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QTableWidget" name="table_clients">
+               <widget class="QTableWidget" name="table_clients_2">
                 <property name="styleSheet">
                  <string notr="true">QTableWidget{
 border-top: 2.5px solid white;
@@ -292,14 +292,14 @@ QHeaderView::section {
     </layout>
    </item>
    <item>
-    <spacer name="verticalSpacer_2">
+    <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>18</width>
-       <height>112</height>
+       <width>20</width>
+       <height>154</height>
       </size>
      </property>
     </spacer>

@@ -9,6 +9,7 @@
 #include "notebook.h"
 #include "inout.h"
 #include "clients.h"
+#include "clients_list.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,17 +34,16 @@ private slots:
     void show_notebook();
     void show_inout();
     void show_clients();
+    void show_clients_list();
 
 private:
     Ui::MainWindow *ui;
 
     //pages
-    page_1 *p1;
-    page_2 *p2;
     Notebook *notebook;
     InOut *inOut;
     Clients *clients;
-
+    Clients_list *clientsList;
     Ham_options *ham;
     QVBoxLayout *l_a;
 

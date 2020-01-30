@@ -95,6 +95,7 @@ void MainWindow::on_icon_back_clicked()
     connect(ham, SIGNAL(send_notebook()), this, SLOT(show_notebook()));
     connect(ham, SIGNAL(send_inout()),this, SLOT(show_inout()));
     connect(ham, SIGNAL(send_clients()),this, SLOT(show_clients()));
+    connect(ham,SIGNAL(send_clients_list()),SLOT(show_clients_list()));
     ham -> show();
 }
 
@@ -107,15 +108,16 @@ void MainWindow::close_session(){
         else if(actual_widget=="clients"){
             delete clients;
         }
+        else if(actual_widget == "clients_list"){
+            l_a->removeItem(l_a->itemAt(0));
+            delete clientsList;
+        }
         else{
             delete notebook;
         }
 }
 
 void MainWindow::show_notebook(){
-
-//    notebook = new Notebook(this);
-//    notebook->show();
 
     if(actual_widget=="inOut"){
         l_a->removeItem(l_a->itemAt(0));
@@ -124,6 +126,10 @@ void MainWindow::show_notebook(){
     else if (actual_widget == "clients"){
         l_a->removeItem(l_a->itemAt(0));
         delete clients;
+    }
+    else if(actual_widget == "clients_list"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete clientsList;
     }
     else{
         l_a->removeItem(l_a->itemAt(0));
@@ -150,6 +156,10 @@ void MainWindow::show_inout(){
         l_a->removeItem(l_a->itemAt(0));
         delete clients;
      }
+    else if(actual_widget == "clients_list"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete clientsList;
+    }
     else{
         l_a->removeItem(l_a->itemAt(0));
         delete inOut;
@@ -174,6 +184,10 @@ void MainWindow::show_clients(){
         l_a->removeItem(l_a->itemAt(0));
         delete inOut;
      }
+    else if(actual_widget == "clients_list"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete clientsList;
+     }
     else{
         l_a->removeItem(l_a->itemAt(0));
         delete clients;
@@ -186,4 +200,31 @@ void MainWindow::show_clients(){
     l_a->addWidget (clients);
     actual_widget = "clients";
 
+}
+
+void MainWindow::show_clients_list()
+{
+    if(actual_widget=="notebook"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete notebook;
+    }
+    else if(actual_widget == "inOut"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete inOut;
+     }
+    else if(actual_widget == "clients"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete clients;
+    }
+    else{
+        l_a->removeItem(l_a->itemAt(0));
+        delete clientsList;
+    }
+
+    clientsList = new Clients_list(this);
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),clientsList, SLOT(receive_info(QString, QString, QString, QString)));
+    emit send_info(this->userName, this->realName, this->token, this->url);
+
+    l_a->addWidget (clientsList);
+    actual_widget = "clients_list";
 }
