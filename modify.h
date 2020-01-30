@@ -18,38 +18,25 @@ public:
 
 signals:
     void send_update();
-    void send_info_box(QString, QString,QString, double, double);
 
-private slots:
-    void on_pushButton_clicked();
-    void receive_contact(QHash<QString,QString>,QString, QString);
+private slots:    
+    //main info receiver
+    void receive_contact(QHash<QString,QString>, QString, QString);
 
-    void on_tarifario_butt_clicked();
-    void set_agents();
+    //Buttons pressed
+    void on_cancel_butt_clicked();
+    void on_guardar_butt_clicked();
 
-    //Information Box
-    void information_box(QString, QString, QString);
-
-    //Modify Contact
-    void contact_change();
-    void regional_change();
-    void read_regional();
-
-    void on_agente_editingFinished();
+    //Restart widget
+    void restart();
 
 private:
     Ui::Modify *ui;
 
+    //Main info
     QString token;
-    QHash<QString,QString> data;
     QString url;
-
-    Information_box *box_info;
-
-    QHash<QString,QHash<QString,QString>>tabla_regionales;
-    QHash<QString, QString>tabla_agentes;
-
-    QString general_agent;
+    QString id_contacto;
 };
 
 #endif // MODIFY_H

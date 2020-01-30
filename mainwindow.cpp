@@ -109,7 +109,6 @@ void MainWindow::close_session(){
             delete clients;
         }
         else if(actual_widget == "clients_list"){
-            l_a->removeItem(l_a->itemAt(0));
             delete clientsList;
         }
         else{
@@ -222,9 +221,10 @@ void MainWindow::show_clients_list()
     }
 
     clientsList = new Clients_list(this);
+
     connect(this, SIGNAL(send_info(QString, QString, QString, QString)),clientsList, SLOT(receive_info(QString, QString, QString, QString)));
     emit send_info(this->userName, this->realName, this->token, this->url);
 
-    l_a->addWidget (clientsList);
+    l_a -> addWidget (clientsList);
     actual_widget = "clients_list";
 }

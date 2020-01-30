@@ -27,10 +27,12 @@ SOURCES += \
     mainwindow.cpp \
     modify.cpp \
     new.cpp \
+    new_client.cpp \
     nights.cpp \
     notebook.cpp \
     page_1.cpp \
-    page_2.cpp
+    page_2.cpp \
+    update_client.cpp
 
 HEADERS += \
     clients.h \
@@ -43,10 +45,12 @@ HEADERS += \
     mainwindow.h \
     modify.h \
     new.h \
+    new_client.h \
     nights.h \
     notebook.h \
     page_1.h \
-    page_2.h
+    page_2.h \
+    update_client.h
 
 FORMS += \
     clients.ui \
@@ -59,10 +63,12 @@ FORMS += \
     mainwindow.ui \
     modify.ui \
     new.ui \
+    new_client.ui \
     nights.ui \
     notebook.ui \
     page_1.ui \
-    page_2.ui
+    page_2.ui \
+    update_client.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

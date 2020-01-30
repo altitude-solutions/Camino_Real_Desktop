@@ -21,7 +21,6 @@ Nights::Nights(QWidget *parent) :
    double size_h = (height*0.9);
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this -> setMinimumSize(size);
-
 }
 
 Nights::~Nights()

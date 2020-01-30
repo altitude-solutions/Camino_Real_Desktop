@@ -19,62 +19,41 @@ signals:
     void send_update();
 
 private slots:
-    void on_pushButton_clicked();
-    void receive_info(QString,QString);
-    void on_tarifario_butt_clicked();
+    //main info receiver
+    void receive_info(QString, QString);
 
-    void set_completer();
+    //Buttons pressed
+    void on_cancel_butt_clicked();
+    void on_guardar_butt_clicked();
+
+    //Completer setters
+    void set_city();
     void set_clients();
-    void set_agents();
-    void set_category();
 
-    //Creating variables
-    void create_client(QString);
-    void create_city(QString);
-    void create_sucursal();
-    void create_contacto();
+    //creators
+    void create_contact();
+    void append_contacto();
 
-    //appends
-    void append_to_sucursal();
-    void append_to_client();
 
-    //Finish Editing
-    void on_sucursal_editingFinished();
-    void on_cliente_editingFinished();
-    void on_categoria_editingFinished();
-    void on_agent_editingFinished();
-
-    void restart();
+    void on_regional_box_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::New *ui;
 
+    //main variables
     QString token;
     QString url;
 
-    QHash<QString,QHash<QString, QString>>tabla_vinculo;
+    //Main Tables
     QHash<QString,QHash<QString, QString>>vinculo_categorias;
-
+    QHash<QString,QHash<QString, QString>>tabla_vinculo;
     QHash<QString, QString>tabla_ciudades;
-    QHash<QString, QString>tabla_agentes;
     QHash<QString, QString>tabla_clientes;
-    QHash<QString, QString>tabla_categorias;
 
-    //General variables
-    QString id_cliente;
-    QString id_ciudad;
-    QString id_agentes;
-    QString id_categoria;
-    QString id_contacto;
+    //Id Variables
     QString id_regional;
+    QString id_contacto;
 
-    //Flags for variable creation
-    QString client_flag;
-    QString city_flag;
-
-    //Append flags
-    bool append_sucursal;
-    bool append_cliente;
 };
 
 #endif // NEW_H

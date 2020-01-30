@@ -245,6 +245,7 @@ void Clients::on_table_clients_cellClicked(int row, int column)
     contact["job"] = ui -> table_clients -> item(row,5)->text();
     contact["real_name"] = ui -> table_clients -> item(row,6)->text();
     contact["id_contacto"] = ui -> table_clients -> item(row,7)->text();
+    contact["category"] = tabla_categorias[tabla_contactos[ui -> table_clients -> item(row,7)->text()]["category"]];
 
     paint_table(row);
 }
@@ -279,9 +280,12 @@ void Clients::on_modify_butt_clicked()
 {
     if(contact["contact"]!=""){
         modify = new Modify(this);
+
         connect(this, SIGNAL(send_contact(QHash<QString,QString>,QString, QString)),modify,SLOT(receive_contact(QHash<QString,QString>,QString, QString)));
         connect(modify,SIGNAL(send_update()),this,SLOT(update_client()));
+
         emit send_contact(contact, this->token, this -> url);
+
         modify->show();
     }
     else{
@@ -292,9 +296,12 @@ void Clients::on_modify_butt_clicked()
 void Clients::on_new_butt_clicked()
 {
     new_client = new New(this);
+
     connect(this, SIGNAL(send_info(QString, QString)),new_client,SLOT(receive_info(QString, QString)));
     connect(new_client,SIGNAL(send_update()),this,SLOT(update_client()));
+
     emit send_info(this->token, this -> url);
+
     new_client->show();
 }
 
