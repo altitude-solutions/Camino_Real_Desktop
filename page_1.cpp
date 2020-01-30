@@ -168,7 +168,6 @@ void page_1::paint_via(QString painter){
     }
 }
 
-
 //This section is for "MOTIVO"
 void page_1::on_tarifario_butt_clicked()
 {
