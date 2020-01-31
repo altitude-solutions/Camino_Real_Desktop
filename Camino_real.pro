@@ -32,6 +32,7 @@ SOURCES += \
     notebook.cpp \
     page_1.cpp \
     page_2.cpp \
+    records.cpp \
     update_client.cpp
 
 HEADERS += \
@@ -50,6 +51,7 @@ HEADERS += \
     notebook.h \
     page_1.h \
     page_2.h \
+    records.h \
     update_client.h
 
 FORMS += \
@@ -68,6 +70,7 @@ FORMS += \
     notebook.ui \
     page_1.ui \
     page_2.ui \
+    records.ui \
     update_client.ui
 
 # Default rules for deployment.

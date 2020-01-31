@@ -23,14 +23,15 @@ signals:
     void send_inout();
     void send_clients();
     void send_clients_list();
+    void send_records();
 
 private slots:
     void on_pushButton_9_clicked();
     void on_close_seesion_clicked();
     void on_pushButton_10_clicked();
     void on_clients_clicked();
-
     void on_contactos_clicked();
+    void on_records_clicked();
 
 private:
     Ui::Ham_options *ui;

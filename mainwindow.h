@@ -10,6 +10,7 @@
 #include "inout.h"
 #include "clients.h"
 #include "clients_list.h"
+#include "records.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,7 @@ private slots:
     void show_inout();
     void show_clients();
     void show_clients_list();
+    void show_records();
 
 private:
     Ui::MainWindow *ui;
@@ -46,6 +48,7 @@ private:
     Clients_list *clientsList;
     Ham_options *ham;
     QVBoxLayout *l_a;
+    Records *records;
 
     //Variable for the actual widget
     QString actual_widget;

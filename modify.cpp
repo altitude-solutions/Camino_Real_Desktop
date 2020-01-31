@@ -50,8 +50,7 @@ Modify::Modify(QWidget *parent) :
   ui -> frame_7 -> setFixedWidth(static_cast<int>(width*0.4));
 }
 
-Modify::~Modify()
-{
+Modify::~Modify(){
     delete ui;
 }
 

@@ -74,3 +74,8 @@ void Ham_options::on_contactos_clicked()
     emit send_clients_list();
     this -> close();
 }
+
+void Ham_options::on_records_clicked(){
+    emit send_records();
+    this -> close();
+}
