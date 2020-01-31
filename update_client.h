@@ -22,7 +22,20 @@ private slots:
     //main info receiver
     void receive_contact(QHash<QString,QString>, QString, QString);
 
+    //Buttons pressed
     void on_cancel_butt_clicked();
+
+    //ompleter setters
+    void set_category();
+    void set_agents();
+
+    void on_aniversario_editingFinished();
+
+    void on_categoria_editingFinished();
+
+    void on_agente_editingFinished();
+
+    void on_guardar_butt_clicked();
 
 private:
     Ui::Update_client *ui;
@@ -31,6 +44,18 @@ private:
     QHash<QString,QString> data;
     QString token;
     QString url;
+
+    //Main Variables
+    QString id_client;
+    QString id_sucursal;
+    QString id_ciudad;
+    QString id_categoria;
+    QString id_agente;
+
+    //Main tables
+    QHash<QString, QString>tabla_agentes;
+    QHash<QString, QString>tabla_categorias;
+
 };
 
 #endif // UPDATE_CLIENT_H

@@ -34,8 +34,9 @@ private slots:
     void create_contact();
     void append_contacto();
 
-
+    //Combo box modification
     void on_regional_box_currentIndexChanged(const QString &arg1);
+    void on_cliente_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::New *ui;
@@ -43,6 +44,9 @@ private:
     //main variables
     QString token;
     QString url;
+
+    //cities completer
+    QStringList completer_list;
 
     //Main Tables
     QHash<QString,QHash<QString, QString>>vinculo_categorias;

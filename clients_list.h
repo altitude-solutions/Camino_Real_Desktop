@@ -25,12 +25,22 @@ private slots:
     //Main info receiver
     void receive_info(QString, QString, QString, QString);
 
+    //Information setters
+    void read_client_info(QString);
+
     //buttons pressed
     void on_new_butt_2_clicked();
     void on_modify_butt_2_clicked();
 
     //Update App
     void update_client();
+    void update_table(QHash<QString, QHash<QString, QString>>);
+
+    //Table actions
+    void on_table_clients_2_cellClicked(int row, int column);
+
+    //Painter
+    void paint_table(int);
 
 private:
     Ui::Clients_list *ui;
@@ -44,6 +54,13 @@ private:
     QString realName;
     QString token;
     QString url;
+
+    //Main tables
+    QHash<QString,QHash<QString,QString>>tabla_general;
+
+    QHash<QString,QString>categorias;
+    QHash<QString,QString>sucursales;
+    QHash<QString,QString>cliente;
 
 };
 

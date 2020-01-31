@@ -62,13 +62,25 @@ void New::receive_info(QString token, QString url){
     this -> url = url;
 
     //Set all requiered information
-    set_city();
     set_clients();
+    set_city();
 }
 
 void New::on_regional_box_currentIndexChanged(const QString &city){
     QString cliente  = ui -> cliente -> currentText();
     ui -> categoria -> setText(vinculo_categorias[cliente][city]);
+}
+
+void New::on_cliente_currentIndexChanged(const QString &arg1){
+    QString current_client = arg1;
+    ui -> regional_box -> clear();
+    foreach (QString city, this -> completer_list) {
+        if(tabla_vinculo[current_client][city]!=""){
+                ui -> regional_box -> addItem(city);
+        }
+    }
+    QString city = ui -> regional_box -> currentText();
+    ui -> categoria -> setText(vinculo_categorias[current_client][city]);
 }
 
 void New::set_city(){
@@ -85,18 +97,14 @@ void New::set_city(){
         }
 
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
-        QStringList completer_list;
 
         foreach (QJsonValue ciudades, okJson.object ().value ("cities").toArray ()) {
             tabla_ciudades[ciudades.toObject().value("city").toString()] = ciudades.toObject().value("_id").toString();
-            completer_list << ciudades.toObject().value("city").toString();
+            this -> completer_list << ciudades.toObject().value("city").toString();
           }
+        this -> completer_list.removeDuplicates();
+        std::sort(this -> completer_list.begin(), this -> completer_list.end());
 
-        completer_list.removeDuplicates();
-        std::sort(completer_list.begin(), completer_list.end());
-        foreach (QString item, completer_list) {
-            ui -> regional_box -> addItem(item);
-        }
     });
 
     QNetworkRequest request;
@@ -133,7 +141,6 @@ void New::set_clients(){
                 vinculo_categorias[clientes.toObject().value("name").toString()][regionales.toObject().value("city").toObject().value("city").toString()] = regionales.toObject().value("category").toObject().value("category").toString();
             }
         }
-
         completer_list.removeDuplicates();
         std::sort(completer_list.begin(), completer_list.end());
         foreach (QString item, completer_list) {
@@ -250,5 +257,6 @@ void New::append_contacto(){
 
     nam->put (request, document.toJson ());
 }
+
 
 
