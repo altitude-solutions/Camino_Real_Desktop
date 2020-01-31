@@ -306,7 +306,7 @@ void Clients::on_new_butt_clicked()
 }
 
 void Clients::update_client(){
-    information_box("x","Base de datos", "Actualizado con éxito");
+    information_box("x","Base de datos", "Sincronización con base de datos exitosa");
     read_client_info(ui->lineEdit->text());
 }
 

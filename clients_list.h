@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "new_client.h"
 #include "update_client.h"
+#include "information_box.h"
 
 namespace Ui {
 class Clients_list;
@@ -18,8 +19,9 @@ public:
     ~Clients_list();
 
 signals:
-    void send_info(QString, QString);
+    void send_info_box(QString, QString,QString, double, double);
     void send_contact(QHash<QString,QString>, QString, QString);
+    void send_info(QString, QString);
 
 private slots:
     //Main info receiver
@@ -31,6 +33,7 @@ private slots:
     //buttons pressed
     void on_new_butt_2_clicked();
     void on_modify_butt_2_clicked();
+    void on_delete_butt_2_clicked();
 
     //Update App
     void update_client();
@@ -42,9 +45,11 @@ private slots:
     //Painter
     void paint_table(int);
 
+    //Filter
     void on_lineEdit_2_editingFinished();
 
-    void on_delete_butt_2_clicked();
+    //Custom information Box
+    void information_box(QString, QString, QString);
 
 private:
     Ui::Clients_list *ui;
@@ -52,6 +57,7 @@ private:
     //Pointers
     New_client *new_cl;
     Update_client *update;
+    Information_box *box_info;
 
     //info variables
     QString userName;

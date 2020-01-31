@@ -45,8 +45,8 @@ New::New(QWidget *parent) :
   ui->icon_categoria->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
   //set frame sizes
-  ui -> frame -> setFixedWidth(static_cast<int>(width*0.35));
-  ui -> frame_7 -> setFixedWidth(static_cast<int>(width*0.35));
+  ui -> frame -> setFixedWidth(static_cast<int>(width*0.4));
+  ui -> frame_7 -> setFixedWidth(static_cast<int>(width*0.4));
 }
 
 New::~New(){

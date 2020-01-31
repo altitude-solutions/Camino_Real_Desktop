@@ -51,9 +51,27 @@ Clients_list::Clients_list(QWidget *parent) :
     ui -> table_clients_2 -> setHorizontalHeaderLabels(headers);
 }
 
-Clients_list::~Clients_list()
-{
+Clients_list::~Clients_list(){
     delete ui;
+}
+
+void Clients_list::information_box(QString icon, QString header, QString text){
+
+    box_info = new Information_box(this);
+    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
+
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+   int width = screens[0]->geometry().width();
+   int height = screens[0]->geometry().height();
+
+    //set widget size dynamic, aspect ratio 16:9
+    double w = (static_cast<int>(width));
+    double h = (static_cast<int>(height*0.9));
+
+    emit send_info_box(icon, header, text, w, h);
+    box_info->show();
 }
 
 void Clients_list::receive_info(QString userName, QString realName, QString token, QString url){
@@ -92,7 +110,7 @@ void Clients_list::on_modify_butt_2_clicked()
         update->show();
     }
     else{
-        QMessageBox::warning(this,"Error","Seleccionar un registro porfavor");
+        information_box("x","Error","Seleccionar un registro porfavor");
     }
 }
 
@@ -106,7 +124,7 @@ void Clients_list::read_client_info(QString filter)
 
         if (reply->error ()) {
             QJsonDocument errorJson = QJsonDocument::fromJson (resBin);
-            QMessageBox::warning(this,"Error",QString::fromStdString (errorJson.toJson ().toStdString ()));
+            information_box("x","Error",QString::fromStdString (errorJson.toJson ().toStdString ()));
             return;
         }
 
@@ -259,10 +277,10 @@ void Clients_list::on_delete_butt_2_clicked(){
                 if (reply->error ()) {
                     QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
                     if (errorJson.object ().value ("err").toObject ().contains ("message")) {
-                        QMessageBox::warning(this,"Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                        information_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
                     }
                     else {
-                        QMessageBox::warning(this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                        information_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
                     }
                 }
                 update_client();
@@ -276,13 +294,13 @@ void Clients_list::on_delete_butt_2_clicked(){
             nam->sendCustomRequest(request,"DELETE");
         }
         else{
-            QMessageBox::warning(this,"Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
+            information_box("x","Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
         }
     }
 }
 
 void Clients_list::update_client(){
-    QMessageBox::warning(this, "Base de datos", "Sincronización con base de datos exitosa");
+    information_box("x", "Base de datos", "Sincronización con base de datos exitosa");
     read_client_info(ui ->lineEdit_2 -> text());
 }
 

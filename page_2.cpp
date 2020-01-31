@@ -33,19 +33,19 @@ page_2::page_2(QWidget *parent) :
    double pix_h_b= (height*40)/768;
 
    QPixmap pix_contacto(":/images/images/cliente.png");
-   ui->icon_contacto->setPixmap(pix_contacto.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+   ui->icon_contacto->setPixmap(pix_contacto.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
    ui->icon_contacto->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
   QPixmap pix_cargo(":/images/images/cargo.png");
-  ui->icon_cargo->setPixmap(pix_cargo.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_cargo->setPixmap(pix_cargo.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_cargo->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
   QPixmap pix_telefono(":/images/images/telefono.png");
-  ui->icon_telefono->setPixmap(pix_telefono.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_telefono->setPixmap(pix_telefono.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_telefono->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
   QPixmap pix_email(":/images/images/e-mail.png");
-  ui->icon_email->setPixmap(pix_email.scaled( static_cast<int>(pix_w_b*0.7),static_cast<int>(pix_h_b*0.7), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_email->setPixmap(pix_email.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_email->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
    //  Set icons
@@ -65,15 +65,11 @@ page_2::page_2(QWidget *parent) :
    //Set frame sizes
    ui -> frame_7 -> setFixedWidth(static_cast<int>(width*0.13));
    ui -> frame_8 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_7 -> setFixedHeight(static_cast<int>(height*0.08));
-   ui -> frame_8 -> setFixedHeight(static_cast<int>(height*0.08));
-   ui -> frame_10 -> setFixedHeight(static_cast<int>(height*0.08));
-   ui -> frame_12 -> setFixedHeight(static_cast<int>(height*0.08));
-
    ui -> frame_2 -> setFixedWidth(static_cast<int>(width*0.13));
    ui -> frame_3 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_9 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_4 -> setFixedWidth(static_cast<int>(width*0.13));
+   ui -> frame_11 -> setFixedWidth(static_cast<int>(width*0.13));
+   ui -> frame_5 -> setFixedWidth(static_cast<int>(width*0.13));
+
 }
 
 page_2::~page_2()
