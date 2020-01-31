@@ -24,18 +24,14 @@ private slots:
 
     //Buttons pressed
     void on_cancel_butt_clicked();
+    void on_guardar_butt_clicked();
 
     //ompleter setters
     void set_category();
     void set_agents();
 
+    //Label finished
     void on_aniversario_editingFinished();
-
-    void on_categoria_editingFinished();
-
-    void on_agente_editingFinished();
-
-    void on_guardar_butt_clicked();
 
 private:
     Ui::Update_client *ui;

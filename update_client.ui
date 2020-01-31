@@ -602,23 +602,50 @@ color:white;</string>
                    </layout>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="categoria">
+                   <widget class="QComboBox" name="categoria">
                     <property name="styleSheet">
-                     <string notr="true">background-color:white;
-border-radius:15px;
-color: #294D39;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-padding:5px;
-min-height:1.8em;
+                     <string notr="true">QComboBox::hover {
+	background-color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	color: #294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;	
+	min-height:1.8em;
+}
 
+QComboBox::focus {
+	background-color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	color: #294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;	
+	min-height:1.8em;
+}
+
+QComboBox::drop-down  {
+	border:0px;
+}
+
+QComboBox{
+	background-color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	color: #294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;	
+	min-height:1.8em;
+}
+
+QListView{
+	background-color:white;
+	color:#294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;
+}
 
 </string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                    <property name="placeholderText">
-                     <string>Categoría</string>
                     </property>
                    </widget>
                   </item>
@@ -654,23 +681,56 @@ color:white;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="agente">
+                 <widget class="QComboBox" name="agente">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color:white;
-border-radius:15px;
-color: #294D39;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-padding:5px;
-min-height:1.5em;
+                   <string notr="true">QComboBox::hover {
+	background-color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	color: #294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;	
+	min-height:1.8em;
+}
 
+QComboBox::focus {
+	background-color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	color: #294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;	
+	min-height:1.8em;
+}
+
+QComboBox::drop-down  {
+	border:0px;
+}
+
+QComboBox{
+	background-color:white;
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	color: #294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;	
+	min-height:1.8em;
+}
+
+QListView{
+	background-color:white;
+	color:#294D39;
+	font: 12pt &quot;MS Shell Dlg 2&quot;;
+	padding:5px;
+}
 
 </string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
                   </property>
                  </widget>
                 </item>

@@ -42,6 +42,10 @@ private slots:
     //Painter
     void paint_table(int);
 
+    void on_lineEdit_2_editingFinished();
+
+    void on_delete_butt_2_clicked();
+
 private:
     Ui::Clients_list *ui;
 

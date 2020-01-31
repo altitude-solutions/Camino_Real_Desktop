@@ -310,8 +310,8 @@ void Clients::update_client(){
     read_client_info(ui->lineEdit->text());
 }
 
-void Clients::on_delete_butt_clicked()
-{
+void Clients::on_delete_butt_clicked(){
+
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Eliminar contacto", "Seguro desea remover este contacto de la base de datos?",QMessageBox::Yes|QMessageBox::No);
     if(reply == QMessageBox::Yes){

@@ -69,8 +69,8 @@ void Update_client::receive_contact(QHash<QString,QString> send_up, QString toke
     ui -> cliente -> setText(send_up["Client"]);
     ui -> regional -> setText(send_up["City"]);
     ui -> aniversario -> setText(send_up["Anniversary"]);
-    ui -> categoria -> setText(send_up["Category"]);
-    ui -> agente -> setText(send_up["Agent"]);
+    ui -> categoria -> setCurrentText(send_up["Category"]);
+    ui -> agente -> setCurrentText(send_up["Agent"]);
 
     this -> id_client = send_up["client_id"];
     this -> id_sucursal = send_up["sucursal_id"];
@@ -110,13 +110,9 @@ void Update_client::set_category(){
 
         completer_list.removeDuplicates();
         std::sort(completer_list.begin(), completer_list.end());
-        QCompleter *client_completer = new QCompleter(completer_list,this);
-
-        client_completer -> setCaseSensitivity(Qt::CaseInsensitive);
-        client_completer -> setCompletionMode(QCompleter::PopupCompletion);
-        client_completer -> setFilterMode(Qt::MatchContains);
-
-        ui -> categoria -> setCompleter(client_completer);
+        foreach (QString item, completer_list) {
+            ui -> categoria -> addItem(item);
+        }
     });
 
     QNetworkRequest request;
@@ -152,13 +148,10 @@ void Update_client::set_agents(){
 
         completer_list.removeDuplicates();
         std::sort(completer_list.begin(), completer_list.end());
-        QCompleter *client_completer = new QCompleter(completer_list,this);
 
-        client_completer -> setCaseSensitivity(Qt::CaseInsensitive);
-        client_completer -> setCompletionMode(QCompleter::PopupCompletion);
-        client_completer -> setFilterMode(Qt::MatchContains);
-
-        ui -> agente -> setCompleter(client_completer);
+        foreach (QString item,  completer_list) {
+            ui -> agente -> addItem(item);
+        }
 
     });
 
@@ -184,39 +177,17 @@ void Update_client::on_aniversario_editingFinished(){
     }
 }
 
-void Update_client::on_categoria_editingFinished(){
-
-    QString categoria = ui -> categoria -> text();
-    if(categoria!=""){
-        if(tabla_categorias[categoria]==""){
-            QMessageBox::warning(this, "Error", "Ingresar una categoría válida porfavor");
-            ui -> categoria -> setText("");
-        }
-    }
-}
-
-void Update_client::on_agente_editingFinished(){
-
-    QString agente = ui -> agente -> text();
-    if(agente!=""){
-        if(tabla_agentes[agente]==""){
-            QMessageBox::warning(this, "Error", "Usuario Inexistente");
-            ui -> agente -> setText("");
-        }
-    }
-}
-
 void Update_client::on_guardar_butt_clicked(){
 
     //create a Json
      QJsonDocument document;
      QJsonObject main_object;
 
-     if(ui -> agente -> text() !=""){
-         main_object.insert("salesAgent",tabla_agentes[ui -> agente -> text()]);
+     if(ui -> agente -> currentText() !=""){
+         main_object.insert("salesAgent",tabla_agentes[ui -> agente -> currentText()]);
      }
-     if(ui -> categoria -> text() !=""){
-         main_object.insert("category",tabla_categorias[ui -> categoria->text()]);
+     if(ui -> categoria -> currentText() !=""){
+         main_object.insert("category",tabla_categorias[ui -> categoria->currentText()]);
      }
      if(ui -> aniversario -> text() !=""){
          main_object.insert("anniversary",QDateTime::fromString(ui -> aniversario ->text(),"dd/MM/yyyy").toMSecsSinceEpoch());

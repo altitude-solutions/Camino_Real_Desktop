@@ -436,6 +436,10 @@ void page_2::read_client_info()
 
 void page_2::on_cliente_editingFinished()
 {
+    ui -> telefono -> setText("");
+    ui -> mail -> setText("");
+    ui -> cargo -> setText("");
+
     QString local = ui -> cliente -> text();
    if(local!=""){
 

@@ -113,6 +113,8 @@ void Clients_list::read_client_info(QString filter)
         QJsonDocument okJson = QJsonDocument::fromJson (resBin);
         QStringList completer;
 
+        tabla_general.clear();
+
         foreach (QJsonValue entidad, okJson.object ().value ("clients").toArray ()) {
             QString cliente = entidad.toObject ().value("name").toString();
             QString id_cliente = entidad.toObject ().value("_id").toString();
@@ -239,7 +241,42 @@ void Clients_list::paint_table(int row){
             ui->table_clients_2->item(i,1)->setBackground(QColor("#FFFFFF"));
             ui->table_clients_2->item(i,2)->setBackground(QColor("#FFFFFF"));
             ui->table_clients_2->item(i,3)->setBackground(QColor("#FFFFFF"));
-            ui->table_clients_2->item(i,3)->setBackground(QColor("#FFFFFF"));
+            ui->table_clients_2->item(i,4)->setBackground(QColor("#FFFFFF"));
+        }
+    }
+}
+
+void Clients_list::on_delete_butt_2_clicked(){
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Eliminar contacto", "Seguro desea remover este contacto de la base de datos?",QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes){
+        if(cliente["client_id"]!=""){
+            //Send information
+            QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+            connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+                QByteArray binReply = reply->readAll ();
+                if (reply->error ()) {
+                    QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                    if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                        QMessageBox::warning(this,"Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    }
+                    else {
+                        QMessageBox::warning(this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    }
+                }
+                update_client();
+                reply->deleteLater ();
+            });
+
+            QNetworkRequest request;
+            request.setUrl (QUrl ("http://"+this -> url + "/regional_clients/"+cliente["sucursal_id"]));
+            request.setRawHeader ("token", this -> token.toUtf8 ());
+            request.setRawHeader ("Content-Type", "application/json");
+            nam->sendCustomRequest(request,"DELETE");
+        }
+        else{
+            QMessageBox::warning(this,"Seleccionar registro","Porfavor indicar el contacto que desea eliminar");
         }
     }
 }
@@ -249,4 +286,8 @@ void Clients_list::update_client(){
     read_client_info(ui ->lineEdit_2 -> text());
 }
 
+void Clients_list::on_lineEdit_2_editingFinished(){
+    QString query  = ui -> lineEdit_2 -> text();
+    read_client_info(query);
+}
 

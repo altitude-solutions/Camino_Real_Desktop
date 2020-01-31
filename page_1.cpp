@@ -372,7 +372,10 @@ void page_1::read_client_info()
 
 void page_1::on_cliente_editingFinished()
 {
-    qDebug()<<"here";
+    ui -> telefono -> setText("");
+    ui -> mail -> setText("");
+    ui -> cargo -> setText("");
+
     QString local = ui -> cliente -> text();
    if(local!=""){
 
