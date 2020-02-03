@@ -40,5 +40,8 @@
         <file>images/e-mail_fondo.png</file>
         <file>images/telefono.png</file>
         <file>images/telefono_fondo.png</file>
+        <file>images/categoria_blanco.png</file>
+        <file>images/cumpleanos_blanco.png</file>
+        <file>images/regional_blanco.png</file>
     </qresource>
 </RCC>

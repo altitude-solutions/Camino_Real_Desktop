@@ -36,15 +36,15 @@ New_client::New_client(QWidget *parent) :
    ui->icon_cliente->setPixmap(pix_contacto.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
    ui->icon_cliente->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
-  QPixmap pix_cargo(":/images/images/cargo.png");
+  QPixmap pix_cargo(":/images/images/regional_blanco.png");
   ui->icon_regional->setPixmap(pix_cargo.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_regional->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
-  QPixmap pix_telefono(":/images/images/telefono.png");
+  QPixmap pix_telefono(":/images/images/categoria_blanco.png");
   ui->icon_categoria->setPixmap(pix_telefono.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_categoria->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
-  QPixmap pix_email(":/images/images/e-mail.png");
+  QPixmap pix_email(":/images/images/cumpleanos_blanco.png");
   ui->icon_aniversario->setPixmap(pix_email.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
   ui->icon_aniversario->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 

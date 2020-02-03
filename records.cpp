@@ -48,27 +48,27 @@ void Records::receive_info(QString userName, QString realName, QString token, QS
                     "min-height:2em;"
                     "max-height:2em;";
 
-    actual_widget = "page_1";
+//    actual_widget = "page_1";
 
-    l_a = new QVBoxLayout(this);
-    p1 = new page_1(this);
+//    l_a = new QVBoxLayout(this);
+//    p1 = new page_1(this);
 
-    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p1, SLOT(receiver(QString, QString, QString, QString)));
-    connect(p1,SIGNAL(send_clients()),this, SLOT(receive_clients()));
+//    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p1, SLOT(receiver(QString, QString, QString, QString)));
+//    connect(p1,SIGNAL(send_clients()),this, SLOT(receive_clients()));
 
-    connect(p1,SIGNAL(send_nights_back()),this,SLOT(activate_nights()));
-    connect (this, SIGNAL(send_nights_back(QString)),p1,SLOT(receive_nights(QString)));
+//    connect(p1,SIGNAL(send_nights_back()),this,SLOT(activate_nights()));
+//    connect (this, SIGNAL(send_nights_back(QString)),p1,SLOT(receive_nights(QString)));
 
-    //connect information box
-    connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+//    //connect information box
+//    connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
 
-    emit send_info(this->userName, this->realName, this->token, this->url);
-    l_a-> addWidget(p1);
-    l_a ->setMargin (0);
+//    emit send_info(this->userName, this->realName, this->token, this->url);
+//    l_a-> addWidget(p1);
+//    l_a ->setMargin (0);
 
-    ui->widget->setLayout (l_a);
+//    ui->widget->setLayout (l_a);
 
-    ui -> pushButton -> setStyleSheet(released);
-    ui -> pushButton_2 -> setStyleSheet(pushed);
+//    ui -> pushButton -> setStyleSheet(released);
+//    ui -> pushButton_2 -> setStyleSheet(pushed);
 
 }
