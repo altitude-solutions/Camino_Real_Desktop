@@ -58,7 +58,7 @@ void InOut::receive_info(QString userName, QString realName, QString token, QStr
     connect(p1,SIGNAL(send_clients()),this, SLOT(receive_clients()));
 
     connect(p1,SIGNAL(send_nights_back()),this,SLOT(activate_nights()));
-    connect (this, SIGNAL(send_nights_back(QString)),p1,SLOT(receive_nights(QString)));
+    connect (this, SIGNAL(send_nights_back(QString, QString, QString, QString)),p1,SLOT(receive_nights(QString, QString, QString, QString)));
 
     //connect information box
     connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
@@ -74,8 +74,7 @@ void InOut::receive_info(QString userName, QString realName, QString token, QStr
 
 }
 
-void InOut::on_pushButton_clicked()
-{
+void InOut::on_pushButton_clicked(){
     QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
             "color:white;"
             "background-color:rgba(153,153,153,50%);"
@@ -105,7 +104,7 @@ void InOut::on_pushButton_clicked()
 
         //connect nights
         connect(p1,SIGNAL(send_nights_back()),this,SLOT(activate_nights()));
-        connect (this, SIGNAL(send_nights_back(QString)),p1,SLOT(receive_nights(QString)));
+        connect (this, SIGNAL(send_nights_back(QString, QString, QString, QString)),p1,SLOT(receive_nights(QString, QString, QString, QString)));
 
         //connect information box
         connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
@@ -151,7 +150,7 @@ void InOut::on_pushButton_2_clicked()
 
         //nights emition
         connect(p2,SIGNAL(send_nights_back()),this,SLOT(activate_nights()));
-        connect (this, SIGNAL(send_nights_back(QString)),p2,SLOT(receive_nights(QString)));
+        connect (this, SIGNAL(send_nights_back(QString, QString, QString, QString)),p2,SLOT(receive_nights(QString, QString, QString, QString)));
 
         //extra info emition
         connect(p2,SIGNAL(send_info_back()),this,SLOT(activate_info()));
@@ -197,8 +196,8 @@ void InOut::activate_nights()
     nights->show();
 }
 
-void InOut::receive_nights(QString n_nights){
-    emit(send_nights_back(n_nights));
+void InOut::receive_nights(QString n_nights, QString early, QString late, QString upgrade){
+    emit send_nights_back(n_nights, early, late, upgrade);
 }
 
 void InOut::receive_clients(){

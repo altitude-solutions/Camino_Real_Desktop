@@ -6,6 +6,7 @@
 #include "page_2.h"
 #include <QBoxLayout>
 #include "nights.h"
+#include "information_box.h"
 #include "extrainfo.h"
 
 namespace Ui {
@@ -26,7 +27,7 @@ signals:
 
     //to send the info
     void send_page(QString);
-    void send_nights_back(QString);
+    void send_nights_back(QString, QString, QString, QString);
 
     //to send extra info
     void send_info_back(QString, QString, QString);
@@ -42,7 +43,7 @@ private slots:
 
     //Variables from children
     void activate_nights();
-    void receive_nights(QString);
+    void receive_nights(QString, QString, QString, QString);
 
     //variables for extra information
     void activate_info();

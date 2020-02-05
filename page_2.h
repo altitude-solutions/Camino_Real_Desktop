@@ -51,10 +51,11 @@ private slots:
 
     void receiver(QString, QString, QString, QString);
 
-    void receive_nights(QString);
+    void receive_nights(QString, QString, QString, QString);
     void receive_extra_info(QString, QString, QString);
 
     void read_client_info();
+    void read_benefits();
     void on_cliente_editingFinished();
     void on_icon_search_clicked();
     void on_pushButton_14_clicked();
@@ -87,6 +88,9 @@ private:
 
     //In case of reservation
     QString n_nights;
+    QString early;
+    QString late;
+    QString upgrade;
 
     //Extra inforamtion
     QString competencia;
@@ -113,6 +117,7 @@ private:
     QHash<QString,QString>tabla_clientes;
     QHash<QString,QString>tabla_categorias;
     QHash<QString,QString>tabla_agentes;
+    QHash<QString, QString>tabla_beneficios;
 
     QHash<QString,QStringList>tabla_telefonos;
     QHash<QString,QStringList>tabla_mails;

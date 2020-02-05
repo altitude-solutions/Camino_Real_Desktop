@@ -38,10 +38,11 @@ private slots:
     void paint_motivo(QString);
 
     void receiver(QString, QString, QString, QString);
-    void receive_nights(QString);
+    void receive_nights(QString, QString, QString, QString);
 
     //Read info from the database
     void read_client_info();
+    void read_benefits();
     void on_cliente_editingFinished();
     void on_icon_search_clicked();
     void on_pushButton_9_clicked();
@@ -73,6 +74,9 @@ private:
 
     //In case of recervation
     QString n_nights;
+    QString early;
+    QString late;
+    QString upgrade;
 
     //To send to the database
     QString contact_name;
@@ -93,6 +97,7 @@ private:
     QHash<QString,QString>tabla_clientes;
     QHash<QString,QString>tabla_categorias;
     QHash<QString,QString>tabla_agentes;
+    QHash<QString,QString>tabla_beneficios;
 
     QHash<QString,QStringList>tabla_telefonos;
     QHash<QString,QStringList>tabla_mails;

@@ -48,27 +48,183 @@ void Records::receive_info(QString userName, QString realName, QString token, QS
                     "min-height:2em;"
                     "max-height:2em;";
 
-//    actual_widget = "page_1";
+    actual_widget = "page_2";
 
-//    l_a = new QVBoxLayout(this);
-//    p1 = new page_1(this);
+    l_a = new QVBoxLayout(this);
+    tasks = new Tasks(this);
 
-//    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),p1, SLOT(receiver(QString, QString, QString, QString)));
-//    connect(p1,SIGNAL(send_clients()),this, SLOT(receive_clients()));
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),tasks, SLOT(receiver(QString, QString, QString, QString)));
 
-//    connect(p1,SIGNAL(send_nights_back()),this,SLOT(activate_nights()));
-//    connect (this, SIGNAL(send_nights_back(QString)),p1,SLOT(receive_nights(QString)));
+    //connect information box
+    connect(tasks,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
 
-//    //connect information box
-//    connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+    emit send_info(this->userName, this->realName, this->token, this->url);
+    l_a-> addWidget(tasks);
+    l_a ->setMargin (0);
 
-//    emit send_info(this->userName, this->realName, this->token, this->url);
-//    l_a-> addWidget(p1);
-//    l_a ->setMargin (0);
+    ui->widget->setLayout (l_a);
 
-//    ui->widget->setLayout (l_a);
+    ui->page_1->setStyleSheet(pushed);
+    ui->page_2->setStyleSheet(released);
+    ui->page_3->setStyleSheet(pushed);
 
-//    ui -> pushButton -> setStyleSheet(released);
-//    ui -> pushButton_2 -> setStyleSheet(pushed);
+}
+
+void Records::on_page_1_clicked(){
+
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+            "color:white;"
+            "background-color:rgba(153,153,153,50%);"
+            "min-width:7em;"
+            "max-width:7em;"
+            "min-height:2em;"
+            "max-height:2em;";
+
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
+                    "color:white;"
+                    "background-color:#79634E;"
+                    "min-width:7em;"
+                    "max-width:7em;"
+                    "min-height:2em;"
+                    "max-height:2em;";
+
+    if(actual_widget=="page_2"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete tasks;
+    }
+    else if(actual_widget=="page_3"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete reservas;
+    }
+    else{
+        l_a->removeItem(l_a->itemAt(0));
+        delete notask;
+    }
+
+    actual_widget = "page_1";
+    notask = new No_task(this);
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),notask, SLOT(receiver(QString, QString, QString, QString)));
+
+    //connect information box
+    connect(notask,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+
+    emit send_info(this->userName, this->realName, this->token, this->url);
+    l_a->addWidget (notask);
+
+    ui->page_1->setStyleSheet(released);
+    ui->page_2->setStyleSheet(pushed);
+    ui->page_3->setStyleSheet(pushed);
+
+}
+
+void Records::on_page_2_clicked(){
+
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+            "color:white;"
+            "background-color:rgba(153,153,153,50%);"
+            "min-width:7em;"
+            "max-width:7em;"
+            "min-height:2em;"
+            "max-height:2em;";
+
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
+                    "color:white;"
+                    "background-color:#79634E;"
+                    "min-width:7em;"
+                    "max-width:7em;"
+                    "min-height:2em;"
+                    "max-height:2em;";
+
+    if(actual_widget=="page_1"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete notask;
+    }
+    else if(actual_widget=="page_3"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete reservas;
+    }
+    else{
+        l_a->removeItem(l_a->itemAt(0));
+        delete tasks;
+    }
+
+    actual_widget = "page_2";
+    tasks = new Tasks(this);
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),tasks, SLOT(receiver(QString, QString, QString, QString)));
+
+    //connect information box
+    connect(tasks,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+
+    emit send_info(this->userName, this->realName, this->token, this->url);
+    l_a->addWidget (tasks);
+
+    ui->page_1->setStyleSheet(pushed);
+    ui->page_2->setStyleSheet(released);
+    ui->page_3->setStyleSheet(pushed);
+}
+
+void Records::on_page_3_clicked(){
+
+    QString pushed = "font: 12pt \"MS Shell Dlg 2\";"
+            "color:white;"
+            "background-color:rgba(153,153,153,50%);"
+            "min-width:7em;"
+            "max-width:7em;"
+            "min-height:2em;"
+            "max-height:2em;";
+
+    QString released = "font: 12pt \"MS Shell Dlg 2\";"
+                    "color:white;"
+                    "background-color:#79634E;"
+                    "min-width:7em;"
+                    "max-width:7em;"
+                    "min-height:2em;"
+                    "max-height:2em;";
+
+    if(actual_widget=="page_1"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete notask;
+    }
+    else if(actual_widget=="page_2"){
+        l_a->removeItem(l_a->itemAt(0));
+        delete tasks;
+    }
+    else{
+        l_a->removeItem(l_a->itemAt(0));
+        delete reservas;
+    }
+
+    actual_widget = "page_3";
+    reservas = new Reservas(this);
+    connect(this, SIGNAL(send_info(QString, QString, QString, QString)),reservas, SLOT(receiver(QString, QString, QString, QString)));
+
+    //connect information box
+    connect(reservas,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+
+    emit send_info(this->userName, this->realName, this->token, this->url);
+    l_a->addWidget (reservas);
+
+    ui->page_1->setStyleSheet(pushed);
+    ui->page_2->setStyleSheet(pushed);
+    ui->page_3->setStyleSheet(released);
+}
+
+void Records::information_box(QString icon, QString header, QString text){
+
+    box_info = new Information_box(this);
+    connect(this, SIGNAL(send_info_box(QString, QString, QString, double, double)),box_info, SLOT(receive_info(QString,QString, QString, double, double)));
+
+    //Get screen Size
+   const auto screens = qApp->screens();
+
+    int width = screens[0]->geometry().width();
+    int height = screens[0]->geometry().height();
+
+     //set widget size dynamic, aspect ratio 16:9
+    double w = (width);
+    double h = (height*0.9);
+
+    emit send_info_box(icon, header, text, w, h);
+    box_info->show();
 
 }

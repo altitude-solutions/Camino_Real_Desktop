@@ -29,10 +29,13 @@ SOURCES += \
     new.cpp \
     new_client.cpp \
     nights.cpp \
+    no_task.cpp \
     notebook.cpp \
     page_1.cpp \
     page_2.cpp \
     records.cpp \
+    reservas.cpp \
+    tasks.cpp \
     update_client.cpp
 
 HEADERS += \
@@ -48,10 +51,13 @@ HEADERS += \
     new.h \
     new_client.h \
     nights.h \
+    no_task.h \
     notebook.h \
     page_1.h \
     page_2.h \
     records.h \
+    reservas.h \
+    tasks.h \
     update_client.h
 
 FORMS += \
@@ -67,10 +73,13 @@ FORMS += \
     new.ui \
     new_client.ui \
     nights.ui \
+    no_task.ui \
     notebook.ui \
     page_1.ui \
     page_2.ui \
     records.ui \
+    reservas.ui \
+    tasks.ui \
     update_client.ui
 
 # Default rules for deployment.

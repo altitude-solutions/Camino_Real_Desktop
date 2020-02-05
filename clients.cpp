@@ -32,7 +32,6 @@ Clients::Clients(QWidget *parent) :
     ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.45));
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.8));
 
-
     //Set the table Size
     ui -> table_clients -> setColumnCount(8);
     ui->table_clients ->setColumnWidth(0,static_cast<int>(width/12));  //Cliente

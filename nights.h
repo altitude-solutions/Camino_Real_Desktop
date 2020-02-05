@@ -13,7 +13,7 @@ class Nights : public QWidget
     Q_OBJECT
 
 signals:
-    void send_nights(QString);
+    void send_nights(QString, QString, QString, QString);
     void send_info_box(QString, QString,QString, double, double);
 
 public:
@@ -21,13 +21,22 @@ public:
     ~Nights();
 
 private slots:
-    void on_pushButton_9_clicked();
+
+    //Main information receiver
     void receive_page(QString);
 
     //Information Box
     void information_box(QString, QString, QString);
 
+    //Buttons pressed
     void on_pushButton_clicked();
+    void on_pushButton_9_clicked();
+
+    //Validators at the end of editing
+    void on_nights_2_editingFinished();
+    void on_nights_3_editingFinished();
+    void on_nights_4_editingFinished();
+    void on_nights_editingFinished();
 
 private:
     Ui::Nights *ui;
