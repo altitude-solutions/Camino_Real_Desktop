@@ -35,6 +35,10 @@ private slots:
     //Combo Box activated
     void on_pages_activated(const QString &arg1);
 
+    void on_table_clients_2_cellClicked(int row, int column);
+
+    void on_modify_butt_2_clicked();
+
 private:
     Ui::Tasks *ui;
 
@@ -49,6 +53,9 @@ private:
 
     //Auxiliar, just to shot pages once
     bool first_time = true;
+
+    //Id of register to modify
+    QString register_id;
 };
 
 #endif // TASKS_H

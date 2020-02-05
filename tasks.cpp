@@ -226,3 +226,52 @@ void Tasks::on_pages_activated(const QString &arg1){
     }
     read_info(QString::number(sender));
 }
+
+void Tasks::on_table_clients_2_cellClicked(int row, int column){
+    qDebug()<<column;
+    this -> register_id = ui -> table_clients_2 -> item(row, 7)->text();
+}
+
+void Tasks::on_modify_butt_2_clicked(){
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Terminar task", "Seguro desea dar por terminado este task?",QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes){
+        if(this->register_id!=""){
+            //create a Json
+            QJsonDocument document;
+            QJsonObject main_object;
+
+            main_object.insert("deleted",false);
+
+            document.setObject(main_object);
+
+            //Send information
+            QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+            connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+                QByteArray binReply = reply->readAll ();
+                if (reply->error ()) {
+                    QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                    if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                        send_info_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    } else {
+                        send_info_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    }
+                }
+                else{
+                    read_info("0");
+                }
+                reply->deleteLater ();
+            });
+
+            QNetworkRequest request;
+            request.setUrl (QUrl ("http://"+this -> url + "/tasks/"+this->register_id));
+            request.setRawHeader ("token", this -> token.toUtf8 ());
+            request.setRawHeader ("Content-Type", "application/json");
+
+            nam->put (request, document.toJson ());
+        }
+        else{
+            send_info_box("x","Error","Seleccionar un registro porfavor");
+        }
+    }
+}
