@@ -14,10 +14,6 @@ class Tasks : public QWidget
 signals:
     void send_info_box(QString, QString, QString);
 
-public slots:
-    //Main info receiver
-    void receiver(QString, QString, QString, QString);
-
 public:
     explicit Tasks(QWidget *parent = nullptr);
     ~Tasks();
@@ -25,6 +21,9 @@ public:
 private slots:
     //Main info receiver
     void read_info(QString);
+
+    //Main info receiver
+    void receiver(QString, QString, QString, QString);
 
     //Update table
     void update_table(QHash<QString, QHash<QString,QString>>);

@@ -182,22 +182,6 @@ max-height:2em;</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="delete_butt_2">
-                <property name="styleSheet">
-                 <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
-color:white;
-background-color:rgba(255,255,255,30%);
-min-width:8em;
-max-width:8em;
-min-height:2em;
-max-height:2em;</string>
-                </property>
-                <property name="text">
-                 <string>BORRAR</string>
-                </property>
-               </widget>
-              </item>
              </layout>
             </widget>
            </item>

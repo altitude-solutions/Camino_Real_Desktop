@@ -194,22 +194,22 @@ void Tasks::update_table(QHash<QString, QHash<QString, QString>>update){
         ui->table_clients_2->setItem(row_control, 7, new QTableWidgetItem(current));
 
         if(update[current]["completed"]!=false&&update[current]["deleted"]!=true){
-            ui->table_clients_2->item(row_control,0)->setBackground(QColor("#0093D1"));
-            ui->table_clients_2->item(row_control,1)->setBackground(QColor("#0093D1"));
-            ui->table_clients_2->item(row_control,2)->setBackground(QColor("#0093D1"));
-            ui->table_clients_2->item(row_control,3)->setBackground(QColor("#0093D1"));
-            ui->table_clients_2->item(row_control,4)->setBackground(QColor("#0093D1"));
-            ui->table_clients_2->item(row_control,5)->setBackground(QColor("#0093D1"));
-            ui->table_clients_2->item(row_control,6)->setBackground(QColor("#0093D1"));
+            ui->table_clients_2->item(row_control,0)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,1)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,2)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,3)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,4)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,5)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,6)->setBackground(QColor("#F2AB3E"));
         }
         else if (update[current]["deleted"]!=false){
-            ui->table_clients_2->item(row_control,0)->setBackground(QColor("#F2635F"));
-            ui->table_clients_2->item(row_control,1)->setBackground(QColor("#F2635F"));
-            ui->table_clients_2->item(row_control,2)->setBackground(QColor("#F2635F"));
-            ui->table_clients_2->item(row_control,3)->setBackground(QColor("#F2635F"));
-            ui->table_clients_2->item(row_control,4)->setBackground(QColor("#F2635F"));
-            ui->table_clients_2->item(row_control,5)->setBackground(QColor("#F2635F"));
-            ui->table_clients_2->item(row_control,6)->setBackground(QColor("#F2635F"));
+            ui->table_clients_2->item(row_control,0)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,1)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,2)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,3)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,4)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,5)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,6)->setBackground(QColor("#999999"));
         }
     }
     ui -> table_clients_2 -> setSortingEnabled(true);
@@ -234,7 +234,7 @@ void Tasks::on_table_clients_2_cellClicked(int row, int column){
 
 void Tasks::on_modify_butt_2_clicked(){
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, "Terminar task", "Seguro desea dar por terminado este task?",QMessageBox::Yes|QMessageBox::No);
+    reply = QMessageBox::question(this, "Recuperar task", "Desea recuperar este registro",QMessageBox::Yes|QMessageBox::No);
     if(reply == QMessageBox::Yes){
         if(this->register_id!=""){
             //create a Json

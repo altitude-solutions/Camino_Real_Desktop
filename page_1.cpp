@@ -261,7 +261,7 @@ void page_1::receiver(QString userName, QString realName, QString token, QString
     via = "";
     motivo = "";
     read_client_info();
-    read_benefits();
+
 }
 
 //Function to receive number of nights
@@ -516,35 +516,32 @@ void page_1::on_pushButton_9_clicked()
         if (this -> n_nights != ""){
             main_object.insert("nights", this -> n_nights.toInt());
         }
-        qDebug()<<this -> n_nights;
-        qDebug()<<this -> early;
-        qDebug()<<this -> late;
-        qDebug()<<this -> upgrade;
 
-        if(this -> early !=""){
-            QJsonObject aux_v1;
-            aux_v1.insert("benefit", tabla_beneficios["Early Check-In"]);
-            aux_v1.insert("quantity", this->early.toInt());
-            benefits_array.append(aux_v1);
+        //Early Check in
+        if(this->early!=""){
+            main_object.insert("earlyCheckIn",this->early.toInt());
+        }
+        else{
+            main_object.insert("earlyCheckIn",0);
         }
 
-        if(this -> late !=""){
-            QJsonObject aux_v2;
-            aux_v2.insert("benefit", tabla_beneficios["Late Check-Out"]);
-            aux_v2.insert("quantity", this->late.toInt());
-            benefits_array.append(aux_v2);
+        //Late check out
+        if(this->late!=""){
+            main_object.insert("lateCheckOut",this->late.toInt());
+        }
+        else{
+            main_object.insert("lateCheckOut",0);
         }
 
-        if(this -> upgrade !=""){
-            QJsonObject aux_v3;
-            aux_v3.insert("benefit", tabla_beneficios["Upgrade"]);
-            aux_v3.insert("quantity", this->upgrade.toInt());
-            benefits_array.append(aux_v3);
+        //Upgrade
+        if(this->upgrade!=""){
+            main_object.insert("upgrade",this->upgrade.toInt());
+        }
+        else{
+            main_object.insert("upgrade",0);
         }
 
-        if(!benefits_array.isEmpty()){
-            main_object.insert("givenBenefits",benefits_array);
-        }
+        main_object.insert("noShow",0);
         document.setObject(main_object);
 
         //Send information
@@ -641,38 +638,5 @@ void page_1::information_box(QString icon, QString header, QString text){
 void page_1::on_icon_pluss_clicked(){
 
     emit send_clients();
-}
-
-void page_1::read_benefits(){
-
-    QNetworkAccessManager* nam = new QNetworkAccessManager (this);
-
-    connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
-
-        QByteArray resBin = reply->readAll ();
-
-        if (reply->error ()) {
-            QJsonDocument errorJson = QJsonDocument::fromJson (resBin);
-            information_box("x","Error",QString::fromStdString (errorJson.toJson ().toStdString ()));
-            return;
-        }
-
-        QJsonDocument okJson = QJsonDocument::fromJson (resBin);
-        QStringList completer_list;
-
-        foreach (QJsonValue entidad, okJson.object ().value ("benefits").toArray ()) {
-            this -> tabla_beneficios [entidad.toObject().value("benefit").toString()] = entidad.toObject().value("_id").toString();
-          }
-        reply -> deleteLater();
-    });
-
-    QNetworkRequest request;
-
-    //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/benefits"));
-
-    request.setRawHeader ("token", this -> token.toUtf8 ());
-    request.setRawHeader ("Content-Type", "application/json");
-    nam->get (request);
 }
 

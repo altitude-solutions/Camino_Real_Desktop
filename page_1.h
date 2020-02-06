@@ -42,7 +42,6 @@ private slots:
 
     //Read info from the database
     void read_client_info();
-    void read_benefits();
     void on_cliente_editingFinished();
     void on_icon_search_clicked();
     void on_pushButton_9_clicked();

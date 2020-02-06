@@ -36,6 +36,7 @@ SOURCES += \
     records.cpp \
     reservas.cpp \
     tasks.cpp \
+    update_benefits.cpp \
     update_client.cpp
 
 HEADERS += \
@@ -58,6 +59,7 @@ HEADERS += \
     records.h \
     reservas.h \
     tasks.h \
+    update_benefits.h \
     update_client.h
 
 FORMS += \
@@ -80,6 +82,7 @@ FORMS += \
     records.ui \
     reservas.ui \
     tasks.ui \
+    update_benefits.ui \
     update_client.ui
 
 # Default rules for deployment.

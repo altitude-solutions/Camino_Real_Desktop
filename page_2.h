@@ -55,7 +55,6 @@ private slots:
     void receive_extra_info(QString, QString, QString);
 
     void read_client_info();
-    void read_benefits();
     void on_cliente_editingFinished();
     void on_icon_search_clicked();
     void on_pushButton_14_clicked();
