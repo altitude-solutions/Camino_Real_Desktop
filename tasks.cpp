@@ -107,8 +107,8 @@ void Tasks::read_info(QString pages){
             bool completed = entidad.toObject().value("completed").toBool();
             bool deleted = entidad.toObject().value("deleted").toBool();
 
-            if(entidad.toObject().contains("comments")){
-                comentarios  =  entidad.toObject ().value("comments").toString();
+            if(entidad.toObject().contains("comment")){
+                comentarios  =  entidad.toObject ().value("comment").toString();
             }
             else{
                 comentarios = "";

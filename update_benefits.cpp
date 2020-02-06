@@ -27,6 +27,30 @@ Update_benefits::Update_benefits(QWidget *parent) :
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this -> setMinimumSize(size);
 
+    //  Set Images
+   double pix_w_b = (width*40)/1366;
+   double pix_h_b= (height*40)/768;
+
+   QPixmap pix_contacto(":/images/images/early-checkin-icon.png");
+   ui->icon_cliente->setPixmap(pix_contacto.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+   ui->icon_cliente->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  QPixmap pix_cargo(":/images/images/late-checkout-icon.png");
+  ui->icon_regional->setPixmap(pix_cargo.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_regional->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  QPixmap pix_telefono(":/images/images/no-shown-icon.png");
+  ui->icon_categoria->setPixmap(pix_telefono.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_categoria->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  QPixmap pix_email(":/images/images/upgrade-icon.png");
+  ui->icon_aniversario->setPixmap(pix_email.scaled( static_cast<int>(pix_w_b),static_cast<int>(pix_h_b), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+  ui->icon_aniversario->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
+
+  //set frame sizes
+  ui -> frame -> setFixedWidth(static_cast<int>(width*0.3));
+  ui -> frame_6 -> setFixedWidth(static_cast<int>(width*0.3));
+  ui -> frame_8 -> setFixedWidth(static_cast<int>(width*0.3));
 }
 
 Update_benefits::~Update_benefits(){

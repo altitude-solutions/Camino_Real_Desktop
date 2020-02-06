@@ -43,5 +43,9 @@
         <file>images/categoria_blanco.png</file>
         <file>images/cumpleanos_blanco.png</file>
         <file>images/regional_blanco.png</file>
+        <file>images/early-checkin-icon.png</file>
+        <file>images/late-checkout-icon.png</file>
+        <file>images/no-shown-icon.png</file>
+        <file>images/upgrade-icon.png</file>
     </qresource>
 </RCC>

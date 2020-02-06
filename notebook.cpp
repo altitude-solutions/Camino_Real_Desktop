@@ -897,3 +897,15 @@ void Notebook::on_pushButton_2_clicked()
         }
     }
 }
+
+void Notebook::on_your_table_cellDoubleClicked(int row, int column){
+
+    QString actual_value = ui -> your_table -> item(row,column)->text();
+    emit shoot_info(actual_value);
+}
+
+void Notebook::on_general_table_cellDoubleClicked(int row, int column){
+
+    QString actual_value = ui -> general_table -> item(row,column)->text();
+    emit shoot_info(actual_value);
+}

@@ -148,6 +148,8 @@ void MainWindow::show_notebook(){
     connect(this, SIGNAL(send_info(QString, QString, QString, QString)),notebook, SLOT(receive_info(QString, QString, QString, QString)));
     emit send_info(this->userName, this->realName, this->token, this->url);
 
+    connect(notebook,SIGNAL(shoot_info(QString)),this,SLOT(receive_extra_info(QString)));
+
     l_a->addWidget (notebook);
     actual_widget = "notebook";
 
@@ -278,4 +280,11 @@ void MainWindow::show_records(){
 
     l_a -> addWidget (records);
     actual_widget = "records";
+}
+
+void MainWindow::receive_extra_info(QString info){
+    information = new Info(this);
+    connect(this, SIGNAL(send_text_info(QString)),information,SLOT(receive_text(QString)));
+    emit send_text_info(info);
+    information->show();
 }

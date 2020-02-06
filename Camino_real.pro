@@ -20,6 +20,7 @@ SOURCES += \
     clients_list.cpp \
     extrainfo.cpp \
     ham_options.cpp \
+    info.cpp \
     information_box.cpp \
     inout.cpp \
     login.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     clients_list.h \
     extrainfo.h \
     ham_options.h \
+    info.h \
     information_box.h \
     inout.h \
     login.h \
@@ -67,6 +69,7 @@ FORMS += \
     clients_list.ui \
     extrainfo.ui \
     ham_options.ui \
+    info.ui \
     information_box.ui \
     inout.ui \
     login.ui \

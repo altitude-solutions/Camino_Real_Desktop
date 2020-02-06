@@ -33,7 +33,6 @@ Ham_options::~Ham_options()
 
 void Ham_options::keyPressEvent(QKeyEvent *event)
 {
-
     if(event->key() == Qt::Key_Escape)
     {
         this->close();

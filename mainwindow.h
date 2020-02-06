@@ -11,6 +11,7 @@
 #include "clients.h"
 #include "clients_list.h"
 #include "records.h"
+#include "info.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ public:
 signals:
     void logOut();
     void send_info(QString, QString, QString, QString);
+    void send_text_info(QString);
 
 private slots:
     void on_icon_back_clicked();
@@ -37,6 +39,9 @@ private slots:
     void show_clients();
     void show_clients_list();
     void show_records();
+
+    //Show extra info
+    void receive_extra_info(QString);
 
 private:
     Ui::MainWindow *ui;
@@ -49,6 +54,7 @@ private:
     Ham_options *ham;
     QVBoxLayout *l_a;
     Records *records;
+    Info *information;
 
     //Variable for the actual widget
     QString actual_widget;

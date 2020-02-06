@@ -18,6 +18,7 @@ public:
 
 signals:
     void send_info_box(QString, QString,QString, double, double);
+    void shoot_info(QString);
 
 private slots:
     void receive_info(QString, QString, QString, QString);
@@ -54,6 +55,10 @@ private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_your_table_cellDoubleClicked(int row, int column);
+
+    void on_general_table_cellDoubleClicked(int row, int column);
 
 private:
     Ui::Notebook *ui;
