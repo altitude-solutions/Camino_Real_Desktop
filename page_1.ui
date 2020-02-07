@@ -839,8 +839,8 @@ color:white;
 background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
-min-height:2em;
-max-height:2em;
+min-height:1.7em;
+max-height:1.7em;
 </string>
               </property>
               <property name="text">
@@ -856,8 +856,8 @@ color:white;
 background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
-min-height:2em;
-max-height:2em;
+min-height:1.7em;
+max-height:1.7em;
 </string>
               </property>
               <property name="text">
@@ -873,12 +873,29 @@ color:white;
 background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
-min-height:2em;
-max-height:2em;
+min-height:1.7em;
+max-height:1.7em;
 </string>
               </property>
               <property name="text">
                <string>RECLAMO/SUGERENCIA</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="lead">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+background-color:#79634E;;
+min-width:8.5em;
+max-width:8.5em;
+min-height:1.7em;
+max-height:1.7em;
+</string>
+              </property>
+              <property name="text">
+               <string>PUNTO DE VENTA</string>
               </property>
              </widget>
             </item>
@@ -890,8 +907,8 @@ color:white;
 background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
-min-height:2em;
-max-height:2em;
+min-height:1.7em;
+max-height:1.7em;
 </string>
               </property>
               <property name="text">
@@ -907,8 +924,8 @@ color:white;
 background-color:#79634E;;
 min-width:8.5em;
 max-width:8.5em;
-min-height:2em;
-max-height:2em;
+min-height:1.7em;
+max-height:1.7em;
 </string>
               </property>
               <property name="text">

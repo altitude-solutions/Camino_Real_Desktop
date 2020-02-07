@@ -29,6 +29,8 @@ signals:
     //send extra info back
     void send_info_back();
 
+    void send_lead();
+
 private slots:
     void on_pushButton_15_clicked();
     void on_email_butt_clicked();
@@ -53,6 +55,7 @@ private slots:
 
     void receive_nights(QString, QString, QString, QString);
     void receive_extra_info(QString, QString, QString);
+    void receive_lead(QString, QString, QString);
 
     void read_client_info();
     void on_cliente_editingFinished();
@@ -68,6 +71,8 @@ private slots:
     void on_icon_pluss_clicked();
 
     void on_contacto_drop_currentTextChanged(const QString &arg1);
+
+    void on_lead_clicked();
 
 private:
     Ui::page_2 *ui;
@@ -105,6 +110,10 @@ private:
     QString regional_selected;
     QString cid;
 
+    //Lead information
+    QString restaurant;
+    QString events;
+    QString other;
 
     //Actual Selection
     QHash<QString, QString>contact_data;

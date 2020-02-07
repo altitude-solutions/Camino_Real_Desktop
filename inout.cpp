@@ -63,6 +63,10 @@ void InOut::receive_info(QString userName, QString realName, QString token, QStr
     //connect information box
     connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
 
+    //Connect lead
+    connect(p1,SIGNAL(send_lead()),this,SLOT(activate_lead()));
+    connect(this, SIGNAL(send_lead_back(QString,QString,QString)),p1,SLOT(receive_lead(QString,QString,QString)));
+
     emit send_info(this->userName, this->realName, this->token, this->url);
     l_a-> addWidget(p1);
     l_a ->setMargin (0);
@@ -72,6 +76,19 @@ void InOut::receive_info(QString userName, QString realName, QString token, QStr
     ui -> pushButton -> setStyleSheet(released);
     ui -> pushButton_2 -> setStyleSheet(pushed);
 
+}
+
+void InOut::activate_lead(){
+
+    information = new Lead_information(this);
+    connect (information, &Lead_information::send_lead, this, &InOut::receive_lead);
+
+    emit send_page("in_page");
+    information->show();
+}
+
+void InOut::receive_lead(QString rest, QString event, QString other){
+    emit send_lead_back(rest,event,other);
 }
 
 void InOut::on_pushButton_clicked(){
@@ -108,6 +125,10 @@ void InOut::on_pushButton_clicked(){
 
         //connect information box
         connect(p1,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+
+        //Connect lead
+        connect(p1,SIGNAL(send_lead()),this,SLOT(activate_lead()));
+        connect(this, SIGNAL(send_lead_back(QString,QString,QString)),p1,SLOT(receive_lead(QString,QString,QString)));
 
         emit send_info(this->userName, this->realName, this->token, this->url);
         l_a->addWidget (p1);
@@ -158,6 +179,10 @@ void InOut::on_pushButton_2_clicked()
 
         //connect information box
         connect(p2,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
+
+        //Connect lead
+        connect(p2,SIGNAL(send_lead()),this,SLOT(activate_lead()));
+        connect(this, SIGNAL(send_lead_back(QString,QString,QString)),p2,SLOT(receive_lead(QString,QString,QString)));
 
         emit send_info(this->userName, this->realName, this->token, this->url);
 

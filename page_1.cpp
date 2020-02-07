@@ -163,20 +163,17 @@ void page_1::paint_via(QString painter){
 }
 
 //This section is for "MOTIVO"
-void page_1::on_tarifario_butt_clicked()
-{
+void page_1::on_tarifario_butt_clicked(){
     motivo = "Tarifario";
     paint_motivo(motivo);
 }
 
-void page_1::on_cotizacion_butt_clicked()
-{
+void page_1::on_cotizacion_butt_clicked(){
     motivo = "Cotizacion";
     paint_motivo(motivo);
 }
 
-void page_1::on_reserva_butt_clicked()
-{
+void page_1::on_reserva_butt_clicked(){
     motivo = "Reserva";
     paint_motivo(motivo);
 
@@ -184,36 +181,41 @@ void page_1::on_reserva_butt_clicked()
     emit send_nights_back();
 }
 
-void page_1::on_otros_butt_clicked()
-{
+void page_1::on_otros_butt_clicked(){
     motivo = "Otros";
     paint_motivo(motivo);
 }
 
 
-void page_1::on_reclamo_clicked()
-{
+void page_1::on_reclamo_clicked(){
     motivo = "Reclamo";
     paint_motivo(motivo);
 }
 
 
+void page_1::on_lead_clicked(){
+    motivo = "PuntodeVenta";
+    paint_motivo(motivo);
+
+    emit send_lead();
+}
+
 void page_1::paint_motivo(QString painter){
     QString released = "font: 10pt \"MS Shell Dlg 2\";"
-                                    "color:white;"
-                                    "background-color:rgba(121,99,78,50%);"
-                                    "min-width:8.5em;"
-                                    "max-width:8.5em;"
-                                    "min-height:2em;"
-                                    "max-height:2em;";
+                                 "color:white;"
+                                 "background-color:rgba(121,99,78,50%);"
+                                 "min-width:8.5em;"
+                                 "max-width:8.5em;"
+                                 "min-height:1.7em;"
+                                 "max-height:1.7em;";
 
     QString pushed = "font: 10pt \"MS Shell Dlg 2\";"
-                                       "color:white;"
-                                       "background-color:#79634E;"
-                                       "min-width:8.5em;"
-                                       "max-width:8.5em;"
-                                       "min-height:2em;"
-                                       "max-height:2em;";
+                               "color:white;"
+                               "background-color:#79634E;"
+                               "min-width:8.5em;"
+                               "max-width:8.5em;"
+                               "min-height:1.7em;"
+                               "max-height:1.7em;";
 
     if (painter ==  "Tarifario"){
         ui -> tarifario_butt -> setStyleSheet(pushed);
@@ -221,6 +223,7 @@ void page_1::paint_motivo(QString painter){
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(released);
         ui -> reclamo -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if(painter == "Cotizacion"){
         ui -> tarifario_butt -> setStyleSheet(released);
@@ -228,6 +231,7 @@ void page_1::paint_motivo(QString painter){
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(released);
         ui -> reclamo -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if(painter == "Reserva"){
         ui -> tarifario_butt -> setStyleSheet(released);
@@ -235,6 +239,7 @@ void page_1::paint_motivo(QString painter){
         ui -> reserva_butt -> setStyleSheet(pushed);
         ui -> otros_butt -> setStyleSheet(released);
         ui -> reclamo -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if (painter == "Otros"){
         ui -> tarifario_butt -> setStyleSheet(released);
@@ -242,6 +247,7 @@ void page_1::paint_motivo(QString painter){
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(pushed);
         ui -> reclamo -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if (painter == "Reclamo"){
         ui -> tarifario_butt -> setStyleSheet(released);
@@ -249,6 +255,15 @@ void page_1::paint_motivo(QString painter){
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> otros_butt -> setStyleSheet(released);
         ui -> reclamo -> setStyleSheet(pushed);
+        ui -> lead -> setStyleSheet(released);
+    }
+    else if (painter == "PuntodeVenta"){
+        ui -> tarifario_butt -> setStyleSheet(released);
+        ui -> cotizacion_butt -> setStyleSheet(released);
+        ui -> reserva_butt -> setStyleSheet(released);
+        ui -> otros_butt -> setStyleSheet(released);
+        ui -> reclamo -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(pushed);
     }
 }
 
@@ -271,6 +286,12 @@ void page_1::receive_nights(QString nights, QString early, QString late, QString
     this -> early = early;
     this -> late = late;
     this -> upgrade = upgrade;
+}
+
+void page_1::receive_lead(QString rest, QString event, QString other){
+    this -> restaurant = rest;
+    this -> events = event;
+    this -> other = other;
 }
 
 void page_1::read_client_info()
@@ -542,6 +563,20 @@ void page_1::on_pushButton_9_clicked()
         }
 
         main_object.insert("noShow",0);
+
+        //Lead information
+        if(this->restaurant!=""){
+            main_object.insert("restaurant",this->restaurant);
+        }
+
+        if(this->events!=""){
+            main_object.insert("events",this->events);
+        }
+
+        if(this->other!=""){
+            main_object.insert("other",this->other);
+        }
+
         document.setObject(main_object);
 
         //Send information
@@ -606,8 +641,8 @@ void page_1::restart(){
                                        "background-color:#79634E;"
                                        "min-width:8em;"
                                        "max-width:8em;"
-                                       "min-height:2em;"
-                                       "max-height:2em;";
+                                       "min-height:1.7em;"
+                                       "max-height:1.7em;";
 
     QString pushed_b = "font: 10pt \"MS Shell Dlg 2\";"
                                        "color:white;"
@@ -621,13 +656,15 @@ void page_1::restart(){
     ui -> cotizacion_butt -> setStyleSheet(pushed_a);
     ui -> reserva_butt -> setStyleSheet(pushed_a);
     ui -> otros_butt -> setStyleSheet(pushed_a);
-    ui -> pushButton -> setStyleSheet(pushed_b);
+    ui -> reclamo -> setStyleSheet(pushed_a);
+    ui -> lead -> setStyleSheet(pushed_a);
 
     ui -> mail_butt -> setStyleSheet(pushed_b);
     ui -> visita_butt -> setStyleSheet(pushed_b);
     ui -> telefono_butt -> setStyleSheet(pushed_b);
     ui -> wpp_butt -> setStyleSheet(pushed_b);
-    ui -> reclamo -> setStyleSheet(pushed_a);
+    ui -> pushButton -> setStyleSheet(pushed_b);
+
 }
 
 void page_1::information_box(QString icon, QString header, QString text){

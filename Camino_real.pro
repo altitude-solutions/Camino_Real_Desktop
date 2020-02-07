@@ -23,6 +23,7 @@ SOURCES += \
     info.cpp \
     information_box.cpp \
     inout.cpp \
+    lead_information.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     info.h \
     information_box.h \
     inout.h \
+    lead_information.h \
     login.h \
     mainwindow.h \
     modify.h \
@@ -72,6 +74,7 @@ FORMS += \
     info.ui \
     information_box.ui \
     inout.ui \
+    lead_information.ui \
     login.ui \
     mainwindow.ui \
     modify.ui \

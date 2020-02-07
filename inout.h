@@ -8,6 +8,7 @@
 #include "nights.h"
 #include "information_box.h"
 #include "extrainfo.h"
+#include "lead_information.h"
 
 namespace Ui {
 class InOut;
@@ -35,6 +36,8 @@ signals:
     //To the information box
     void send_info_box(QString, QString,QString, double, double);
 
+    void send_lead_back(QString,QString,QString);
+
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
@@ -44,6 +47,8 @@ private slots:
     //Variables from children
     void activate_nights();
     void receive_nights(QString, QString, QString, QString);
+    void activate_lead();
+    void receive_lead(QString,QString,QString);
 
     //variables for extra information
     void activate_info();
@@ -73,6 +78,7 @@ private:
     Nights *nights;
     Information_box *box_info;
     ExtraInfo *extraInfo;
+    Lead_information *information;
 };
 
 #endif // INOUT_H

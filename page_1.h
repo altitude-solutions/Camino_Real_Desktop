@@ -24,6 +24,8 @@ signals:
     void send_nights_back();
     void send_info_box(QString, QString, QString);
 
+    void send_lead();
+
 private slots:
     void on_mail_butt_clicked();
     void on_visita_butt_clicked();
@@ -39,6 +41,7 @@ private slots:
 
     void receiver(QString, QString, QString, QString);
     void receive_nights(QString, QString, QString, QString);
+    void receive_lead(QString,QString,QString);
 
     //Read info from the database
     void read_client_info();
@@ -55,6 +58,8 @@ private slots:
     void on_contacto_drop_currentTextChanged(const QString &arg1);
     void on_pushButton_clicked();
     void on_reclamo_clicked();
+
+    void on_lead_clicked();
 
 private:
     Ui::page_1 *ui;
@@ -76,6 +81,11 @@ private:
     QString early;
     QString late;
     QString upgrade;
+
+    //Lead information
+    QString restaurant;
+    QString events;
+    QString other;
 
     //To send to the database
     QString contact_name;

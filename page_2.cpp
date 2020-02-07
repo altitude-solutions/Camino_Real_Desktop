@@ -166,6 +166,13 @@ void page_2::on_no_interesa_clicked()
     paint_resultado(resultado);
 }
 
+void page_2::on_lead_clicked()
+{
+    resultado = "PuntodeVenta";
+    paint_resultado(resultado);
+
+    emit send_lead();
+}
 
 void page_2::paint_via(QString painter){
     QString released = "font: 10pt \"MS Shell Dlg 2\";"
@@ -286,30 +293,42 @@ void page_2::paint_resultado(QString painter){
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> no_interesa -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if(painter == "Cotizacion"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(pushed);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> no_interesa -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if(painter == "Nueva Cotizacion"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> no_interesa -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if (painter == "Reserva"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(pushed);
         ui -> no_interesa -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(released);
     }
     else if(painter == "No le Interesa"){
         ui -> tarifario_butt -> setStyleSheet(released);
         ui -> cotizacion_butt -> setStyleSheet(released);
         ui -> reserva_butt -> setStyleSheet(released);
         ui -> no_interesa -> setStyleSheet(pushed);
+        ui -> lead -> setStyleSheet(released);
+    }
+    else if(painter == "PuntodeVenta"){
+        ui -> tarifario_butt -> setStyleSheet(released);
+        ui -> cotizacion_butt -> setStyleSheet(released);
+        ui -> reserva_butt -> setStyleSheet(released);
+        ui -> no_interesa -> setStyleSheet(released);
+        ui -> lead -> setStyleSheet(pushed);
     }
 }
 
@@ -333,6 +352,12 @@ void page_2::receive_extra_info(QString competencia, QString tarifa, QString noc
     this -> competencia = competencia;
     this -> tarifa = tarifa;
     this -> noches = noches;
+}
+
+void page_2::receive_lead(QString rest, QString event, QString other){
+    this -> restaurant = rest;
+    this -> events = event;
+    this -> other= other;
 }
 
 void page_2::read_client_info()
@@ -613,6 +638,21 @@ void page_2::on_pushButton_14_clicked()
         }
 
         main_object.insert("noShow",0);
+
+        //Lead information
+        if(this->restaurant!=""){
+            main_object.insert("restaurant",this->restaurant);
+        }
+
+        if(this->events!=""){
+            main_object.insert("events",this->events);
+        }
+
+        if(this->other!=""){
+            main_object.insert("other",this->other);
+        }
+
+
         document.setObject(main_object);
 
         //Send information
@@ -706,6 +746,7 @@ void page_2::restart(){
     ui -> cotizacion_butt -> setStyleSheet(released_a);
     ui -> reserva_butt -> setStyleSheet(released_a);
     ui -> no_interesa -> setStyleSheet(released_a);
+    ui -> lead -> setStyleSheet(released_a);
 }
 
 void page_2::information_box(QString icon, QString header, QString text){
@@ -715,6 +756,8 @@ void page_2::information_box(QString icon, QString header, QString text){
 void page_2::on_icon_pluss_clicked(){
     emit send_clients();
 }
+
+
 
 
 
