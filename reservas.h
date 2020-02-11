@@ -37,6 +37,8 @@ private slots:
     void on_table_clients_2_cellClicked(int row, int column);
     void on_modify_clicked();
 
+    void on_delete_2_clicked();
+
 private:
     Ui::Reservas *ui;
 

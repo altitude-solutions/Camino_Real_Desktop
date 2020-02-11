@@ -494,8 +494,7 @@ void page_2::on_cliente_editingFinished()
                    ui -> contacto_drop -> addItem(tabla_contactos[contact_key]["contact"]);
                    contact_data[contact_key] = tabla_contactos[contact_key]["contact"];
 
-                   if( tabla_contactos[contact_key]["default"] == true){
-
+                   //Set the contact
                        ui -> contacto_drop -> setCurrentText(tabla_contactos[contact_key]["contact"]);
                        ui -> cargo -> setText(tabla_contactos[contact_key]["job"]);
 
@@ -526,7 +525,7 @@ void page_2::on_cliente_editingFinished()
                        contact_mail = mail;
                        contact_job = tabla_contactos[contact_key]["job"];
                        cid = contact_key;
-                   }
+
                }
             }
         }
@@ -581,11 +580,14 @@ void page_2::on_icon_search_clicked()
 
 void page_2::on_pushButton_14_clicked()
 {
+
+    ui -> pushButton_14 -> setDisabled(true);
+
     QString comments = ui -> comentarios -> toPlainText();
     QJsonDocument document;
     QStringList saved;
     QJsonObject main_object;
-    QString time = QDateTime::currentDateTime().toString("dd/MM/yyyy - hh:mm:ss");
+    QString time = QDateTime::currentDateTime().toString("yyyy/MM/dd - hh:mm:ss");
 
     if (via!=""&&motivo!=""&&resultado!=""){
 
@@ -595,7 +597,7 @@ void page_2::on_pushButton_14_clicked()
         main_object.insert("via", via);
         main_object.insert("reason", motivo);
         main_object.insert("result", resultado);
-        main_object.insert("date", QDateTime::fromString(time,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
+        main_object.insert("date", QDateTime::fromString(time,"yyyy/MM/dd - hh:mm:ss").toMSecsSinceEpoch());
 
         if (comments != ""){
             main_object.insert("comments", comments);
@@ -673,6 +675,9 @@ void page_2::on_pushButton_14_clicked()
                 restart();
                 information_box("x", "Base de Datos","Guardado con éxito");
             }
+
+            ui -> pushButton_14 -> setEnabled(true);
+
             reply->deleteLater ();
         });
 

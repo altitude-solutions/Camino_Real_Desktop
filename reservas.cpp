@@ -236,3 +236,49 @@ void Reservas::on_modify_clicked(){
         send_info_box("x","Error","Seleccionar un registro porfavor");
     }
 }
+
+void Reservas::on_delete_2_clicked(){
+    if(id_register!=""){
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Eliminar reserva", "Seguro desea eliminar este registro?",QMessageBox::Yes|QMessageBox::No);
+        if(reply == QMessageBox::Yes){
+            //create a Json
+            QJsonDocument document;
+            QJsonObject main_object;
+
+            main_object.insert("deleted",true);
+
+            document.setObject(main_object);
+
+            //Send information
+            QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+            connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+                QByteArray binReply = reply->readAll ();
+                if (reply->error ()) {
+                    QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+                    if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                        send_info_box("x","Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+                    } else {
+                        send_info_box("x", "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+                    }
+                }
+                else{
+                    read_info("0");
+                }
+                reply->deleteLater ();
+            });
+
+            QNetworkRequest request;
+            request.setUrl (QUrl ("http://"+this -> url + "/tasks/"+this->id_register));
+            request.setRawHeader ("token", this -> token.toUtf8 ());
+            request.setRawHeader ("Content-Type", "application/json");
+
+            nam->put (request, document.toJson ());
+
+            updater();
+        }
+    }
+    else{
+        send_info_box("x","Error","Seleccionar un registro porfavor");
+    }
+}

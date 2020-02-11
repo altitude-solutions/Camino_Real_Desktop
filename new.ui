@@ -6,14 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>831</width>
-    <height>555</height>
+    <width>599</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_17">
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -657,8 +660,8 @@ color:white;</string>
                         <property name="styleSheet">
                          <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
-min-width:4em;
-max-width:4em;</string>
+min-width:4.3em;
+max-width:4.3em;</string>
                         </property>
                         <property name="text">
                          <string>Nombre</string>
@@ -691,8 +694,8 @@ max-height:1em;
                         <property name="styleSheet">
                          <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
-min-width:4em;
-max-width:4em;</string>
+min-width:4.3em;
+max-width:4.3em;</string>
                         </property>
                         <property name="text">
                          <string>Teléfono</string>
@@ -725,8 +728,8 @@ max-height:1em;
                         <property name="styleSheet">
                          <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
-min-width:4em;
-max-width:4em;</string>
+min-width:4.3em;
+max-width:4.3em;</string>
                         </property>
                         <property name="text">
                          <string>E-mail</string>
@@ -759,8 +762,8 @@ max-height:1em;
                         <property name="styleSheet">
                          <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: #294D39;
-min-width:4em;
-max-width:4em;</string>
+min-width:4.3em;
+max-width:4.3em;</string>
                         </property>
                         <property name="text">
                          <string>Cargo</string>
@@ -781,6 +784,43 @@ padding:5px;
 min-height:1em;
 max-height:1em;
 </string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_12">
+                      <item>
+                       <widget class="QLabel" name="label_9">
+                        <property name="styleSheet">
+                         <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+color: #294D39;
+min-width:4.3em;
+max-width:4.3em;</string>
+                        </property>
+                        <property name="text">
+                         <string>Cumpleaños</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="birthday">
+                        <property name="styleSheet">
+                         <string notr="true">background-color:white;
+color: #294D39;
+border-style:outset;
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+padding:5px;
+min-height:1em;
+max-height:1em;
+</string>
+                        </property>
+                        <property name="placeholderText">
+                         <string>dd/MM/yyyy</string>
                         </property>
                        </widget>
                       </item>

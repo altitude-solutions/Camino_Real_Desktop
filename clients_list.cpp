@@ -212,7 +212,12 @@ void Clients_list::update_table(QHash<QString, QHash<QString, QString>> update){
         //Writing the current row
         ui->table_clients_2->setItem(row_control, 0, new QTableWidgetItem(tabla_general[current]["Cliente"]));
         ui->table_clients_2->setItem(row_control, 1, new QTableWidgetItem(tabla_general[current]["Ciudad"]));
-        ui->table_clients_2->setItem(row_control, 2, new QTableWidgetItem(tabla_general[current]["Aniversario"]));
+        if(tabla_general[current]["Aniversario"]=="31/12/1969"){
+            ui->table_clients_2->setItem(row_control, 2, new QTableWidgetItem("-"));
+        }
+        else{
+            ui->table_clients_2->setItem(row_control, 2, new QTableWidgetItem(tabla_general[current]["Aniversario"]));
+        }
         ui->table_clients_2->setItem(row_control, 3, new QTableWidgetItem(tabla_general[current]["Categoria"]));
         ui->table_clients_2->setItem(row_control, 4, new QTableWidgetItem(tabla_general[current]["Agente"]));
         ui->table_clients_2->setItem(row_control, 5, new QTableWidgetItem(current));

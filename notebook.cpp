@@ -140,7 +140,7 @@ void Notebook::read_your_info(QString a, QString b){
 
             QHash<QString, QString> current;
             current.insert ("id_register", registro.toObject ().value ("_id").toString ());
-            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString("dd/MM/yyyy - hh:mm"));
+            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString("yyyy/MM/dd - hh:mm"));
             current.insert ("task", registro.toObject ().value ("todo").toString());
             current.insert("comments",registro.toObject ().value ("comment").toString());
 
@@ -200,7 +200,7 @@ void Notebook::read_gral_info(QString a, QString b, QString c){
 
             QHash<QString, QString> current;
             current.insert ("id_register", registro.toObject ().value ("_id").toString ());
-            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString("dd/MM/yyyy - hh:mm"));
+            current.insert ("date", QDateTime::fromMSecsSinceEpoch(registro.toObject ().value ("registerDate").toVariant().toLongLong()).toString("yyyy/MM/dd - hh:mm"));
             current.insert ("task", registro.toObject ().value ("todo").toString());
             current.insert("comments",registro.toObject ().value ("comment").toString());
 

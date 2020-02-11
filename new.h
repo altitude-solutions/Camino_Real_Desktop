@@ -38,6 +38,8 @@ private slots:
     void on_regional_box_currentIndexChanged(const QString &arg1);
     void on_cliente_currentIndexChanged(const QString &arg1);
 
+    void on_birthday_editingFinished();
+
 private:
     Ui::New *ui;
 

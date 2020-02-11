@@ -49,9 +49,9 @@ Update_client::Update_client(QWidget *parent) :
   ui->icon_aniversario->setFixedSize(static_cast<int>(pix_w_b), static_cast<int>(pix_h_b));
 
   //set frame sizes
-  ui -> frame -> setFixedWidth(static_cast<int>(width*0.32));
-  ui -> frame_6 -> setFixedWidth(static_cast<int>(width*0.32));
-  ui -> frame_8 -> setFixedWidth(static_cast<int>(width*0.32));
+  ui -> frame -> setFixedWidth(static_cast<int>(width*0.35));
+  ui -> frame_6 -> setFixedWidth(static_cast<int>(width*0.35));
+  ui -> frame_8 -> setFixedWidth(static_cast<int>(width*0.35));
 
 }
 

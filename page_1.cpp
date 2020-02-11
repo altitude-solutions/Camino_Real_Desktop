@@ -425,7 +425,7 @@ void page_1::on_cliente_editingFinished()
                    ui -> contacto_drop -> addItem(tabla_contactos[contact_key]["contact"]);
                    contact_data[contact_key] = tabla_contactos[contact_key]["contact"];
 
-                   if( tabla_contactos[contact_key]["default"] == true){
+                   //Setting the contact
 
                        ui -> contacto_drop -> setCurrentText(tabla_contactos[contact_key]["contact"]);
                        ui -> cargo -> setText(tabla_contactos[contact_key]["job"]);
@@ -457,7 +457,7 @@ void page_1::on_cliente_editingFinished()
                        contact_mail = mail;
                        contact_job = tabla_contactos[contact_key]["job"];
                        cid = contact_key;
-                   }
+
                }
             }
         }
@@ -512,6 +512,10 @@ void page_1::on_icon_search_clicked()
 
 void page_1::on_pushButton_9_clicked()
 {
+
+    //Lock the button
+    ui -> pushButton_9-> setDisabled(true);
+
     //create a Json
     QString hash_id = ui -> cliente -> text();
 
@@ -520,7 +524,7 @@ void page_1::on_pushButton_9_clicked()
     QStringList saved;
     QJsonObject main_object;
     QJsonArray benefits_array;
-    QString time = QDateTime::currentDateTime().toString("dd/MM/yyyy - hh:mm:ss");
+    QString time = QDateTime::currentDateTime().toString("yyyy/MM/dd - hh:mm:ss");
 
     if (via!=""&&motivo!="" ){
         main_object.insert("client", this -> client_selected);
@@ -528,7 +532,7 @@ void page_1::on_pushButton_9_clicked()
         main_object.insert("contact", cid);
         main_object.insert("via", via);
         main_object.insert("reason", motivo);        
-        main_object.insert("date", QDateTime::fromString(time,"dd/MM/yyyy - hh:mm:ss").toMSecsSinceEpoch());
+        main_object.insert("date", QDateTime::fromString(time,"yyyy/MM/dd - hh:mm:ss").toMSecsSinceEpoch());
 
         if (comments!=""){
             main_object.insert("comments", comments);
@@ -596,6 +600,7 @@ void page_1::on_pushButton_9_clicked()
                 information_box("x", "Base de Datos", "Guardado con éxito");
             }
             reply->deleteLater ();
+            ui-> pushButton_9 -> setEnabled(true);
         });
 
         QNetworkRequest request;

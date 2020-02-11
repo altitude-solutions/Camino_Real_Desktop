@@ -175,6 +175,7 @@ void New::create_contact(){
     QString telefono_contacto = ui -> phone-> text();
     QString mail_contacto = ui -> mail -> text();
     QString job_contacto = ui -> job -> text();
+    QString birthday = ui -> birthday -> text();
 
     QJsonArray mails;
     QJsonArray telefonos;
@@ -197,6 +198,9 @@ void New::create_contact(){
         main_object.insert("job",job_contacto);
     }
 
+    if(birthday!=""){
+        main_object.insert("birthday",QDateTime::fromString(birthday,"dd/MM/yyyy").toMSecsSinceEpoch());
+    }
     contact_doc.setObject(main_object);
 
     //Send information
@@ -261,5 +265,13 @@ void New::append_contacto(){
     nam->put (request, document.toJson ());
 }
 
-
-
+void New::on_birthday_editingFinished(){
+    QString anniversary = ui -> birthday -> text();
+    if(anniversary!=""){
+        qlonglong time_validator = QDateTime::fromString(anniversary,"dd/MM/yyyy").toMSecsSinceEpoch();
+        if(time_validator==14400000){
+            QMessageBox::warning(this,"Error","Ingresar un formato de fecha válido");
+            ui -> birthday -> setText("");
+        }
+    }
+}
