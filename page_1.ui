@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>684</width>
-    <height>496</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -178,7 +178,7 @@ max-width:2em;</string>
 color:white;</string>
             </property>
             <property name="text">
-             <string>CATEGORÍA</string>
+             <string>CONTACTO</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -351,9 +351,9 @@ color:white;</string>
 border: 2px solid white;
 border-radius:15px;
 color:white;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 padding:5px;
-min-height:1.8em;
+min-height:2em;
 
 
 </string>
@@ -363,6 +363,9 @@ min-height:1.8em;
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -469,9 +472,9 @@ color:white;</string>
 border: 2px solid white;
 border-radius:15px;
 color:white;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 padding:5px;
-min-height:1.8em;
+min-height:2em;
 
 
 </string>
@@ -481,6 +484,9 @@ min-height:1.8em;
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -587,11 +593,9 @@ color:white;</string>
 border: 2px solid white;
 border-radius:15px;
 color:white;
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 padding:5px;
-min-height:1.8em;
-
-
+min-height:2em;
 </string>
           </property>
           <property name="text">
@@ -599,6 +603,9 @@ min-height:1.8em;
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

@@ -22,34 +22,38 @@ Reservas::Reservas(QWidget *parent) :
    int height = screens[0]->geometry().height();
 
     //set widget size dynamic, aspect ratio 16:9
-   double size_w = (width)/1.45;
+   double size_w = (width)/1.2;
    double size_h = (height)/1.6;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 
     //Frames size:
-    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.6));
+    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.2));
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.7));
 
     //Set the table Size
-    ui -> table_clients_2 -> setColumnCount(8);
-    ui->table_clients_2 ->setColumnWidth(0,static_cast<int>(width/10));  //Fecha
-    ui->table_clients_2 ->setColumnWidth(1,static_cast<int>(width/8));  //Cliente
+    ui -> table_clients_2 -> setColumnCount(10);
+    ui->table_clients_2 ->setColumnWidth(0,static_cast<int>(width/15));  //Fecha
+    ui->table_clients_2 ->setColumnWidth(1,static_cast<int>(width/6));  //Cliente
     ui->table_clients_2 ->setColumnWidth(2,static_cast<int>(width/8));  //Regional
-    ui->table_clients_2 ->setColumnWidth(3,static_cast<int>(width/15));  //Early Check in
-    ui->table_clients_2 ->setColumnWidth(4,static_cast<int>(width/15));  //Late Check Out
-    ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/15));  //Upgrade
-    ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/15));  //No show
-    ui->table_clients_2 ->setColumnWidth(7,0);
+    ui->table_clients_2 ->setColumnWidth(3,static_cast<int>(width/15)); // noches
+    ui->table_clients_2 ->setColumnWidth(4,static_cast<int>(width/14));  //Early Check in
+    ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/14));  //Late Check Out
+    ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/14));  //Upgrade
+    ui->table_clients_2 ->setColumnWidth(7,static_cast<int>(width/14));  //No show
+    ui->table_clients_2 ->setColumnWidth(8,static_cast<int>(width/8));  //No show
+    ui->table_clients_2 ->setColumnWidth(9,0);
 
     //Setting the table headers
     QStringList headers = {"Fecha",
                            "Cliente",
                            "Regional",
+                           "Noches",
                            "Early Check-in",
                            "Late Check-out",
                            "Upgrade",
-                           "No Show"};
+                           "No Show",
+                           "Agente"};
 
     ui -> table_clients_2 -> setHorizontalHeaderLabels(headers);
 }
@@ -93,13 +97,16 @@ void Reservas::read_info(QString pages){
             if(todo=="Reserva"){
                 QString cliente = entidad.toObject ().value("client").toObject().value("name").toString();
                 QString ciudad = entidad.toObject ().value("regional").toObject().value("city").toObject().value("city").toString();
-                QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("registerDate").toVariant().toLongLong()).toString();
+                QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("registerDate").toVariant().toLongLong()).toString("yyyy/MM/dd");
+                QString agente = entidad.toObject().value("creationAgent").toObject().value("realName").toString();
 
                 if(entidad.toObject().contains("outData")){
 
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["client"] = cliente;
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["city"] = ciudad;
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["date"] = date;
+                    this -> tabla_informacion[entidad.toObject().value("_id").toString()]["agente"] = agente;
+                    this -> tabla_informacion[entidad.toObject().value("_id").toString()]["noches"] = QString::number(entidad.toObject().value("outData").toObject().value("nights").toInt());
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["early"] = QString::number(entidad.toObject().value("outData").toObject().value("earlyCheckIn").toInt());
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["late"] = QString::number(entidad.toObject().value("outData").toObject().value("lateCheckOut").toInt());
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["upgrade"] = QString::number(entidad.toObject().value("outData").toObject().value("upgrade").toInt());
@@ -111,6 +118,8 @@ void Reservas::read_info(QString pages){
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["client"] = cliente;
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["city"] = ciudad;
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["date"] = date;
+                    this -> tabla_informacion[entidad.toObject().value("_id").toString()]["agente"] = agente;
+                    this -> tabla_informacion[entidad.toObject().value("_id").toString()]["noches"] = QString::number(entidad.toObject().value("inData").toObject().value("nights").toInt());
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["early"] = QString::number(entidad.toObject().value("inData").toObject().value("earlyCheckIn").toInt());
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["late"] = QString::number(entidad.toObject().value("inData").toObject().value("lateCheckOut").toInt());
                     this -> tabla_informacion[entidad.toObject().value("_id").toString()]["upgrade"] = QString::number(entidad.toObject().value("inData").toObject().value("upgrade").toInt());
@@ -133,7 +142,7 @@ void Reservas::read_info(QString pages){
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/tasks?from="+pages+"&to=50"));
+    request.setUrl (QUrl ("http://"+this->url+"/tasks?deleted=0&from="+pages+"&to=50"));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -194,11 +203,13 @@ void Reservas::update_table(QHash<QString, QHash<QString, QString>>update){
         ui->table_clients_2->setItem(row_control, 0, new QTableWidgetItem(update[current]["date"]));
         ui->table_clients_2->setItem(row_control, 1, new QTableWidgetItem(update[current]["client"]));
         ui->table_clients_2->setItem(row_control, 2, new QTableWidgetItem(update[current]["city"]));
-        ui->table_clients_2->setItem(row_control, 3, new QTableWidgetItem(update[current]["early"]));
-        ui->table_clients_2->setItem(row_control, 4, new QTableWidgetItem(update[current]["late"]));
-        ui->table_clients_2->setItem(row_control, 5, new QTableWidgetItem(update[current]["upgrade"]));
-        ui->table_clients_2->setItem(row_control, 6, new QTableWidgetItem(update[current]["noshow"]));
-        ui->table_clients_2->setItem(row_control, 7, new QTableWidgetItem(current));
+        ui->table_clients_2->setItem(row_control, 3, new QTableWidgetItem(update[current]["noches"]));
+        ui->table_clients_2->setItem(row_control, 4, new QTableWidgetItem(update[current]["early"]));
+        ui->table_clients_2->setItem(row_control, 5, new QTableWidgetItem(update[current]["late"]));
+        ui->table_clients_2->setItem(row_control, 6, new QTableWidgetItem(update[current]["upgrade"]));
+        ui->table_clients_2->setItem(row_control, 7, new QTableWidgetItem(update[current]["noshow"]));
+        ui->table_clients_2->setItem(row_control, 8, new QTableWidgetItem(update[current]["agente"]));
+        ui->table_clients_2->setItem(row_control, 9, new QTableWidgetItem(current));
 
     }
     ui -> table_clients_2 -> setSortingEnabled(true);
@@ -210,11 +221,11 @@ void Reservas::updater(){
 
 void Reservas::on_table_clients_2_cellClicked(int row, int column){
     qDebug()<<column;
-    this -> early = ui -> table_clients_2 -> item(row, 3)->text();
-    this -> late = ui -> table_clients_2 -> item(row, 4)->text();
-    this -> upgrade = ui -> table_clients_2 -> item(row, 5)->text();
-    this -> noshow = ui -> table_clients_2 -> item(row, 6)->text();
-    this -> id_register = ui -> table_clients_2 -> item(row, 7)->text();
+    this -> early = ui -> table_clients_2 -> item(row, 4)->text();
+    this -> late = ui -> table_clients_2 -> item(row, 5)->text();
+    this -> upgrade = ui -> table_clients_2 -> item(row, 6)->text();
+    this -> noshow = ui -> table_clients_2 -> item(row, 7)->text();
+    this -> id_register = ui -> table_clients_2 -> item(row, 9)->text();
 }
 
 void Reservas::on_modify_clicked(){

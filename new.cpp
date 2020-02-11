@@ -164,6 +164,9 @@ void New::on_guardar_butt_clicked()
     QString ciudad = ui -> regional_box -> currentText();
 
     this -> id_regional = tabla_vinculo[cliente][ciudad];
+
+    ui -> guardar_butt -> setDisabled(true);
+
     create_contact();
 }
 

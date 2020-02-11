@@ -378,6 +378,7 @@ void New_client::on_guardar_butt_clicked(){
     QString client = ui -> cliente -> text();
     QString city = ui -> regional_2 -> text();
     if(client!="" && city!=""){
+        ui -> guardar_butt -> setDisabled(true);
         create_regional();
     }
     else{

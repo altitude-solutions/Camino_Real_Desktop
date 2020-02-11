@@ -22,24 +22,24 @@ No_task::No_task(QWidget *parent) :
    int height = screens[0]->geometry().height();
 
     //set widget size dynamic, aspect ratio 16:9
-    double size_w = (width)/1.45;
+    double size_w = (width)/1.2;
     double size_h = (height)/1.6;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 
     //Frames size:
-    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.6));
+    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.2));
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.7));
 
     //Set the table Size
     ui -> tabla_general -> setColumnCount(7);
     ui->tabla_general ->setColumnWidth(0,static_cast<int>(width/12));  //Fecha
-    ui->tabla_general ->setColumnWidth(1,static_cast<int>(width/10));  //Cliente
-    ui->tabla_general ->setColumnWidth(2,static_cast<int>(width/10));  //Regional
+    ui->tabla_general ->setColumnWidth(1,static_cast<int>(width/5));  //Cliente
+    ui->tabla_general ->setColumnWidth(2,static_cast<int>(width/12));  //Regional
     ui->tabla_general ->setColumnWidth(3,static_cast<int>(width/15));  //Vía
     ui->tabla_general ->setColumnWidth(4,static_cast<int>(width/15));  //Motivo
     ui->tabla_general ->setColumnWidth(5,static_cast<int>(width/15));  //Resultado
-    ui->tabla_general ->setColumnWidth(6,static_cast<int>(width/7));  //Comentarios
+    ui->tabla_general ->setColumnWidth(6,static_cast<int>(width/4));  //Comentarios
 
     //Setting the table headers
     QStringList headers = {"Fecha",
@@ -97,7 +97,7 @@ void No_task::read_info(QString query, QString pages){
             QString ciudad = entidad.toObject ().value("regional").toObject().value("city").toObject().value("city").toString();
             QString via = entidad.toObject ().value("via").toString();
             QString motivo = entidad.toObject ().value("reason").toString();
-            QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("date").toVariant().toLongLong()).toString();
+            QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("date").toVariant().toLongLong()).toString("yyyy/MM/dd");
             QString comentarios;
             QString resultado;
 

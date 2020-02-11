@@ -28,8 +28,8 @@ void Information_box::receive_info(QString icon, QString header, QString text, d
    int width = screens[0]->geometry().width();
 
    if(size_w<width){
-       ui -> frame_2 -> setFixedWidth(static_cast<int>(size_w*0.3));
-       ui -> frame -> setFixedWidth(static_cast<int>(size_w*0.3));
+       ui -> frame_2 -> setFixedWidth(static_cast<int>(size_w*0.45));
+       ui -> frame -> setFixedWidth(static_cast<int>(size_w*0.45));
    }
    else{
        ui -> frame_2 -> setFixedWidth(static_cast<int>(size_w*0.2));

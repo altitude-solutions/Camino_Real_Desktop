@@ -23,7 +23,7 @@ page_2::page_2(QWidget *parent) :
    int height = screens[0]->geometry().height();
 
     //set widget size dynamic, aspect ratio 16:9
-    double size_w = (width)/1.8;
+    double size_w = (width)/1.5;
     double size_h = (height)/1.6;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
@@ -63,12 +63,12 @@ page_2::page_2(QWidget *parent) :
    ui->icon_pluss->setIconSize(QSize(static_cast<int>(pix_w_a),static_cast<int>(pix_h_a)));
 
    //Set frame sizes
-   ui -> frame_7 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_8 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_2 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_3 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_11 -> setFixedWidth(static_cast<int>(width*0.13));
-   ui -> frame_5 -> setFixedWidth(static_cast<int>(width*0.13));
+   ui -> frame_7 -> setFixedWidth(static_cast<int>(width*0.16));
+   ui -> frame_8 -> setFixedWidth(static_cast<int>(width*0.16));
+   ui -> frame_2 -> setFixedWidth(static_cast<int>(width*0.16));
+   ui -> frame_3 -> setFixedWidth(static_cast<int>(width*0.16));
+   ui -> frame_11 -> setFixedWidth(static_cast<int>(width*0.16));
+   ui -> frame_5 -> setFixedWidth(static_cast<int>(width*0.16));
 
 }
 

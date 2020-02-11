@@ -22,24 +22,24 @@ Tasks::Tasks(QWidget *parent) :
    int height = screens[0]->geometry().height();
 
     //set widget size dynamic, aspect ratio 16:9
-    double size_w = (width)/1.45;
+    double size_w = (width)/1.2;
     double size_h = (height)/1.6;
     QSize size (static_cast<int>(size_w), static_cast<int>(size_h));
     this->setFixedSize(size);
 
     //Frames size:
-    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.6));
+    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.2));
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.7));
 
     //Set the table Size
     ui -> table_clients_2 -> setColumnCount(8);
     ui->table_clients_2 ->setColumnWidth(0,static_cast<int>(width/12));  //Fecha
-    ui->table_clients_2 ->setColumnWidth(1,static_cast<int>(width/10));  //Cliente
-    ui->table_clients_2 ->setColumnWidth(2,static_cast<int>(width/10));  //Regional
+    ui->table_clients_2 ->setColumnWidth(1,static_cast<int>(width/5));  //Cliente
+    ui->table_clients_2 ->setColumnWidth(2,static_cast<int>(width/12));  //Regional
     ui->table_clients_2 ->setColumnWidth(3,static_cast<int>(width/15));  //Vía
     ui->table_clients_2 ->setColumnWidth(4,static_cast<int>(width/15));  //Motivo
     ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/15));  //Resultado
-    ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/7));  //Comentarios
+    ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/4));  //Comentarios
     ui->table_clients_2 ->setColumnWidth(7,0);
 
     //Setting the table headers
@@ -103,7 +103,7 @@ void Tasks::read_info(QString pages){
             QString ciudad = entidad.toObject ().value("regional").toObject().value("city").toObject().value("city").toString();
             QString via = entidad.toObject ().value(var).toObject().value("via").toString();
             QString motivo = entidad.toObject ().value(var).toObject().value("reason").toString();
-            QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("registerDate").toVariant().toLongLong()).toString();
+            QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("registerDate").toVariant().toLongLong()).toString("yyyy/MM/dd");
             bool completed = entidad.toObject().value("completed").toBool();
             bool deleted = entidad.toObject().value("deleted").toBool();
 
