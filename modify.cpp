@@ -99,6 +99,10 @@ void Modify::on_guardar_butt_clicked(){
          job="-";
      }
 
+     if(ui ->birthday_2 -> text()!=""){
+         main_object.insert("birthday",QDateTime::fromString(ui ->birthday_2 -> text(),"dd/MM/yyyy").toMSecsSinceEpoch());
+     }
+
      main_object.insert("name",name);
      main_object.insert("phoneNumbers",phone);
      main_object.insert("emailAddresses", mails);
@@ -151,4 +155,16 @@ void Modify::restart(){
     ui -> phone -> setText("");
     ui -> mail -> setText("");
     ui -> job -> setText("");
+}
+
+void Modify::on_birthday_2_editingFinished(){
+
+    QString anniversary = ui -> birthday_2 -> text();
+    if(anniversary!=""){
+        qlonglong time_validator = QDateTime::fromString(anniversary,"dd/MM/yyyy").toMSecsSinceEpoch();
+        if(time_validator==14400000){
+            QMessageBox::warning(this,"Error","Ingresar un formato de fecha válido");
+            ui -> birthday_2 -> setText("");
+        }
+    }
 }

@@ -192,6 +192,22 @@ color: #294D39;</string>
                   </spacer>
                  </item>
                  <item>
+                  <widget class="QPushButton" name="pushButton_3">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+background-color:rgba(255,255,255,30%);
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
+                   </property>
+                   <property name="text">
+                    <string>MODIFICAR</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QPushButton" name="delete_butt">
                    <property name="styleSheet">
                     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
@@ -322,7 +338,7 @@ QHeaderView::section {
                     <number>0</number>
                    </property>
                    <attribute name="horizontalHeaderVisible">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </attribute>
                    <attribute name="verticalHeaderVisible">
                     <bool>false</bool>
@@ -448,6 +464,22 @@ color: #294D39;</string>
                   </spacer>
                  </item>
                  <item>
+                  <widget class="QPushButton" name="pushButton_4">
+                   <property name="styleSheet">
+                    <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
+color:white;
+background-color:rgba(255,255,255,30%);
+min-width:8em;
+max-width:8em;
+min-height:2em;
+max-height:2em;</string>
+                   </property>
+                   <property name="text">
+                    <string>MODIFICAR</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QPushButton" name="delete_butt_2">
                    <property name="styleSheet">
                     <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
@@ -569,7 +601,7 @@ QTableWidget::item{
                     <number>0</number>
                    </property>
                    <attribute name="horizontalHeaderVisible">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </attribute>
                    <attribute name="verticalHeaderVisible">
                     <bool>false</bool>

@@ -29,19 +29,20 @@ Clients::Clients(QWidget *parent) :
     this->setFixedSize(size);
 
     //Frames size:
-    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.45));
+    ui -> frame_4 -> setFixedWidth(static_cast<int>(width/1.33));
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.8));
 
     //Set the table Size
-    ui -> table_clients -> setColumnCount(8);
+    ui -> table_clients -> setColumnCount(9);
     ui->table_clients ->setColumnWidth(0,static_cast<int>(width/12));  //Cliente
     ui->table_clients ->setColumnWidth(1,static_cast<int>(width/14));  //Regional
     ui->table_clients ->setColumnWidth(2,static_cast<int>(width/8));  //Nombre del contacto
-    ui->table_clients ->setColumnWidth(3,static_cast<int>(width/13));  //Teléfono del contacto
-    ui->table_clients ->setColumnWidth(4,static_cast<int>(width/9));  //E-mail del contacto
-    ui->table_clients ->setColumnWidth(5,static_cast<int>(width/12));  //Cargo del contacto
-    ui->table_clients ->setColumnWidth(6,static_cast<int>(width/8));  // Asesor de ventas
-    ui->table_clients ->setColumnWidth(7,0);
+    ui->table_clients ->setColumnWidth(3,static_cast<int>(width/12));  //Teléfono del contacto
+    ui->table_clients ->setColumnWidth(4,static_cast<int>(width/12));  //E-mail del contacto
+    ui->table_clients ->setColumnWidth(5,static_cast<int>(width/12));  //Cumpleaños
+    ui->table_clients ->setColumnWidth(6,static_cast<int>(width/12));  //Cargo del contacto
+    ui->table_clients ->setColumnWidth(7,static_cast<int>(width/8));  // Asesor de ventas
+    ui->table_clients ->setColumnWidth(8,0);
 
     //Setting the table headers
     QStringList headers = {"Cliente",
@@ -49,6 +50,7 @@ Clients::Clients(QWidget *parent) :
                            "Contacto",
                            "Teléfono",
                            "E-mail",
+                           "Cumpleaños",
                            "Cargo",
                            "Asesor"};
 
@@ -138,6 +140,10 @@ void Clients::read_client_info(QString filter)
                     QString id_contacto = contacto.toObject().value("_id").toString();
                     QString nombre_contacto = contacto.toObject().value("name").toString();
                     QString cargo_contacto = contacto.toObject().value("job").toString();
+
+                    QDateTime time = QDateTime::fromMSecsSinceEpoch(contacto.toObject().value("birthday").toVariant().toLongLong());
+                    QString birthday = time.toString("dd/MM/yyyy");
+
                     bool default_contact = contacto.toObject().value("primary").toBool();
 
                     QStringList phones;
@@ -171,6 +177,7 @@ void Clients::read_client_info(QString filter)
                     this -> tabla_contactos[id_contacto]["regional"] = id_sucursal;
                     this -> tabla_contactos[id_contacto]["city"] = ciudad;
                     this -> tabla_contactos[id_contacto]["agent"] = id_agente;
+                    this -> tabla_contactos[id_contacto]["birthday"] = birthday;
                 }
              }
           }
@@ -225,9 +232,17 @@ void Clients::update_table(QHash<QString, QHash<QString, QString>> update){
         ui->table_clients->setItem(row_control, 2, new QTableWidgetItem(update[current]["contact"]));
         ui->table_clients->setItem(row_control, 3, new QTableWidgetItem(tabla_telefonos[current][0]));
         ui->table_clients->setItem(row_control, 4, new QTableWidgetItem(tabla_mails[current][0]));
-        ui->table_clients->setItem(row_control, 5, new QTableWidgetItem(update[current]["job"]));
-        ui->table_clients->setItem(row_control, 6, new QTableWidgetItem(tabla_agentes[update[current]["agent"]]));
-        ui->table_clients->setItem(row_control, 7, new QTableWidgetItem(current));
+
+        if(update[current]["birthday"]=="31/12/1969"){
+            ui->table_clients->setItem(row_control, 5, new QTableWidgetItem("-"));
+        }
+        else{
+            ui->table_clients->setItem(row_control, 5, new QTableWidgetItem(update[current]["birthday"]));
+        }
+
+        ui->table_clients->setItem(row_control, 6, new QTableWidgetItem(update[current]["job"]));
+        ui->table_clients->setItem(row_control, 7, new QTableWidgetItem(tabla_agentes[update[current]["agent"]]));
+        ui->table_clients->setItem(row_control, 8, new QTableWidgetItem(current));
 
     }
    ui -> table_clients -> setSortingEnabled(true);
@@ -241,10 +256,11 @@ void Clients::on_table_clients_cellClicked(int row, int column)
     contact["contact"] = ui -> table_clients -> item(row,2)->text();
     contact["phone"] = ui -> table_clients -> item(row,3)->text();
     contact["email"] = ui -> table_clients -> item(row,4)->text();
-    contact["job"] = ui -> table_clients -> item(row,5)->text();
-    contact["real_name"] = ui -> table_clients -> item(row,6)->text();
-    contact["id_contacto"] = ui -> table_clients -> item(row,7)->text();
-    contact["category"] = tabla_categorias[tabla_contactos[ui -> table_clients -> item(row,7)->text()]["category"]];
+    contact["birthday"] = ui -> table_clients -> item(row,5)->text();
+    contact["job"] = ui -> table_clients -> item(row,6)->text();
+    contact["real_name"] = ui -> table_clients -> item(row,7)->text();
+    contact["id_contacto"] = ui -> table_clients -> item(row,8)->text();
+    contact["category"] = tabla_categorias[tabla_contactos[ui -> table_clients -> item(row,8)->text()]["category"]];
 
     paint_table(row);
 }
@@ -261,6 +277,7 @@ void Clients::paint_table(int row){
             ui->table_clients->item(row,5)->setBackground(QColor("#B6B6B6"));
             ui->table_clients->item(row,6)->setBackground(QColor("#B6B6B6"));
             ui->table_clients->item(row,7)->setBackground(QColor("#B6B6B6"));
+            ui->table_clients->item(row,8)->setBackground(QColor("#B6B6B6"));
         }
         else {
             ui->table_clients->item(i,0)->setBackground(QColor("#FFFFFF"));
@@ -271,6 +288,7 @@ void Clients::paint_table(int row){
             ui->table_clients->item(i,5)->setBackground(QColor("#FFFFFF"));
             ui->table_clients->item(i,6)->setBackground(QColor("#FFFFFF"));
             ui->table_clients->item(i,7)->setBackground(QColor("#FFFFFF"));
+            ui->table_clients->item(i,8)->setBackground(QColor("#FFFFFF"));
         }
     }
 }

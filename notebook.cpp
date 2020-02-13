@@ -909,3 +909,36 @@ void Notebook::on_general_table_cellDoubleClicked(int row, int column){
     QString actual_value = ui -> general_table -> item(row,column)->text();
     emit shoot_info(actual_value);
 }
+
+void Notebook::on_pushButton_3_clicked()
+{
+    if (your_reg["id_register"]!=""){
+
+        comentarios = new Modify_comment(this);
+        connect(this,SIGNAL(modify_comment(QString, QString, QString, QString)),comentarios,SLOT(receive_comment(QString, QString, QString, QString)));
+        connect(comentarios,SIGNAL(send_info(QString,QString,QString)),this, SLOT(information_box(QString, QString, QString)));
+        connect(comentarios,SIGNAL(update()),this, SLOT(restart()));
+        emit modify_comment(this ->token, this -> url, your_reg["id_register"], your_reg["comments"]);
+
+        comentarios -> show();
+    }
+    else{
+        information_box("x","Error","Seleccionar un registro porfavor");
+    }
+}
+
+void Notebook::on_pushButton_4_clicked(){
+    if (gral_reg["id_register"]!=""){
+
+        comentarios = new Modify_comment(this);
+        connect(this,SIGNAL(modify_comment(QString, QString, QString, QString)),comentarios,SLOT(receive_comment(QString, QString, QString, QString)));
+        connect(comentarios,SIGNAL(send_info(QString,QString,QString)),this, SLOT(information_box(QString, QString, QString)));
+        connect(comentarios,SIGNAL(update()),this, SLOT(restart()));
+        emit modify_comment(this ->token, this -> url, gral_reg["id_register"], gral_reg["comments"]);
+
+        comentarios -> show();
+    }
+    else{
+        information_box("x","Error","Seleccionar un registro porfavor");
+    }
+}

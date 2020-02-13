@@ -28,6 +28,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     modify.cpp \
+    modify_comment.cpp \
     new.cpp \
     new_client.cpp \
     nights.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     login.h \
     mainwindow.h \
     modify.h \
+    modify_comment.h \
     new.h \
     new_client.h \
     nights.h \
@@ -78,6 +80,7 @@ FORMS += \
     login.ui \
     mainwindow.ui \
     modify.ui \
+    modify_comment.ui \
     new.ui \
     new_client.ui \
     nights.ui \

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "information_box.h"
+#include "modify_comment.h"
 
 namespace Ui {
 class Notebook;
@@ -19,6 +20,7 @@ public:
 signals:
     void send_info_box(QString, QString,QString, double, double);
     void shoot_info(QString);
+    void modify_comment(QString, QString, QString, QString);
 
 private slots:
     void receive_info(QString, QString, QString, QString);
@@ -60,10 +62,15 @@ private slots:
 
     void on_general_table_cellDoubleClicked(int row, int column);
 
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::Notebook *ui;
 
     Information_box *box_info;
+    Modify_comment *comentarios;
 
     //info variables
     QString userName;

@@ -30,6 +30,8 @@ private slots:
     //Restart widget
     void restart();
 
+    void on_birthday_2_editingFinished();
+
 private:
     Ui::Modify *ui;
 
