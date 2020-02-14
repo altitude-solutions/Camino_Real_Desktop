@@ -1,6 +1,6 @@
 #include <windows.h>
 
-IDI_ICON1	ICON	"C:\\Users\\andyg\\Desktop\\Altitude Solutions\\Qt\\Camino Real\\Camino_Real_Desktop\\icono.ico"
+IDI_ICON1	ICON	"C:\Users\Javier\Documents\Camino Real\App\Camino_Real_Desktop\\icono.ico"
 
 VS_VERSION_INFO VERSIONINFO
 	FILEVERSION 0,0,0,0
