@@ -8,6 +8,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <cmath>>
+
 
 Tasks::Tasks(QWidget *parent) :
     QWidget(parent),
@@ -32,15 +34,17 @@ Tasks::Tasks(QWidget *parent) :
     ui -> frame_4 -> setFixedHeight(static_cast<int>(height/1.7));
 
     //Set the table Size
-    ui -> table_clients_2 -> setColumnCount(8);
-    ui->table_clients_2 ->setColumnWidth(0,static_cast<int>(width/12));  //Fecha
-    ui->table_clients_2 ->setColumnWidth(1,static_cast<int>(width/5));  //Cliente
-    ui->table_clients_2 ->setColumnWidth(2,static_cast<int>(width/12));  //Regional
-    ui->table_clients_2 ->setColumnWidth(3,static_cast<int>(width/15));  //Vía
-    ui->table_clients_2 ->setColumnWidth(4,static_cast<int>(width/15));  //Motivo
-    ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/15));  //Resultado
+    ui -> table_clients_2 -> setColumnCount(9);
+//    ui -> table_clients_2 -> setColumnCount(8);
+    ui->table_clients_2 ->setColumnWidth(0,static_cast<int>(width/18)); //Fecha
+    ui->table_clients_2 ->setColumnWidth(1,static_cast<int>(width/5.7));  //Cliente
+    ui->table_clients_2 ->setColumnWidth(2,static_cast<int>(width/17)); //Regional
+    ui->table_clients_2 ->setColumnWidth(3,static_cast<int>(width/15)); //Vía
+    ui->table_clients_2 ->setColumnWidth(4,static_cast<int>(width/15)); //Motivo
+    ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/17)); //Resultado
     ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/4));  //Comentarios
-    ui->table_clients_2 ->setColumnWidth(7,0);
+    ui->table_clients_2 ->setColumnWidth(7,static_cast<int>(width/12)); //Agente asignado
+    ui->table_clients_2 ->setColumnWidth(8, 0);
 
     //Setting the table headers
     QStringList headers = {"Fecha",
@@ -49,7 +53,8 @@ Tasks::Tasks(QWidget *parent) :
                            "Vía",
                            "Motivo",
                            "Resultado",
-                           "Comentarios"};
+                           "Comentarios",
+                           "Agente"};
 
     ui -> table_clients_2 -> setHorizontalHeaderLabels(headers);
 
@@ -88,8 +93,9 @@ void Tasks::read_info(QString pages){
         tabla_informacion.clear();
         int registers;
 
+        int size = 0;
         foreach (QJsonValue entidad, okJson.object ().value ("tasks").toArray ()) {
-
+            size++;
             QString var = "inData";
             QString resultado="";
             QString comentarios;
@@ -104,6 +110,7 @@ void Tasks::read_info(QString pages){
             QString via = entidad.toObject ().value(var).toObject().value("via").toString();
             QString motivo = entidad.toObject ().value(var).toObject().value("reason").toString();
             QString date = QDateTime::fromMSecsSinceEpoch(entidad.toObject ().value("registerDate").toVariant().toLongLong()).toString("yyyy/MM/dd");
+            QString salesAgent = entidad.toObject().value("creationAgent").toObject().value("realName").toString();
             bool completed = entidad.toObject().value("completed").toBool();
             bool deleted = entidad.toObject().value("deleted").toBool();
 
@@ -123,8 +130,10 @@ void Tasks::read_info(QString pages){
             this -> tabla_informacion[entidad.toObject().value("_id").toString()]["date"] = date;
             this -> tabla_informacion[entidad.toObject().value("_id").toString()]["result"] = resultado;
             this -> tabla_informacion[entidad.toObject().value("_id").toString()]["comments"] = comentarios;
+            this -> tabla_informacion[entidad.toObject().value("_id").toString()]["creationAgent"] = salesAgent;
         }
 
+        qDebug() << "page size" << size;
         if(this->first_time){
             registers = okJson.object().value("count").toInt();
             define_pages(registers);
@@ -146,20 +155,11 @@ void Tasks::read_info(QString pages){
 }
 
 void Tasks::define_pages(int registers){
-    int n_pages;
+    int n_pages = 0;
     int defined_pages = 50;
+    n_pages = std::ceil(registers / defined_pages) + 1;
+
     ui -> pages -> clear();
-    if(registers <= defined_pages){
-        n_pages = 1;
-    }
-    else{
-        if(registers%defined_pages!=0){
-            n_pages = (registers/defined_pages)+1;
-        }
-        else{
-            n_pages = registers/defined_pages;
-        }
-    }
     for(int i = 1; i<n_pages+1; i++){
         ui -> pages -> addItem(QString::number(i));
     }
@@ -191,7 +191,8 @@ void Tasks::update_table(QHash<QString, QHash<QString, QString>>update){
         ui->table_clients_2->setItem(row_control, 4, new QTableWidgetItem(update[current]["motivo"]));
         ui->table_clients_2->setItem(row_control, 5, new QTableWidgetItem(update[current]["result"]));
         ui->table_clients_2->setItem(row_control, 6, new QTableWidgetItem(update[current]["comments"]));
-        ui->table_clients_2->setItem(row_control, 7, new QTableWidgetItem(current));
+        ui->table_clients_2->setItem(row_control, 7, new QTableWidgetItem(update[current]["creationAgent"]));
+        ui->table_clients_2->setItem(row_control, 8, new QTableWidgetItem(current));
 
 
         if(update[current]["completed"]!=false&&update[current]["deleted"]!=true){
@@ -202,6 +203,7 @@ void Tasks::update_table(QHash<QString, QHash<QString, QString>>update){
             ui->table_clients_2->item(row_control,4)->setBackground(QColor("#F2AB3E"));
             ui->table_clients_2->item(row_control,5)->setBackground(QColor("#F2AB3E"));
             ui->table_clients_2->item(row_control,6)->setBackground(QColor("#F2AB3E"));
+            ui->table_clients_2->item(row_control,7)->setBackground(QColor("#F2AB3E"));
         }
         else if (update[current]["deleted"]!=false){
             ui->table_clients_2->item(row_control,0)->setBackground(QColor("#999999"));
@@ -211,6 +213,7 @@ void Tasks::update_table(QHash<QString, QHash<QString, QString>>update){
             ui->table_clients_2->item(row_control,4)->setBackground(QColor("#999999"));
             ui->table_clients_2->item(row_control,5)->setBackground(QColor("#999999"));
             ui->table_clients_2->item(row_control,6)->setBackground(QColor("#999999"));
+            ui->table_clients_2->item(row_control,7)->setBackground(QColor("#999999"));
         }
     }
     ui -> table_clients_2 -> setSortingEnabled(true);
@@ -218,19 +221,12 @@ void Tasks::update_table(QHash<QString, QHash<QString, QString>>update){
 
 void Tasks::on_pages_activated(const QString &arg1){
     int index = arg1.toInt();
-    int sender;
-    if(index<=1){
-        sender = 0;
-    }
-    else{
-        sender = (index-1)*50;
-    }
-    read_info(QString::number(sender));
+    read_info(QString::number( ( index - 1) * 50 ) );
 }
 
 void Tasks::on_table_clients_2_cellClicked(int row, int column){
     qDebug()<<column;
-    this -> register_id = ui -> table_clients_2 -> item(row, 7)->text();
+    this -> register_id = ui -> table_clients_2 -> item(row, 8)->text();
 }
 
 void Tasks::on_modify_butt_2_clicked(){

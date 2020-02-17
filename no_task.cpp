@@ -8,6 +8,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <cmath>
+
 
 No_task::No_task(QWidget *parent) :
     QWidget(parent),
@@ -39,7 +41,7 @@ No_task::No_task(QWidget *parent) :
     ui->tabla_general ->setColumnWidth(3,static_cast<int>(width/15));  //Vía
     ui->tabla_general ->setColumnWidth(4,static_cast<int>(width/15));  //Motivo
     ui->tabla_general ->setColumnWidth(5,static_cast<int>(width/15));  //Resultado
-    ui->tabla_general ->setColumnWidth(6,static_cast<int>(width/4));  //Comentarios
+    ui->tabla_general ->setColumnWidth(6,static_cast<int>(width/4.03));  //Comentarios
 
     //Setting the table headers
     QStringList headers = {"Fecha",
@@ -145,21 +147,11 @@ void No_task::read_info(QString query, QString pages){
 }
 
 void No_task::define_pages(int registers){
-
-    int n_pages;
+    int n_pages = 0;
     int defined_pages = 50;
+    n_pages = std::ceil(registers / defined_pages) + 1;
+
     ui -> pages -> clear();
-    if(registers <= defined_pages){
-        n_pages = 1;
-    }
-    else{
-        if(registers%defined_pages!=0){
-            n_pages = (registers/defined_pages)+1;
-        }
-        else{
-            n_pages = registers/defined_pages;
-        }
-    }
     for(int i = 1; i<n_pages+1; i++){
         ui -> pages -> addItem(QString::number(i));
     }
@@ -203,12 +195,5 @@ void No_task::on_b_Box_activated(const QString &arg1){
 
 void No_task::on_pages_activated(const QString &arg1){
     int index = arg1.toInt();
-    int sender;
-    if(index<=1){
-        sender = 0;
-    }
-    else{
-        sender = (index-1)*50;
-    }
-    read_info(ui -> b_Box ->currentText(), QString::number(sender));
+    read_info(ui -> b_Box ->currentText(), QString::number( ( index - 1) * 50 ) );
 }

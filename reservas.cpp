@@ -8,6 +8,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
+#include <cmath>
+
 
 Reservas::Reservas(QWidget *parent) :
     QWidget(parent),
@@ -41,7 +43,7 @@ Reservas::Reservas(QWidget *parent) :
     ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/14));  //Late Check Out
     ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/14));  //Upgrade
     ui->table_clients_2 ->setColumnWidth(7,static_cast<int>(width/14));  //No show
-    ui->table_clients_2 ->setColumnWidth(8,static_cast<int>(width/8));  //No show
+    ui->table_clients_2 ->setColumnWidth(8,static_cast<int>(width/9.7));  //No show
     ui->table_clients_2 ->setColumnWidth(9,0);
 
     //Setting the table headers
@@ -142,7 +144,7 @@ void Reservas::read_info(QString pages){
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/tasks?deleted=0&from="+pages+"&to=50"));
+    request.setUrl (QUrl ("http://"+this->url+"/tasks?todo=Reserva&deleted=0&from="+pages+"&to=50"));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");
@@ -150,20 +152,11 @@ void Reservas::read_info(QString pages){
 }
 
 void Reservas::define_pages(int registers){
-    int n_pages;
+    int n_pages = 0;
     int defined_pages = 50;
+    n_pages = std::ceil(registers / defined_pages) + 1;
+
     ui -> pages -> clear();
-    if(registers <= defined_pages){
-        n_pages = 1;
-    }
-    else{
-        if(registers%defined_pages!=0){
-            n_pages = (registers/defined_pages)+1;
-        }
-        else{
-            n_pages = registers/defined_pages;
-        }
-    }
     for(int i = 1; i<n_pages+1; i++){
         ui -> pages -> addItem(QString::number(i));
     }
@@ -173,14 +166,7 @@ void Reservas::define_pages(int registers){
 
 void Reservas::on_pages_activated(const QString &arg1){
     int index = arg1.toInt();
-    int sender;
-    if(index<=1){
-        sender = 0;
-    }
-    else{
-        sender = (index-1)*50;
-    }
-    read_info(QString::number(sender));
+    read_info(QString::number( ( index - 1) * 50 ) );
 }
 
 void Reservas::update_table(QHash<QString, QHash<QString, QString>>update){
