@@ -133,7 +133,6 @@ void Tasks::read_info(QString pages){
             this -> tabla_informacion[entidad.toObject().value("_id").toString()]["creationAgent"] = salesAgent;
         }
 
-        qDebug() << "page size" << size;
         if(this->first_time){
             registers = okJson.object().value("count").toInt();
             define_pages(registers);
