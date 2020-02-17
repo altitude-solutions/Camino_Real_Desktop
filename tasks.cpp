@@ -96,7 +96,7 @@ void Tasks::read_info(QString pages){
 
             if(entidad.toObject().contains("outData")){
                 var = "outData";
-                resultado = entidad.toObject ().value(var).toObject().value("via").toString();
+                resultado = entidad.toObject ().value(var).toObject().value("result").toString();
             }
 
             QString cliente = entidad.toObject ().value("client").toObject().value("name").toString();
@@ -192,6 +192,7 @@ void Tasks::update_table(QHash<QString, QHash<QString, QString>>update){
         ui->table_clients_2->setItem(row_control, 5, new QTableWidgetItem(update[current]["result"]));
         ui->table_clients_2->setItem(row_control, 6, new QTableWidgetItem(update[current]["comments"]));
         ui->table_clients_2->setItem(row_control, 7, new QTableWidgetItem(current));
+
 
         if(update[current]["completed"]!=false&&update[current]["deleted"]!=true){
             ui->table_clients_2->item(row_control,0)->setBackground(QColor("#F2AB3E"));
