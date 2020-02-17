@@ -8,7 +8,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
-#include <cmath>>
+#include <cmath>
 
 
 Tasks::Tasks(QWidget *parent) :
