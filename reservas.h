@@ -17,7 +17,7 @@ public:
 
 signals:
     void send_info_box(QString, QString, QString);
-    void send_benefits_id(QString, QString, QString, QString, QString);
+    void send_benefits_id(QString, QString, QString, QString, QString, QString);
 
 private slots:
     //Main info receiver
@@ -60,6 +60,7 @@ private:
     QString late;
     QString upgrade;
     QString noshow;
+    QString nights;
 };
 
 #endif // RESERVAS_H

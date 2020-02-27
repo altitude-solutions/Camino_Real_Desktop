@@ -20,7 +20,7 @@ signals:
     void send_update();
 
 private slots:
-    void receive_info(QString, QString, QString, QString, QString, QString, QString, QString);
+    void receive_info(QString, QString, QString, QString, QString, QString, QString, QString, QString);
 
     void on_cancel_butt_clicked();
 
@@ -34,6 +34,8 @@ private:
     QString late;
     QString upgrade;
     QString noshow;
+    QString nights;
+
     QString userName;
     QString register_id;
     QString token;

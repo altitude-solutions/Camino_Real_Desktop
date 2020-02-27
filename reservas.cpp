@@ -43,7 +43,7 @@ Reservas::Reservas(QWidget *parent) :
     ui->table_clients_2 ->setColumnWidth(5,static_cast<int>(width/14));  //Late Check Out
     ui->table_clients_2 ->setColumnWidth(6,static_cast<int>(width/14));  //Upgrade
     ui->table_clients_2 ->setColumnWidth(7,static_cast<int>(width/14));  //No show
-    ui->table_clients_2 ->setColumnWidth(8,static_cast<int>(width/9.7));  //No show
+    ui->table_clients_2 ->setColumnWidth(8,static_cast<int>(width/9.7));  //Agente
     ui->table_clients_2 ->setColumnWidth(9,0);
 
     //Setting the table headers
@@ -207,6 +207,8 @@ void Reservas::updater(){
 
 void Reservas::on_table_clients_2_cellClicked(int row, int column){
     qDebug()<<column;
+    this -> nights = ui->table_clients_2->item(row, 3)->text();
+
     this -> early = ui -> table_clients_2 -> item(row, 4)->text();
     this -> late = ui -> table_clients_2 -> item(row, 5)->text();
     this -> upgrade = ui -> table_clients_2 -> item(row, 6)->text();
@@ -216,7 +218,7 @@ void Reservas::on_table_clients_2_cellClicked(int row, int column){
 
 void Reservas::on_modify_clicked(){
     if(id_register!=""){
-        emit send_benefits_id(this -> id_register, this -> early, this -> late, this -> upgrade, this -> noshow);
+        emit send_benefits_id(this -> id_register, this -> early, this -> late, this -> upgrade, this -> noshow, this -> nights);
     }
     else{
         send_info_box("x","Error","Seleccionar un registro porfavor");

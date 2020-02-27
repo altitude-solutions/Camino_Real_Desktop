@@ -202,7 +202,7 @@ void Records::on_page_3_clicked(){
     connect(reservas,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
 
     //Connect with Benefits upgrade
-    connect(reservas,SIGNAL(send_benefits_id(QString, QString, QString, QString, QString)),this,SLOT(benefits_update(QString, QString, QString, QString, QString)));
+    connect(reservas,SIGNAL(send_benefits_id(QString, QString, QString, QString, QString, QString)),this,SLOT(benefits_update(QString, QString, QString, QString, QString, QString)));
 
     emit send_info(this->userName, this->realName, this->token, this->url);
     l_a->addWidget (reservas);
@@ -212,10 +212,10 @@ void Records::on_page_3_clicked(){
     ui->page_3->setStyleSheet(released);
 }
 
-void Records::benefits_update(QString register_id, QString early, QString late, QString upgrade, QString noshow){
+void Records::benefits_update(QString register_id, QString early, QString late, QString upgrade, QString noshow, QString nights){
 
     benefits = new Update_benefits(this);
-    connect(this, SIGNAL(send_info_id(QString, QString, QString, QString, QString, QString, QString, QString)),benefits,SLOT(receive_info(QString, QString, QString,QString, QString, QString, QString, QString)));
+    connect(this, SIGNAL(send_info_id(QString, QString, QString, QString, QString, QString, QString, QString, QString)),benefits,SLOT(receive_info(QString, QString, QString,QString, QString, QString, QString, QString, QString)));
 
     //connect information box
     connect(benefits,SIGNAL(send_info_box(QString, QString, QString)),this,SLOT(information_box(QString,QString, QString)));
@@ -223,7 +223,7 @@ void Records::benefits_update(QString register_id, QString early, QString late, 
     //Table update
     connect(benefits,SIGNAL(send_update()),reservas,SLOT(updater()));
 
-    emit send_info_id(this -> userName, this -> token, this -> url, register_id, early, late, upgrade, noshow);
+    emit send_info_id(this -> userName, this -> token, this -> url, register_id, early, late, upgrade, noshow, nights);
     benefits->show();
 }
 

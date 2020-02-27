@@ -24,7 +24,7 @@ public:
 signals:
     //To children
     void send_info(QString, QString, QString, QString);
-    void send_info_id(QString, QString, QString, QString, QString, QString, QString, QString);
+    void send_info_id(QString, QString, QString, QString, QString, QString, QString, QString, QString);
 
     //To the information box
     void send_info_box(QString, QString,QString, double, double);
@@ -42,7 +42,7 @@ private slots:
     void information_box(QString, QString, QString);
 
     //Creating an updater for benefits
-    void benefits_update(QString, QString, QString, QString, QString);
+    void benefits_update(QString, QString, QString, QString, QString, QString);
 
 private:
     Ui::Records *ui;

@@ -57,7 +57,7 @@ Update_benefits::~Update_benefits(){
     delete ui;
 }
 
-void Update_benefits::receive_info(QString userName, QString token, QString url, QString register_id, QString early, QString late, QString upgrade, QString noshow){
+void Update_benefits::receive_info(QString userName, QString token, QString url, QString register_id, QString early, QString late, QString upgrade, QString noshow, QString nights){
 
     this -> userName = userName;
     this -> register_id = register_id;
@@ -67,7 +67,9 @@ void Update_benefits::receive_info(QString userName, QString token, QString url,
     this -> late = late;
     this -> upgrade = upgrade;
     this -> noshow = noshow;
+    this -> nights = nights;
 
+    ui -> nights -> setText(this->nights);
     ui -> early ->setText(this -> early);
     ui -> late ->setText(this -> late);
     ui -> upgrade ->setText(this -> upgrade);
@@ -87,6 +89,8 @@ void Update_benefits::on_guardar_butt_clicked(){
     main_object.insert("lateCheckOut",ui -> late -> text().toInt());
     main_object.insert("upgrade",ui -> upgrade -> text().toInt());
     main_object.insert("noShow",ui -> noshow -> text().toInt());
+    main_object.insert("nights",ui -> nights -> text().toInt());
+
 
     document.setObject(main_object);
 
