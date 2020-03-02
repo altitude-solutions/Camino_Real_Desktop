@@ -158,7 +158,7 @@ void Update_client::set_agents(){
     QNetworkRequest request;
 
     //change URL
-    request.setUrl (QUrl ("http://"+this->url+"/users"));
+    request.setUrl (QUrl ("http://"+this->url+"/users?status=1"));
 
     request.setRawHeader ("token", this -> token.toUtf8 ());
     request.setRawHeader ("Content-Type", "application/json");

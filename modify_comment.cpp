@@ -46,8 +46,8 @@ void Modify_comment::on_pushButton_clicked(){
     QJsonObject main_object;
 
 
-    if(ui->commentario->toPlainText()!=""){
-            main_object.insert("comment",ui->commentario->toPlainText());
+    if(ui->commentario->toPlainText()!="") {
+        main_object.insert("comment",ui->commentario->toPlainText());
     }
 
     document.setObject(main_object);
