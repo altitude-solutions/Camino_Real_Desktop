@@ -180,7 +180,7 @@ min-height:2em;
 max-height:2em;</string>
                 </property>
                 <property name="text">
-                 <string>ACTUALIZAR</string>
+                 <string>EDITAR</string>
                 </property>
                </widget>
               </item>
@@ -196,7 +196,7 @@ min-height:2em;
 max-height:2em;</string>
                 </property>
                 <property name="text">
-                 <string>BORRAR</string>
+                 <string>ELIMINAR</string>
                 </property>
                </widget>
               </item>

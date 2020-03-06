@@ -178,7 +178,7 @@ min-height:2em;
 max-height:2em;</string>
                 </property>
                 <property name="text">
-                 <string>MODIFICAR</string>
+                 <string>EDITAR</string>
                 </property>
                </widget>
               </item>
