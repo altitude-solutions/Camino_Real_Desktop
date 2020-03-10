@@ -317,15 +317,17 @@ void New_client::on_regional_2_editingFinished(){
     if(city!=""){
         if(tabla_ciudades[city]==""){
             ui -> regional_2 -> setText("");
-            QMessageBox::StandardButton reply;
-            reply = QMessageBox::question(this, "Ciudad inexistente", "La ciudad " +city+ " no se encuentra registrada en la base de datos\n"
-                                                                         "Desea crear una nueva ciudad con ese nombre?",QMessageBox::Yes|QMessageBox::No);
-            if(reply == QMessageBox::Yes){
-                create_city(city);
-            }
-            else{
-                ui->regional_2->setText("");
-            }
+            QMessageBox::warning(this, "Ciudad inexistente", QString::fromLatin1("La ciudad ") + city + QString::fromLatin1(" no se encuentra registrada en la base de datos"));
+            // Uncomment this to enable city creation
+//            QMessageBox::StandardButton reply;
+//            reply = QMessageBox::question(this, "Ciudad inexistente", "La ciudad " +city+ " no se encuentra registrada en la base de datos\n"
+//                                                                         "Desea crear una nueva ciudad con ese nombre?",QMessageBox::Yes|QMessageBox::No);
+//            if(reply == QMessageBox::Yes){
+//                create_city(city);
+//            }
+//            else{
+//                ui->regional_2->setText("");
+//            }
         }
         else{
             if(clientes_ciudad[ui->cliente->text()][city]!=""){
