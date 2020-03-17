@@ -37,6 +37,10 @@ private slots:
     void create_city(QString);
     void create_regional();
 
+    // Create synchronous
+    void syncCreateClient (QString clientName, QString regionalID);
+    QString syncCreateRegional ();
+
     //Append
     void append_region(QString);
 

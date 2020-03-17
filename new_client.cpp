@@ -10,6 +10,10 @@
 #include <QMessageBox>
 #include <QCompleter>
 
+#include <QEventLoop>
+
+
+
 New_client::New_client(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::New_client)
@@ -253,27 +257,26 @@ void New_client::set_category(){
 }
 
 void New_client::on_cliente_editingFinished(){
-    QString client = ui -> cliente -> text();
-    if(client!=""){
-        if(tabla_clientes[client]==""){
-            ui -> cliente -> setText("");
+//    QString client = ui -> cliente -> text();
+//    if(client!=""){
+//        if(tabla_clientes[client]==""){
+//            ui -> cliente -> setText("");
 
-            QMessageBox::StandardButton reply;
-            reply = QMessageBox::question(this, "Cliente inexistente", "El cliente " +client+ " no se encuentra registrado en la base de datos\n"
-                                                                         "Desea crear un nuevo cliente con ese nombre?",QMessageBox::Yes|QMessageBox::No);
+//            QMessageBox::StandardButton reply;
+//            reply = QMessageBox::question(this, "Cliente inexistente", "El cliente " +client+ " no se encuentra registrado en la base de datos\n"
+//                                                                         "Desea crear un nuevo cliente con ese nombre?",QMessageBox::Yes|QMessageBox::No);
 
-            if(reply == QMessageBox::Yes){
-                create_client(client);
-            }
-            else{
-                ui->cliente->setText("");
-            }
-        }
-    }
+//            if(reply == QMessageBox::Yes){
+//                create_client(client);
+//            }
+//            else{
+//                ui->cliente->setText("");
+//            }
+//        }
+//    }
 }
 
 void New_client::create_client(QString client_name){
-
     QJsonDocument document;
     QStringList saved;
     QJsonObject main_object;
@@ -376,21 +379,46 @@ void New_client::create_city(QString city){
 }
 
 void New_client::on_guardar_butt_clicked(){
+//    QString client = ui -> cliente -> text();
+//    QString city = ui -> regional_2 -> text();
+//    if(client!="" && city!=""){
+//        ui -> guardar_butt -> setDisabled(true);
+//        create_regional();
+//    }
+//    else{
+//        QMessageBox::warning(this, "Error", "Seleccionar un cliente y sucursal porfavor");
+//    }
+
 
     QString client = ui -> cliente -> text();
     QString city = ui -> regional_2 -> text();
-    if(client!="" && city!=""){
+    if(client!="" && city!="") {
         ui -> guardar_butt -> setDisabled(true);
-        create_regional();
+        if(tabla_clientes[client]==""){
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::question(this, "Cliente inexistente", "El cliente " +client+ " no se encuentra registrado en la base de datos\n"
+                                                                         "Desea crear un nuevo cliente con ese nombre?",QMessageBox::Yes|QMessageBox::No);
+            if(reply == QMessageBox::Yes) {
+                // Get new regional ID
+                QString regional_ID = syncCreateRegional ();
+                syncCreateClient(client, regional_ID);
+            }
+            else {
+                ui->cliente->setText("");
+                ui->guardar_butt->setEnabled(true);
+            }
+        }
+        else {
+            QString regional_ID = syncCreateRegional ();
+            append_region(regional_ID);
+        }
     }
-    else{
-        QMessageBox::warning(this, "Error", "Seleccionar un cliente y sucursal porfavor");
+    else {
+        QMessageBox::warning(this, "Error", "Seleccionar un cliente y sucursal por favor");
     }
-
 }
 
 void New_client::create_regional(){
-
     QString city  =  tabla_ciudades[ui -> regional_2 ->text()];
     QString category = tabla_categorias[ui -> categoria ->currentText()];
     QString agent = tabla_agentes[ui -> agente ->currentText()];
@@ -455,6 +483,7 @@ void New_client::append_region(QString id_regional){
             }
         }
         else{
+
             emit send_update();
             this -> close();
         }
@@ -471,4 +500,111 @@ void New_client::append_region(QString id_regional){
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Synchronous creator
 
+void New_client::syncCreateClient(QString clientName, QString regionalID) {
+
+    qDebug() << "regional id =" << regionalID;
+
+    QJsonDocument document;
+    QStringList saved;
+    QJsonObject main_object;
+    QJsonArray regionals_array;
+
+    regionals_array.append(regionalID);
+
+    main_object.insert("name", clientName);
+    main_object.insert("regionals",regionals_array);
+    document.setObject(main_object);
+
+    //Send information
+    QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+    connect (nam, &QNetworkAccessManager::finished, this, [&](QNetworkReply* reply) {
+        QByteArray binReply = reply->readAll ();
+        if (reply->error ()) {
+            QJsonDocument errorJson = QJsonDocument::fromJson (binReply);
+            if (errorJson.object ().value ("err").toObject ().contains ("message")) {
+                QMessageBox::critical(this,"Error",QString::fromLatin1 (errorJson.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+            } else {
+                QMessageBox::critical(this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta venta.\n" + QString::fromStdString (errorJson.toJson ().toStdString ()));
+            }
+        }
+        else{
+            QJsonDocument receiver = QJsonDocument::fromJson(binReply);
+            ui -> cliente -> setText(receiver.object().value("client").toObject().value("name").toString());
+            set_client();
+
+            emit send_update();
+            this -> close();
+        }
+        reply->deleteLater ();
+    });
+
+    QNetworkRequest request;
+    request.setUrl (QUrl ("http://"+this -> url + "/clients"));
+    request.setRawHeader ("token", this -> token.toUtf8 ());
+    request.setRawHeader ("Content-Type", "application/json");
+
+    nam->post (request, document.toJson ());
+}
+
+QString New_client::syncCreateRegional() {
+    QString returnValue = "";
+
+    QString city  =  tabla_ciudades[ui -> regional_2 ->text()];
+    QString category = tabla_categorias[ui -> categoria ->currentText()];
+    QString agent = tabla_agentes[ui -> agente ->currentText()];
+    QString anniversary =  ui -> aniversario -> text();
+
+    QJsonArray contacto;
+    QJsonObject main_object;
+    QJsonDocument reg_doc;
+
+    main_object.insert("city",city);
+    main_object.insert("salesAgent",agent);
+    main_object.insert("category",category);
+    main_object.insert("contacts",contacto);
+
+    if(anniversary!=""){
+        main_object.insert("anniversary", QDateTime::fromString(anniversary,"dd/MM/yyyy").toMSecsSinceEpoch());
+    }
+
+    reg_doc.setObject(main_object);
+
+    //Send information
+    QNetworkAccessManager* nam = new QNetworkAccessManager (this);
+
+    QNetworkRequest request;
+    request.setUrl (QUrl ("http://"+this -> url + "/regional_clients"));
+    request.setRawHeader ("token", this -> token.toUtf8 ());
+    request.setRawHeader ("Content-Type", "application/json");
+
+    QNetworkReply *reply = nam->post (request, reg_doc.toJson ());
+
+    QEventLoop eventLoop;
+    connect(reply, &QNetworkReply::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+    /////////////////////////////////////////////
+
+    QByteArray resBin = reply->readAll();
+    QJsonDocument response = QJsonDocument::fromJson(resBin);
+    if(reply->error()) {
+        if (response.object ().value ("err").toObject ().contains ("message")) {
+           QMessageBox::critical (this, "Error", QString::fromLatin1 (response.object ().value ("err").toObject ().value ("message").toString ().toLatin1 ()));
+        } else {
+           QMessageBox::critical (this, "Error en base de datos", "Por favor enviar un reporte de error con una captura de pantalla de esta ventana.\n" + QString::fromStdString (response.toJson ().toStdString ()));
+        }
+    }
+    else {
+        returnValue = response.object().value("regional_client").toObject().value("_id").toString();
+    }
+
+    reply->deleteLater();
+    nam->deleteLater();
+
+    return returnValue;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
